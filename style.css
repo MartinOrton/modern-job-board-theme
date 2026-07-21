@@ -1,0 +1,44 @@
+/*
+Theme Name: Modern Job Board Theme
+Theme URI: https://www.modernjobboard.com
+Author: Martin Orton / Antigravity
+Author URI: https://martinorton.com
+Description: Custom WordPress theme converted from a static HTML template for Modern Job Board. Pre-stable beta release (not 1.0 stable).
+Version: 0.9.0-beta.3
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: modern-job-board-theme
+*/
+
+/* WordPress core required styles */
+.aligncenter {
+    display: block;
+    margin: 0 auto;
+}
+.alignleft {
+    float: left;
+    margin: 0 1.5em 1.5em 0;
+}
+.alignright {
+    float: right;
+    margin: 0 0 1.5em 1.5em;
+}
+.wp-caption {
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    max-width: 96%;
+    padding: 5px 3px 10px;
+    text-align: center;
+}
+.wp-caption-text {
+    font-size: 0.85em;
+    margin: 0;
+    padding: 0 5px;
+}
+.screen-reader-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+}

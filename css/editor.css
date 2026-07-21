@@ -1,0 +1,45 @@
+/**
+ * Landing page styles inside the block editor canvas.
+ * styles.css targets `body`; the editor uses `.editor-styles-wrapper` instead.
+ */
+
+.editor-styles-wrapper {
+	font-family: var(--font-sans);
+	color: var(--text-primary);
+	background-color: var(--bg-neutral);
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+	padding: 0 !important;
+	max-width: none !important;
+}
+
+.editor-styles-wrapper .wp-block-html,
+.editor-styles-wrapper .wp-block-html main,
+.editor-styles-wrapper main {
+	display: block;
+	width: 100%;
+}
+
+.editor-styles-wrapper .wp-block-html {
+	margin: 0;
+	max-width: none;
+}
+
+/* Let full-width landing sections breathe in the canvas */
+.editor-styles-wrapper .section,
+.editor-styles-wrapper .hero,
+.editor-styles-wrapper .cta-section {
+	max-width: none;
+}
+
+/* Scroll-reveal animations hide content until JS runs; always show in editor */
+.editor-styles-wrapper .reveal,
+.block-editor-block-list__layout .reveal {
+	opacity: 1 !important;
+	transform: none !important;
+}
+
+/* HTML block code view is plain text by design */
+.block-editor-block-list__block[data-type="core/html"] textarea {
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
