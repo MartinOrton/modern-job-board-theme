@@ -14,7 +14,8 @@ $navbar_class  = 'navbar scrolled';
 $navbar_class .= $is_demo_nav ? ' navbar--demo' : '';
 $demo_links    = $is_demo_nav ? mjb_theme_get_demo_nav_links() : array();
 $demo_actions  = $is_demo_nav ? mjb_theme_get_demo_nav_actions() : array();
-$logo_url      = $is_demo_nav ? $demo_links['jobs']['url'] : home_url( '/' );
+// Demo logo always returns to the marketing site root; other demo links stay under /jobs/.
+$logo_url      = home_url( '/' );
 ?>
 
     <!-- Navbar -->
@@ -59,12 +60,11 @@ $logo_url      = $is_demo_nav ? $demo_links['jobs']['url'] : home_url( '/' );
                 <?php endif; ?>
 
                 <div class="nav-actions desktop-only">
-                    <a href="<?php echo esc_url( $demo_actions['candidate']['url'] ); ?>" class="btn btn-outline btn-sm btn-icon" aria-label="<?php echo esc_attr( $demo_actions['candidate']['label'] ); ?>">
-                        <?php echo mjb_theme_render_nav_icon( 'user' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-                    </a>
-                    <a href="<?php echo esc_url( $demo_actions['employer']['url'] ); ?>" class="btn btn-outline btn-sm btn-icon" aria-label="<?php echo esc_attr( $demo_actions['employer']['label'] ); ?>">
-                        <?php echo mjb_theme_render_nav_icon( $demo_actions['employer']['icon'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-                    </a>
+                    <?php
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in helper.
+                    mjb_theme_render_nav_auth_dropdown( 'candidate', $demo_actions['candidate'] );
+                    mjb_theme_render_nav_auth_dropdown( 'employer', $demo_actions['employer'] );
+                    ?>
                     <a href="<?php echo esc_url( $demo_actions['post_job']['url'] ); ?>" class="btn btn-primary btn-sm">
                         <?php echo esc_html( $demo_actions['post_job']['label'] ); ?>
                     </a>
@@ -83,12 +83,19 @@ $logo_url      = $is_demo_nav ? $demo_links['jobs']['url'] : home_url( '/' );
                 );
                 ?>
             <?php else : ?>
+                <?php
+                // Section anchors must target the marketing home even when viewing /docs/.
+                $home_features    = is_front_page() ? '#features' : home_url( '/#features' );
+                $home_comparison  = is_front_page() ? '#comparison' : home_url( '/#comparison' );
+                $home_developers  = is_front_page() ? '#developers' : home_url( '/#developers' );
+                $home_pricing     = is_front_page() ? '#pricing' : home_url( '/#pricing' );
+                ?>
                 <div class="nav-links desktop-only">
-                    <a href="#features">Features</a>
-                    <a href="<?php echo esc_url( home_url( '/docs/' ) ); ?>">Docs</a>
-                    <a href="#comparison">Compare</a>
-                    <a href="#developers">Developers</a>
-                    <a href="#pricing">Pricing</a>
+                    <a href="<?php echo esc_url( $home_features ); ?>">Features</a>
+                    <a href="<?php echo esc_url( home_url( '/docs/' ) ); ?>"<?php echo is_page( 'docs' ) ? ' class="active" aria-current="page"' : ''; ?>>Docs</a>
+                    <a href="<?php echo esc_url( $home_comparison ); ?>">Compare</a>
+                    <a href="<?php echo esc_url( $home_developers ); ?>">Developers</a>
+                    <a href="<?php echo esc_url( $home_pricing ); ?>">Pricing</a>
                     <a href="<?php echo esc_url( home_url( '/jobs/' ) ); ?>" class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">Live Demo</a>
                     <a href="<?php echo esc_url( home_url( '/#pricing' ) ); ?>" class="btn btn-primary btn-sm">Get Started Free</a>
                 </div>
@@ -116,12 +123,36 @@ $logo_url      = $is_demo_nav ? $demo_links['jobs']['url'] : home_url( '/' );
                         <?php echo esc_html( $link['label'] ); ?>
                     </a>
                 <?php endforeach; ?>
-                <a href="<?php echo esc_url( $demo_actions['candidate']['url'] ); ?>" class="mobile-link">
-                    <?php echo esc_html( $demo_actions['candidate']['label'] ); ?>
-                </a>
-                <a href="<?php echo esc_url( $demo_actions['employer']['url'] ); ?>" class="mobile-link">
-                    <?php echo esc_html( $demo_actions['employer']['label'] ); ?>
-                </a>
+                <?php if ( ! empty( $demo_actions['candidate']['items'] ) ) : ?>
+                    <?php foreach ( $demo_actions['candidate']['items'] as $item ) : ?>
+                        <a href="<?php echo esc_url( $item['url'] ); ?>" class="mobile-link">
+                            <?php
+                            echo esc_html(
+                                sprintf(
+                                    /* translators: %s: action (Login, Register, Dashboard) */
+                                    __( 'Job seeker: %s', 'modern-job-board-theme' ),
+                                    $item['label']
+                                )
+                            );
+                            ?>
+                        </a>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+                <?php if ( ! empty( $demo_actions['employer']['items'] ) ) : ?>
+                    <?php foreach ( $demo_actions['employer']['items'] as $item ) : ?>
+                        <a href="<?php echo esc_url( $item['url'] ); ?>" class="mobile-link">
+                            <?php
+                            echo esc_html(
+                                sprintf(
+                                    /* translators: %s: action (Login, Register, Dashboard) */
+                                    __( 'Recruiter: %s', 'modern-job-board-theme' ),
+                                    $item['label']
+                                )
+                            );
+                            ?>
+                        </a>
+                    <?php endforeach; ?>
+                <?php endif; ?>
                 <a href="<?php echo esc_url( $demo_actions['post_job']['url'] ); ?>" class="btn btn-primary mobile-btn">
                     <?php echo esc_html( $demo_actions['post_job']['label'] ); ?>
                 </a>
@@ -139,11 +170,17 @@ $logo_url      = $is_demo_nav ? $demo_links['jobs']['url'] : home_url( '/' );
                 );
                 ?>
             <?php else : ?>
-                <a href="#features" class="mobile-link">Features</a>
-                <a href="<?php echo esc_url( home_url( '/docs/' ) ); ?>" class="mobile-link">Docs</a>
-                <a href="#comparison" class="mobile-link">Compare</a>
-                <a href="#developers" class="mobile-link">Developers</a>
-                <a href="#pricing" class="mobile-link">Pricing</a>
+                <?php
+                $home_features   = is_front_page() ? '#features' : home_url( '/#features' );
+                $home_comparison = is_front_page() ? '#comparison' : home_url( '/#comparison' );
+                $home_developers = is_front_page() ? '#developers' : home_url( '/#developers' );
+                $home_pricing    = is_front_page() ? '#pricing' : home_url( '/#pricing' );
+                ?>
+                <a href="<?php echo esc_url( $home_features ); ?>" class="mobile-link">Features</a>
+                <a href="<?php echo esc_url( home_url( '/docs/' ) ); ?>" class="mobile-link<?php echo is_page( 'docs' ) ? ' active' : ''; ?>"<?php echo is_page( 'docs' ) ? ' aria-current="page"' : ''; ?>>Docs</a>
+                <a href="<?php echo esc_url( $home_comparison ); ?>" class="mobile-link">Compare</a>
+                <a href="<?php echo esc_url( $home_developers ); ?>" class="mobile-link">Developers</a>
+                <a href="<?php echo esc_url( $home_pricing ); ?>" class="mobile-link">Pricing</a>
                 <a href="<?php echo esc_url( home_url( '/jobs/' ) ); ?>" class="mobile-link" target="_blank" rel="noopener noreferrer">Live Demo</a>
                 <a href="<?php echo esc_url( home_url( '/#pricing' ) ); ?>" class="btn btn-primary mobile-btn">Get Started Free</a>
             <?php endif; ?>

@@ -5,7 +5,7 @@
  * @package ModernJobBoardTheme
  */
 
-define( 'MJB_THEME_VERSION', '0.9.0-beta.4' );
+define( 'MJB_THEME_VERSION', '0.9.0-beta.38' );
 
 if ( ! function_exists( 'mjb_theme_setup' ) ) {
 	/**
@@ -213,6 +213,8 @@ function mjb_theme_is_demo() {
 		'mjb_candidate_dashboard',
 		'mjb_candidate_registration',
 		'mjb_employer_registration',
+		'mjb_candidate_login',
+		'mjb_employer_login',
 	);
 
 	global $post;
@@ -261,23 +263,27 @@ function mjb_theme_get_plugin_page_url( $shortcode, $option_key, $fallback_path 
 }
 
 /**
- * Demo navbar link definitions.
+ * Demo navbar link definitions (all under /jobs/ except marketing root logo).
  *
  * @return array<string, array<string, string>>
  */
 function mjb_theme_get_demo_nav_links() {
-	$blog_page_id = (int) get_option( 'page_for_posts' );
-	$blog_url     = $blog_page_id ? get_permalink( $blog_page_id ) : home_url( '/blog/' );
+	$jobs_url = mjb_theme_get_plugin_page_url( 'mjb_jobs', 'mjb_jobs_page_id', '/jobs/' );
 
 	$company_url = get_post_type_archive_link( 'company' );
 	if ( ! $company_url ) {
-		$company_url = home_url( '/company/' );
+		$company_url = home_url( '/jobs/companies/' );
 	}
+
+	$blog_id  = (int) get_option( 'mjb_blog_page_id' );
+	$blog_url = ( $blog_id && get_post_status( $blog_id ) === 'publish' )
+		? get_permalink( $blog_id )
+		: home_url( '/jobs/blog/' );
 
 	return array(
 		'jobs' => array(
 			'label' => __( 'Search for Jobs', 'modern-job-board-theme' ),
-			'url'   => mjb_theme_get_plugin_page_url( 'mjb_jobs', 'mjb_jobs_page_id', '/jobs/' ),
+			'url'   => $jobs_url,
 		),
 		'companies' => array(
 			'label' => __( 'Companies', 'modern-job-board-theme' ),
@@ -291,27 +297,148 @@ function mjb_theme_get_demo_nav_links() {
 }
 
 /**
- * Demo navbar action button definitions.
+ * Demo navbar action button definitions (Niceboard-style: dropdown Login / Register).
+ * URLs stay under /jobs/ so the demo feels like one board app.
  *
- * @return array<string, array<string, string>>
+ * @return array<string, array<string, mixed>>
  */
 function mjb_theme_get_demo_nav_actions() {
-	return array(
-		'candidate' => array(
-			'label' => __( 'Candidate dashboard', 'modern-job-board-theme' ),
-			'url'   => mjb_theme_get_plugin_page_url( 'mjb_candidate_dashboard', 'mjb_candidate_dashboard_page_id', '/candidate-dashboard/' ),
-			'icon'  => 'user',
-		),
-		'employer' => array(
-			'label' => __( 'Employer dashboard', 'modern-job-board-theme' ),
-			'url'   => mjb_theme_get_plugin_page_url( 'mjb_dashboard', 'mjb_employer_dashboard_page_id', '/employer-dashboard/' ),
-			'icon'  => 'briefcase',
-		),
-		'post_job' => array(
-			'label' => __( 'Post a Job', 'modern-job-board-theme' ),
-			'url'   => mjb_theme_get_plugin_page_url( 'mjb_job_form', 'mjb_job_form_page_id', '/post-a-job/' ),
+	$candidate_login = mjb_theme_get_plugin_page_url( 'mjb_candidate_login', 'mjb_candidate_login_page_id', '/jobs/candidate-login/' );
+	$employer_login  = mjb_theme_get_plugin_page_url( 'mjb_employer_login', 'mjb_employer_login_page_id', '/jobs/recruiter-login/' );
+	$candidate_reg   = mjb_theme_get_plugin_page_url( 'mjb_candidate_registration', 'mjb_candidate_registration_page_id', '/jobs/candidate-registration/' );
+	$employer_reg    = mjb_theme_get_plugin_page_url( 'mjb_employer_registration', 'mjb_employer_registration_page_id', '/jobs/recruiter-registration/' );
+	$candidate_dash  = mjb_theme_get_plugin_page_url( 'mjb_candidate_dashboard', 'mjb_candidate_dashboard_page_id', '/jobs/candidate-dashboard/' );
+	$employer_dash   = mjb_theme_get_plugin_page_url( 'mjb_dashboard', 'mjb_employer_dashboard_page_id', '/jobs/recruiter-dashboard/' );
+
+	$candidate = array(
+		'label'     => __( 'Job seeker', 'modern-job-board-theme' ),
+		'tooltip'   => __( 'Job Seeker', 'modern-job-board-theme' ),
+		'icon'      => 'user',
+		'logged_in' => false,
+		'items'     => array(
+			array(
+				'label' => __( 'Login', 'modern-job-board-theme' ),
+				'url'   => $candidate_login,
+			),
+			array(
+				'label' => __( 'Register', 'modern-job-board-theme' ),
+				'url'   => $candidate_reg,
+			),
 		),
 	);
+
+	$employer = array(
+		'label'     => __( 'Recruiter', 'modern-job-board-theme' ),
+		'tooltip'   => __( 'Recruiter', 'modern-job-board-theme' ),
+		'icon'      => 'briefcase',
+		'logged_in' => false,
+		'items'     => array(
+			array(
+				'label' => __( 'Login', 'modern-job-board-theme' ),
+				'url'   => $employer_login,
+			),
+			array(
+				'label' => __( 'Register', 'modern-job-board-theme' ),
+				'url'   => $employer_reg,
+			),
+		),
+	);
+
+	if ( is_user_logged_in() ) {
+		$user  = wp_get_current_user();
+		$roles = (array) $user->roles;
+		$is_admin = user_can( $user, 'manage_options' );
+
+		if ( $is_admin || in_array( 'candidate', $roles, true ) ) {
+			$candidate['logged_in'] = true;
+			$candidate['tooltip']   = __( 'Job Seeker', 'modern-job-board-theme' );
+			$candidate['items']     = array(
+				array(
+					'label' => __( 'Dashboard', 'modern-job-board-theme' ),
+					'url'   => $candidate_dash,
+				),
+			);
+		}
+		if ( $is_admin || in_array( 'employer', $roles, true ) ) {
+			$employer['logged_in'] = true;
+			$employer['tooltip']   = __( 'Recruiter', 'modern-job-board-theme' );
+			$employer['items']     = array(
+				array(
+					'label' => __( 'Dashboard', 'modern-job-board-theme' ),
+					'url'   => $employer_dash,
+				),
+			);
+		}
+	}
+
+	return array(
+		'candidate' => $candidate,
+		'employer'  => $employer,
+		'post_job'  => array(
+			'label' => __( 'Post a Job', 'modern-job-board-theme' ),
+			'url'   => mjb_theme_get_plugin_page_url( 'mjb_job_form', 'mjb_job_form_page_id', '/jobs/post-a-job/' ),
+		),
+	);
+}
+
+/**
+ * Render a demo nav icon dropdown (Login / Register), styled like job social share menus.
+ *
+ * @param string               $key    Action key (candidate|employer).
+ * @param array<string, mixed> $action Action definition from mjb_theme_get_demo_nav_actions().
+ * @return void
+ */
+function mjb_theme_render_nav_auth_dropdown( $key, $action ) {
+	$key     = sanitize_key( $key );
+	$label   = isset( $action['label'] ) ? (string) $action['label'] : '';
+	$tooltip = isset( $action['tooltip'] ) ? (string) $action['tooltip'] : $label;
+	$icon    = isset( $action['icon'] ) ? (string) $action['icon'] : 'user';
+	$items   = isset( $action['items'] ) && is_array( $action['items'] ) ? $action['items'] : array();
+	$menu_id = 'mjb-nav-auth-menu-' . $key;
+	$btn_label = $tooltip !== '' ? $tooltip : $label;
+
+	if ( empty( $items ) ) {
+		return;
+	}
+	?>
+	<div class="mjb-nav-auth" data-mjb-nav-auth>
+		<button type="button"
+			class="btn btn-outline btn-sm mjb-nav-auth__toggle"
+			data-mjb-nav-auth-toggle
+			aria-expanded="false"
+			aria-haspopup="menu"
+			aria-controls="<?php echo esc_attr( $menu_id ); ?>">
+			<span class="mjb-nav-auth__toggle-icon" aria-hidden="true">
+				<?php echo mjb_theme_render_nav_icon( $icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			</span>
+			<span class="mjb-nav-auth__toggle-label"><?php echo esc_html( $btn_label ); ?></span>
+			<span class="mjb-nav-auth__chevron" aria-hidden="true">
+				<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
+			</span>
+		</button>
+		<div id="<?php echo esc_attr( $menu_id ); ?>"
+			class="mjb-nav-auth__menu"
+			data-mjb-nav-auth-menu
+			hidden
+			role="menu"
+			aria-label="<?php echo esc_attr( $label ); ?>">
+			<?php foreach ( $items as $item ) : ?>
+				<?php
+				$item_label = isset( $item['label'] ) ? (string) $item['label'] : '';
+				$item_url   = isset( $item['url'] ) ? (string) $item['url'] : '#';
+				if ( $item_label === '' || $item_url === '' || $item_url === '#' ) {
+					continue;
+				}
+				?>
+				<a href="<?php echo esc_url( $item_url ); ?>"
+					class="mjb-nav-auth__item"
+					role="menuitem">
+					<?php echo esc_html( $item_label ); ?>
+				</a>
+			<?php endforeach; ?>
+		</div>
+	</div>
+	<?php
 }
 
 /**
@@ -342,6 +469,26 @@ function mjb_theme_is_demo_nav_active( $item ) {
 				|| is_tag()
 				|| is_author()
 				|| is_date();
+		case 'candidate':
+			if ( ! is_page() ) {
+				return false;
+			}
+			$post = get_post();
+			return ( $post instanceof WP_Post ) && (
+				has_shortcode( $post->post_content, 'mjb_candidate_registration' )
+				|| has_shortcode( $post->post_content, 'mjb_candidate_login' )
+				|| has_shortcode( $post->post_content, 'mjb_candidate_dashboard' )
+			);
+		case 'employer':
+			if ( ! is_page() ) {
+				return false;
+			}
+			$post = get_post();
+			return ( $post instanceof WP_Post ) && (
+				has_shortcode( $post->post_content, 'mjb_employer_registration' )
+				|| has_shortcode( $post->post_content, 'mjb_employer_login' )
+				|| has_shortcode( $post->post_content, 'mjb_dashboard' )
+			);
 		default:
 			return false;
 	}

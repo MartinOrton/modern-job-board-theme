@@ -10,4 +10,7 @@ Typically activated on the Local WP site at `https://mjb.local`.
 
 ## Version
 
-Bump `MJB_THEME_VERSION` in `functions.php` after CSS changes so browsers pick up the new assets.
+**Current:** `0.9.0-beta.38` (`MJB_THEME_VERSION` in `functions.php` + `Version` in `style.css`).
+
+Bump both after CSS changes so browsers pick up the new assets. See [CHANGELOG.md](CHANGELOG.md).
+

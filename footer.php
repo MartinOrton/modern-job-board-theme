@@ -7,11 +7,11 @@
                 </div>
             </div>
             <div class="footer-links">
-                <a href="https://github.com/MartinOrton/modern-job-board">GitHub</a>
+                <a href="<?php echo esc_url( home_url( '/#pricing' ) ); ?>">Pricing</a>
                 <a href="<?php echo esc_url( home_url( '/docs/' ) ); ?>">Documentation</a>
                 <a href="https://martinorton.com">Author</a>
             </div>
-            <div class="footer-copy">Copyright &copy; <?php echo esc_html( date( 'Y' ) ); ?> Modern Job Board. Developed by <a
+            <div class="footer-copy">Copyright &copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> Modern Job Board. Developed by <a
                     href="https://martinorton.com">Martin Orton</a>.</div>
         </div>
     </footer>
