@@ -39,10 +39,12 @@ if ( have_posts() ) :
 		?>
 		<section class="mjb-content-hero alignfull">
 			<div class="mjb-content-hero__inner container">
+				<?php mjb_theme_breadcrumbs(); ?>
 				<h1 class="mjb-content-hero__title"><?php the_title(); ?></h1>
 				<?php if ( $hero_intro !== '' ) : ?>
 					<p class="mjb-content-hero__intro"><?php echo esc_html( $hero_intro ); ?></p>
 				<?php endif; ?>
+				<?php mjb_theme_the_hero_blocks(); ?>
 			</div>
 		</section>
 
@@ -59,7 +61,7 @@ else :
 	?>
 	<section class="mjb-content-hero alignfull">
 		<div class="mjb-content-hero__inner container">
-			<h1 class="mjb-content-hero__title"><?php esc_html_e( 'Page not found', 'modern-job-board-theme' ); ?></h1>
+			<h1 class="mjb-content-hero__title"><?php esc_html_e( 'Page Not Found', 'modern-job-board-theme' ); ?></h1>
 		</div>
 	</section>
 
