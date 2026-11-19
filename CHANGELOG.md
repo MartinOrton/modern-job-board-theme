@@ -2,6 +2,30 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.70] - 2026-11-19
+
+### Added
+- Legal pages, drafted from what the site and plugin actually do: Privacy Policy (POPIA and GDPR), Terms of Use, Cookie Policy, and License & Refund Policy, with 4Mation Digital (Pty) Ltd as the operator and seller. Company details we do not have yet (registration number, physical address, telephone, email) are highlighted placeholders (`<mark class="mjb-todo">`). The Privacy Policy reuses WordPress's draft page (slug `privacy-policy`) and is set as the site's privacy page (Settings → Privacy). These are drafts for legal review before launch.
+- Tables in page content with the class `mjb-stack-table` stack into labelled cards on phones (`mjb_theme_site_table_labels()`).
+- Legal pages use a narrower reading column and underlined links (`body.mjb-page-legal`).
+
+## [0.9.0-beta.69] - 2026-11-19
+
+### Added
+- Contact page (`/contact/`) with a new Contact Form block (`mjb/contact-form`, theme block category): name, email, company or website (optional), topic, message and a consent tick box linked to the Privacy Policy. Recipient, topics, button text and the thank-you message are set in the block sidebar; the recipient defaults to the site admin email and is read on the server, never printed in the page.
+- Works without JavaScript (post, redirect back with the result and the fields kept) and with it (`js/contact.js`: inline validation, sends with fetch, shows the result in place).
+- Spam protection: hidden honeypot field, signed timestamp (forms sent within 3 seconds of loading, or more than a day later, are refused), and 5 messages per hour per visitor (keyed by a hash, not the IP address).
+- Every message is saved under **Contact messages** in wp-admin (private post type `mjb_contact_msg`) with an "Email sent" column, so nothing is lost if mail fails, and a Reply by email button. Messages older than 12 months are deleted by a daily WP-Cron job, as the Privacy Policy states.
+- New editor script `blocks/site-editor.js` for the site blocks.
+
+## [0.9.0-beta.68] - 2026-11-19
+
+### Changed
+- Footer rebuilt as columns driven by the Footer menu (Appearance → Menus): each top-level item with sub-items is a column (link it to `#` for a plain heading), and a column with more than 8 links spreads over two columns on wide screens. Top-level items without sub-items show in the bottom bar. The tagline under the logo is the site tagline (Settings → General). A footer menu without sub-items keeps the old single-row footer.
+- One-off `mjb_theme_site_build_footer_menu()` (option `mjb_theme_footer_menu_v2`) arranges the Footer menu into Features (every feature link from the Primary menu), Resources (Documentation, Developers, Compare, Live Demo), Company (Pricing, Contact, Author) and Legal. The existing Pricing, Documentation and Author links are moved into the columns, not recreated.
+- Copyright line: "Modern Job Board, a product of 4Mation Digital (Pty) Ltd. Developed by Martin Orton."
+- New `inc/site.php` (loader and one-off page set-up), `inc/footer.php`, `inc/contact.php` and `css/site.css` (footer, contact, legal and knowledge base styles, also loaded in the editor).
+
 ## [0.9.0-beta.67] - 2026-11-17
 
 ### Fixed

@@ -5,7 +5,7 @@
  * @package ModernJobBoardTheme
  */
 
-define( 'MJB_THEME_VERSION', '0.9.0-beta.67' );
+define( 'MJB_THEME_VERSION', '0.9.0-beta.70' );
 
 if ( ! function_exists( 'mjb_theme_setup' ) ) {
 	/**
@@ -651,3 +651,8 @@ require get_template_directory() . '/inc/menus.php';
  * One-off conversion of generated content into editable blocks.
  */
 require get_template_directory() . '/inc/conversion.php';
+
+/**
+ * Footer columns, contact form, legal pages and knowledge base.
+ */
+require get_template_directory() . '/inc/site.php';
