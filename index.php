@@ -18,12 +18,11 @@ if ( have_posts() ) :
 
 		// Login shortcodes render the full jobs-board chrome (hero + container + panels).
 		// Do not wrap them in the editorial page hero/article shell — that breaks padding/colors.
-		// Docs reference uses its own sidebar shell (docs-shell) and must not nest in .container.
+		// The old single-page docs reference uses its own sidebar shell (docs-shell) and must not nest in .container.
 		$is_full_board_layout = $content
 			&& (
 				has_shortcode( $content, 'mjb_candidate_login' )
 				|| has_shortcode( $content, 'mjb_employer_login' )
-				|| is_page( 'docs' )
 				|| false !== strpos( $content, 'docs-shell' )
 			);
 

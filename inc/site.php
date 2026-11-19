@@ -19,6 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once __DIR__ . '/footer.php';
 require_once __DIR__ . '/contact.php';
+require_once __DIR__ . '/kb.php';
 
 /**
  * Editor script for the site blocks, with the data its controls need.
@@ -227,7 +228,15 @@ function mjb_theme_site_author() {
  * @param callable $step   Step; its return value is stored in the option.
  */
 function mjb_theme_site_once( $option, $step ) {
-	if ( false !== get_option( $option, false ) || ! add_option( $option, 'running', '', false ) ) {
+	$state = get_option( $option, false );
+
+	// A step that stopped half-way (a fatal error) is tried again after 10 minutes.
+	if ( is_string( $state ) && 0 === strpos( $state, 'running:' ) && (int) substr( $state, 8 ) < time() - 10 * MINUTE_IN_SECONDS ) {
+		delete_option( $option );
+		$state = false;
+	}
+
+	if ( false !== $state || ! add_option( $option, 'running:' . time(), '', false ) ) {
 		return;
 	}
 

@@ -2,6 +2,21 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.71] - 2026-11-19
+
+### Added
+- Knowledge base at `/docs/`: articles (post type `mjb_kb`, under **Knowledge Base** in wp-admin) grouped in topics (`mjb_kb_topic`, with an order and an icon per topic). URLs: `/docs/{article}/`, `/docs/topic/{topic}/`, and search at `/?s=…&post_type=mjb_kb`.
+- 36 articles in 7 topics (Getting started, Running your board, Candidates and recruiters, Monetization, Hosting and security, REST API, Integrations), built from the old single-page documentation and expanded, with facts checked against the plugin code (settings names, admin tabs, hooks, WooCommerce product fields, the Free-plan limit).
+- Article template (`single-mjb_kb.php`): breadcrumbs, topic, updated date and reading time; topic navigation (sticky on desktop, a "Browse all topics" toggle on phones); "On this page" with the current section highlighted (1280px and up); previous and next in reading order; a "Still need help?" box linking to the Contact page. Topic (`taxonomy-mjb_kb_topic.php`) and search results (`search-mjb_kb.php`) templates.
+- Blocks: Knowledge Base Search (suggests articles as you type), Knowledge Base Topics (a card per topic) and Knowledge Base Articles (reading order, recently updated or A to Z, optionally one topic).
+- Code blocks in articles get a Copy button, and shortcodes written inside code are shown, not run. Callouts: paragraphs with the class `mjb-callout mjb-callout-note`, `-tip` or `-warning`.
+- One-off `mjb_theme_kb_setup()` (option `mjb_theme_kb_v1`) creates the topics and articles from `inc/kb/`, keeps the old single-page documentation as a draft page ("Documentation (old single page)"), and gives the Documentation page the knowledge base home content. Links to the old page's sections (`/docs/#webhooks`, `/docs/#v2-application-update`, …) are sent to the matching article and section.
+
+### Changed
+- `mjb_theme_get_breadcrumbs()` is filterable (`mjb_theme_breadcrumbs`).
+- The Documentation page now uses the normal content page layout; only a page still containing the old `docs-shell` markup keeps the full-width layout.
+- One-off set-up steps that stop half-way are tried again after 10 minutes instead of staying blocked.
+
 ## [0.9.0-beta.70] - 2026-11-19
 
 ### Added

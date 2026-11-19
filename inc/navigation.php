@@ -95,7 +95,12 @@ function mjb_theme_get_breadcrumbs() {
 		return array();
 	}
 
-	return $crumbs;
+	/**
+	 * Filter the breadcrumb trail (label and url per crumb; an empty url marks the current page).
+	 *
+	 * @param array[] $crumbs Crumbs.
+	 */
+	return apply_filters( 'mjb_theme_breadcrumbs', $crumbs );
 }
 
 /**
