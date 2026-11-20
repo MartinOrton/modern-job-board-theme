@@ -138,15 +138,25 @@ function mjb_theme_footer_heading( $item ) {
 }
 
 /**
+ * Address of 4Mation Digital, linked from the copyright line.
+ * Change it with the mjb_theme_company_url filter.
+ *
+ * @return string
+ */
+function mjb_theme_company_url() {
+	return (string) apply_filters( 'mjb_theme_company_url', 'https://4mation.digital/' );
+}
+
+/**
  * Copyright line at the bottom of the footer.
  *
  * @return string
  */
 function mjb_theme_footer_copyright() {
 	return sprintf(
-		/* translators: 1: year, 2: link to the developer's site */
-		__( 'Copyright &copy; %1$s Modern Job Board, a product of 4Mation Digital (Pty) Ltd. Developed by %2$s.', 'modern-job-board-theme' ),
+		/* translators: 1: year, 2: link to 4Mation Digital */
+		__( 'Copyright &copy; %1$s Modern Job Board. All rights reserved. Powered by %2$s.', 'modern-job-board-theme' ),
 		esc_html( gmdate( 'Y' ) ),
-		'<a href="https://martinorton.com">Martin Orton</a>'
+		'<a href="' . esc_url( mjb_theme_company_url() ) . '" target="_blank" rel="noopener">4Mation Digital&reg;</a>'
 	);
 }

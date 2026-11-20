@@ -5,7 +5,7 @@
  * @package ModernJobBoardTheme
  */
 
-define( 'MJB_THEME_VERSION', '0.9.0-beta.71' );
+define( 'MJB_THEME_VERSION', '0.9.0-beta.72' );
 
 if ( ! function_exists( 'mjb_theme_setup' ) ) {
 	/**
@@ -50,7 +50,7 @@ if ( ! function_exists( 'mjb_theme_setup' ) ) {
 
 		add_editor_style(
 			array(
-				'https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap',
+				'css/fonts.css',
 				'css/styles.css',
 				'css/editor.css',
 				'style.css',
@@ -64,17 +64,18 @@ add_action( 'after_setup_theme', 'mjb_theme_setup' );
  * Enqueue frontend scripts and styles.
  */
 function mjb_theme_scripts() {
+	// DM Sans is served from the theme: no requests to Google Fonts.
 	wp_enqueue_style(
-		'mjb-google-fonts',
-		'https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap',
+		'mjb-fonts',
+		get_template_directory_uri() . '/css/fonts.css',
 		array(),
-		null
+		MJB_THEME_VERSION
 	);
 
 	wp_enqueue_style(
 		'mjb-main-style',
 		get_template_directory_uri() . '/css/styles.css',
-		array( 'mjb-google-fonts' ),
+		array( 'mjb-fonts' ),
 		MJB_THEME_VERSION
 	);
 
@@ -140,16 +141,16 @@ add_action( 'wp_enqueue_scripts', 'mjb_theme_scripts' );
  */
 function mjb_theme_editor_assets() {
 	wp_enqueue_style(
-		'mjb-google-fonts-editor',
-		'https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap',
+		'mjb-fonts-editor',
+		get_template_directory_uri() . '/css/fonts.css',
 		array(),
-		null
+		MJB_THEME_VERSION
 	);
 
 	wp_enqueue_style(
 		'mjb-main-style-editor',
 		get_template_directory_uri() . '/css/styles.css',
-		array( 'mjb-google-fonts-editor' ),
+		array( 'mjb-fonts-editor' ),
 		MJB_THEME_VERSION
 	);
 

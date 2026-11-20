@@ -277,6 +277,7 @@ function mjb_theme_site_setup() {
 	);
 
 	mjb_theme_site_once( 'mjb_theme_footer_menu_v2', 'mjb_theme_site_build_footer_menu' );
+	mjb_theme_site_once( 'mjb_theme_legal_fonts_v1', 'mjb_theme_site_legal_drop_google_fonts' );
 }
 add_action( 'init', 'mjb_theme_site_setup', 30 );
 
@@ -550,3 +551,54 @@ function mjb_theme_site_table_labels( $html, $block ) {
 	);
 }
 add_filter( 'render_block_core/table', 'mjb_theme_site_table_labels', 11, 2 );
+
+/**
+ * DM Sans is now served from the theme, so the Privacy Policy and Cookie
+ * Policy no longer list Google Fonts. Removes just that list item from each
+ * published page (if it is still there) and moves the "Last updated" date on.
+ *
+ * @return array
+ */
+function mjb_theme_site_legal_drop_google_fonts() {
+	$done = array();
+
+	foreach ( array( 'privacy-policy', 'cookie-policy' ) as $slug ) {
+		$page = get_page_by_path( $slug );
+
+		if ( ! $page instanceof WP_Post || 'publish' !== $page->post_status ) {
+			$done[ $slug ] = 'missing';
+			continue;
+		}
+
+		$content = preg_replace(
+			'#<!-- wp:list-item -->\s*<li><strong>Google Fonts\.?</strong>(?:(?!</li>).)*</li>\s*<!-- /wp:list-item -->\s*#s',
+			'',
+			$page->post_content,
+			1,
+			$count
+		);
+
+		if ( ! $count ) {
+			$done[ $slug ] = 'not-found';
+			continue;
+		}
+
+		$content = str_replace( 'Last updated: 19 November 2026', 'Last updated: 20 November 2026', $content );
+
+		kses_remove_filters();
+		$saved = wp_update_post(
+			wp_slash(
+				array(
+					'ID'           => $page->ID,
+					'post_content' => $content,
+				)
+			),
+			true
+		);
+		kses_init();
+
+		$done[ $slug ] = is_wp_error( $saved ) ? 'failed' : 'updated';
+	}
+
+	return $done;
+}

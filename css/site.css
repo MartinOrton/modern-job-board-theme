@@ -134,6 +134,13 @@
     font-size: inherit;
 }
 
+/* Keep the line clear of the floating back-to-top button on small screens. */
+@media (max-width: 1023px) {
+    .site-footer__bottom {
+        padding-right: 3.75rem;
+    }
+}
+
 .site-footer__extra {
     display: flex;
     flex-wrap: wrap;

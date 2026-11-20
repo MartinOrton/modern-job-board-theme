@@ -29,7 +29,7 @@
                 </nav>
             </div>
             <div class="site-footer__bottom">
-                <p class="site-footer__copy"><?php echo wp_kses( mjb_theme_footer_copyright(), array( 'a' => array( 'href' => true ) ) ); ?></p>
+                <p class="site-footer__copy"><?php echo wp_kses( mjb_theme_footer_copyright(), array( 'a' => array( 'href' => true, 'target' => true, 'rel' => true ) ) ); ?></p>
                 <?php if ( ! empty( $mjb_footer['loose'] ) ) : ?>
                     <ul class="site-footer__extra">
                         <?php foreach ( $mjb_footer['loose'] as $mjb_link ) : ?>
@@ -69,8 +69,7 @@
                     <a href="https://martinorton.com">Author</a>
                 <?php endif; ?>
             </div>
-            <div class="footer-copy">Copyright &copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> Modern Job Board. Developed by <a
-                    href="https://martinorton.com">Martin Orton</a>.</div>
+            <div class="footer-copy"><?php echo wp_kses( mjb_theme_footer_copyright(), array( 'a' => array( 'href' => true, 'target' => true, 'rel' => true ) ) ); ?></div>
         </div>
     </footer>
     <?php endif; ?>

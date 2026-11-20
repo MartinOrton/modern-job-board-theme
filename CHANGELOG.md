@@ -2,6 +2,16 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.72] - 2026-11-20
+
+### Changed
+- DM Sans is served from the theme instead of Google Fonts: `css/fonts.css` with the variable font (optical size and weight axes, normal and italic, latin and latin-ext) in `fonts/dm-sans/` (from @fontsource-variable/dm-sans 5.3.0, SIL Open Font License, `fonts/dm-sans/OFL.txt`). Front end, editor styles and editor iframe no longer request fonts.googleapis.com. The handles are now `mjb-fonts` and `mjb-fonts-editor`.
+- Footer copyright: "Copyright © {year} Modern Job Board. All rights reserved. Powered by 4Mation Digital®", with 4Mation Digital® linking to https://4mation.digital/ in a new tab (change the address with the `mjb_theme_company_url` filter). Used by both footer layouts. On screens under 1024px the bottom bar keeps clear of the back-to-top button.
+- One-off `mjb_theme_site_legal_drop_google_fonts()` (option `mjb_theme_legal_fonts_v1`) removes the Google Fonts item from the published Privacy Policy and Cookie Policy and moves their "Last updated" date to 20 November 2026. The page sources in `inc/pages/` match.
+
+### Notes
+- The 72 DM Sans TTF files in `fonts/` (4.1 MB) are not used anywhere; left in place.
+
 ## [0.9.0-beta.71] - 2026-11-19
 
 ### Added
