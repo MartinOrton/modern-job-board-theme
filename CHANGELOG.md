@@ -2,6 +2,15 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.73] - 2026-11-20
+
+### Changed
+- Theme font style handles renamed to `mjb-theme-fonts` and `mjb-theme-fonts-editor`. The plugin used `mjb-fonts` for its own (Google-hosted) font up to plugin 0.9.0-beta.173, so on job board pages the plugin's file won and the theme's local font was skipped.
+- On job board pages, where the plugin (0.9.0-beta.174 and later) loads its own local DM Sans (`mjb-dm-sans`), the theme's font stylesheet is emptied so the font faces are declared once (`mjb_theme_share_plugin_font()`).
+
+### Removed
+- The 72 unused DM Sans TTF files in `fonts/` (4.1 MB). The theme uses the variable woff2 files in `fonts/dm-sans/`.
+
 ## [0.9.0-beta.72] - 2026-11-20
 
 ### Changed

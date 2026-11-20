@@ -602,3 +602,18 @@ function mjb_theme_site_legal_drop_google_fonts() {
 
 	return $done;
 }
+
+/**
+ * On job board pages the Modern Job Board plugin brings its own copy of
+ * DM Sans (style handle mjb-dm-sans). Empty the theme's font stylesheet
+ * there so the same font faces are not declared twice. The handle stays
+ * registered, so styles that depend on it still load.
+ */
+function mjb_theme_share_plugin_font() {
+	$styles = wp_styles();
+
+	if ( wp_style_is( 'mjb-dm-sans', 'enqueued' ) && isset( $styles->registered['mjb-theme-fonts'] ) ) {
+		$styles->registered['mjb-theme-fonts']->src = false;
+	}
+}
+add_action( 'wp_enqueue_scripts', 'mjb_theme_share_plugin_font', 100 );

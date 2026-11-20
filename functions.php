@@ -5,7 +5,7 @@
  * @package ModernJobBoardTheme
  */
 
-define( 'MJB_THEME_VERSION', '0.9.0-beta.72' );
+define( 'MJB_THEME_VERSION', '0.9.0-beta.73' );
 
 if ( ! function_exists( 'mjb_theme_setup' ) ) {
 	/**
@@ -66,7 +66,7 @@ add_action( 'after_setup_theme', 'mjb_theme_setup' );
 function mjb_theme_scripts() {
 	// DM Sans is served from the theme: no requests to Google Fonts.
 	wp_enqueue_style(
-		'mjb-fonts',
+		'mjb-theme-fonts',
 		get_template_directory_uri() . '/css/fonts.css',
 		array(),
 		MJB_THEME_VERSION
@@ -75,7 +75,7 @@ function mjb_theme_scripts() {
 	wp_enqueue_style(
 		'mjb-main-style',
 		get_template_directory_uri() . '/css/styles.css',
-		array( 'mjb-fonts' ),
+		array( 'mjb-theme-fonts' ),
 		MJB_THEME_VERSION
 	);
 
@@ -141,7 +141,7 @@ add_action( 'wp_enqueue_scripts', 'mjb_theme_scripts' );
  */
 function mjb_theme_editor_assets() {
 	wp_enqueue_style(
-		'mjb-fonts-editor',
+		'mjb-theme-fonts-editor',
 		get_template_directory_uri() . '/css/fonts.css',
 		array(),
 		MJB_THEME_VERSION
@@ -150,7 +150,7 @@ function mjb_theme_editor_assets() {
 	wp_enqueue_style(
 		'mjb-main-style-editor',
 		get_template_directory_uri() . '/css/styles.css',
-		array( 'mjb-fonts-editor' ),
+		array( 'mjb-theme-fonts-editor' ),
 		MJB_THEME_VERSION
 	);
 
