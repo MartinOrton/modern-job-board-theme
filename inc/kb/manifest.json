@@ -1,0 +1,383 @@
+{
+ "home_excerpt": "Guides for setting up and running Modern Job Board, and the developer reference for the REST API, webhooks and recruiter MCP.",
+ "topics": [
+  {
+   "slug": "getting-started",
+   "name": "Getting started",
+   "icon": "rocket",
+   "description": "Install the plugin, create your board pages and choose the plan that fits."
+  },
+  {
+   "slug": "running-your-board",
+   "name": "Running your board",
+   "icon": "layout-dashboard",
+   "description": "Find your way around the admin console, the settings, jobs, emails, alerts and SEO."
+  },
+  {
+   "slug": "candidates-and-recruiters",
+   "name": "Candidates and recruiters",
+   "icon": "users",
+   "description": "Signup, dashboards, applications and how CVs are kept private."
+  },
+  {
+   "slug": "monetization",
+   "name": "Monetization",
+   "icon": "banknote",
+   "description": "Charge employers through WooCommerce, add custom fields, and import or export jobs (Pro and higher)."
+  },
+  {
+   "slug": "hosting-and-security",
+   "name": "Hosting and security",
+   "icon": "shield-check",
+   "description": "Server set-up for private CVs, caching, spam protection, going live and updating."
+  },
+  {
+   "slug": "rest-api",
+   "name": "REST API",
+   "icon": "code-xml",
+   "description": "Search jobs, manage applications and read analytics over HTTP (Business)."
+  },
+  {
+   "slug": "integrations",
+   "name": "Integrations",
+   "icon": "plug",
+   "description": "Webhooks, ATS job ingest, the XML feed, recruiter MCP and PHP hooks for developers."
+  }
+ ],
+ "articles": [
+  {
+   "slug": "introduction",
+   "title": "What is Modern Job Board?",
+   "topic": "getting-started",
+   "order": 10,
+   "excerpt": "A self-hosted job board plugin for WordPress: what it does, how it stores data, and which features each plan unlocks.",
+   "legacy": {
+    "introduction": ""
+   }
+  },
+  {
+   "slug": "installation",
+   "title": "Requirements and installation",
+   "topic": "getting-started",
+   "order": 20,
+   "excerpt": "What your server needs, how to install and activate the plugin, and the first things to set up.",
+   "legacy": {
+    "getting-started": ""
+   }
+  },
+  {
+   "slug": "board-pages",
+   "title": "Setting up your job board pages",
+   "topic": "getting-started",
+   "order": 30,
+   "excerpt": "The pages your board needs, the block or shortcode on each one, and how to link them from your menus.",
+   "legacy": {}
+  },
+  {
+   "slug": "shortcodes-and-blocks",
+   "title": "Shortcodes and blocks reference",
+   "topic": "getting-started",
+   "order": 40,
+   "excerpt": "Every block and shortcode in Modern Job Board, what it shows, and which plan it needs.",
+   "legacy": {
+    "shortcodes": ""
+   }
+  },
+  {
+   "slug": "plans-and-license-keys",
+   "title": "Plans and license keys",
+   "topic": "getting-started",
+   "order": 50,
+   "excerpt": "What each plan unlocks, how to activate a license key, and how to set a plan on a staging site.",
+   "legacy": {
+    "licensing": ""
+   }
+  },
+  {
+   "slug": "admin-console",
+   "title": "The admin console",
+   "topic": "running-your-board",
+   "order": 10,
+   "excerpt": "A tour of the Modern Job Board screens in wp-admin: the dashboard, jobs console, companies, applications, settings and tools.",
+   "legacy": {
+    "admin": ""
+   }
+  },
+  {
+   "slug": "settings-reference",
+   "title": "Settings reference",
+   "topic": "running-your-board",
+   "order": 20,
+   "excerpt": "Every setting in Modern Job Board, grouped as they are on the Settings tab, with what each one does.",
+   "legacy": {}
+  },
+  {
+   "slug": "posting-and-managing-jobs",
+   "title": "Posting and managing jobs",
+   "topic": "running-your-board",
+   "order": 30,
+   "excerpt": "How recruiters post jobs, how jobs are reviewed and expire, and how to mark jobs filled, republish and feature them.",
+   "legacy": {}
+  },
+  {
+   "slug": "companies-and-careers-mode",
+   "title": "Companies and careers mode",
+   "topic": "running-your-board",
+   "order": 40,
+   "excerpt": "The public company directory and company pages, and how to run the plugin as a single-company careers site.",
+   "legacy": {}
+  },
+  {
+   "slug": "email-notifications",
+   "title": "Email notifications and templates",
+   "topic": "running-your-board",
+   "order": 50,
+   "excerpt": "The emails the board sends, how to change their wording, brand their layout, send through SMTP and connect Mailchimp.",
+   "legacy": {}
+  },
+  {
+   "slug": "job-alerts-saved-jobs-talent",
+   "title": "Job alerts, saved jobs and the talent pool",
+   "topic": "running-your-board",
+   "order": 60,
+   "excerpt": "How candidates get emailed new jobs that match a search, save jobs for later, and choose to appear in the talent pool.",
+   "legacy": {}
+  },
+  {
+   "slug": "jobs-map-and-promotions",
+   "title": "Jobs map, featured jobs and ad banners",
+   "topic": "running-your-board",
+   "order": 70,
+   "excerpt": "Add a map of your open jobs, feature jobs and companies, sell banner space, and share new jobs to social media.",
+   "legacy": {}
+  },
+  {
+   "slug": "seo-and-google-for-jobs",
+   "title": "SEO and Google for Jobs",
+   "topic": "running-your-board",
+   "order": 80,
+   "excerpt": "The structured data Modern Job Board adds to job pages, how to map your job types for Google for Jobs, and how to check it.",
+   "legacy": {}
+  },
+  {
+   "slug": "candidate-accounts",
+   "title": "Candidate accounts and dashboard",
+   "topic": "candidates-and-recruiters",
+   "order": 10,
+   "excerpt": "How candidates sign up, what they can do in their dashboard, and how applications and CVs work for them.",
+   "legacy": {
+    "accounts": ""
+   }
+  },
+  {
+   "slug": "recruiter-accounts",
+   "title": "Recruiter accounts and dashboard",
+   "topic": "candidates-and-recruiters",
+   "order": 20,
+   "excerpt": "How recruiters sign up, manage their company and jobs, and move applications through the hiring stages.",
+   "legacy": {}
+  },
+  {
+   "slug": "cv-privacy",
+   "title": "CV privacy and talent access",
+   "topic": "candidates-and-recruiters",
+   "order": 30,
+   "excerpt": "Where CVs are stored, who can open them, the talent pool access levels and the candidate anonymizer.",
+   "legacy": {}
+  },
+  {
+   "slug": "woocommerce-monetization",
+   "title": "Charging employers with WooCommerce",
+   "topic": "monetization",
+   "order": 10,
+   "excerpt": "Sell job posts, credit packages, featured jobs and CV access through your own WooCommerce store, with any payment gateway. (Pro)",
+   "legacy": {}
+  },
+  {
+   "slug": "custom-fields",
+   "title": "Custom fields",
+   "topic": "monetization",
+   "order": 20,
+   "excerpt": "Add your own questions to the job form and the application form, without code. (Pro)",
+   "legacy": {}
+  },
+  {
+   "slug": "import-export",
+   "title": "Importing, exporting and backups",
+   "topic": "monetization",
+   "order": 30,
+   "excerpt": "Import jobs from CSV, XML or a remote feed, schedule repeat imports, export jobs and applications, and back up the whole board. (Pro)",
+   "legacy": {}
+  },
+  {
+   "slug": "file-storage-and-server-setup",
+   "title": "File storage and server setup",
+   "topic": "hosting-and-security",
+   "order": 10,
+   "excerpt": "Where Modern Job Board keeps CVs, logos and photos, and how to make sure CVs can never be downloaded directly.",
+   "legacy": {
+    "storage": ""
+   }
+  },
+  {
+   "slug": "caching-and-cdns",
+   "title": "Caching and CDNs",
+   "topic": "hosting-and-security",
+   "order": 20,
+   "excerpt": "Which pages and API routes can be cached safely, and which must never be, so dashboards and CV downloads keep working.",
+   "legacy": {}
+  },
+  {
+   "slug": "spam-protection-and-security",
+   "title": "Spam protection and security",
+   "topic": "hosting-and-security",
+   "order": 30,
+   "excerpt": "How the board keeps spam and abuse out of applications and signups, and the settings that control it.",
+   "legacy": {}
+  },
+  {
+   "slug": "going-live-and-updating",
+   "title": "Going live and updating",
+   "topic": "hosting-and-security",
+   "order": 40,
+   "excerpt": "A checklist for launching a board on a live server, and the safe way to update the plugin.",
+   "legacy": {}
+  },
+  {
+   "slug": "rest-api-overview",
+   "title": "REST API overview",
+   "topic": "rest-api",
+   "order": 10,
+   "excerpt": "The two API versions, base URLs, request and response format, and pagination. (Business)",
+   "legacy": {
+    "rest-overview": "",
+    "conventions": "conventions"
+   }
+  },
+  {
+   "slug": "rest-api-authentication",
+   "title": "Authentication",
+   "topic": "rest-api",
+   "order": 20,
+   "excerpt": "How to call the v2 routes as a recruiter or candidate with an application password, and what each role can see. (Business)",
+   "legacy": {
+    "authentication": ""
+   }
+  },
+  {
+   "slug": "rest-api-errors",
+   "title": "Errors",
+   "topic": "rest-api",
+   "order": 30,
+   "excerpt": "The error format the API returns and the Modern Job Board error codes you may see. (Business)",
+   "legacy": {
+    "errors": ""
+   }
+  },
+  {
+   "slug": "jobs-api",
+   "title": "Jobs API (v1)",
+   "topic": "rest-api",
+   "order": 40,
+   "excerpt": "Search the board's published jobs from any app or site, with no authentication. (Business)",
+   "legacy": {
+    "v1-jobs": "",
+    "v1-jobs-list": "list-jobs",
+    "v1-jobs-search-path": "search-with-a-readable-path"
+   }
+  },
+  {
+   "slug": "applications-api",
+   "title": "Applications API (v2)",
+   "topic": "rest-api",
+   "order": 50,
+   "excerpt": "List a recruiter's applications and move them through the hiring stages. (Business)",
+   "legacy": {
+    "v2-applications": "",
+    "v2-application-update": "update-an-application"
+   }
+  },
+  {
+   "slug": "analytics-api",
+   "title": "Analytics API (v2)",
+   "topic": "rest-api",
+   "order": 60,
+   "excerpt": "A recruiter's job performance: views, applications and conversion rate, in total and per job. (Business)",
+   "legacy": {
+    "v2-analytics": ""
+   }
+  },
+  {
+   "slug": "candidate-profile-api",
+   "title": "Candidate profile API (v2)",
+   "topic": "rest-api",
+   "order": 70,
+   "excerpt": "Read and update the signed-in candidate's own profile. (Business)",
+   "legacy": {
+    "v2-candidate": "",
+    "v2-candidate-update": "update-the-profile"
+   }
+  },
+  {
+   "slug": "webhooks",
+   "title": "Webhooks",
+   "topic": "integrations",
+   "order": 10,
+   "excerpt": "Send applications and new jobs to other systems as they happen, signed so the receiver can trust them. (Business)",
+   "legacy": {
+    "webhooks": ""
+   }
+  },
+  {
+   "slug": "job-ingest-api",
+   "title": "Job ingest (ATS webhook)",
+   "topic": "integrations",
+   "order": 20,
+   "excerpt": "Push jobs into the board from an applicant tracking system or multiposting tool, one at a time or in batches of 50. (Business)",
+   "legacy": {
+    "ingest": "",
+    "ingest-batch": "import-many-jobs-at-once"
+   }
+  },
+  {
+   "slug": "xml-job-feed",
+   "title": "XML job feed",
+   "topic": "integrations",
+   "order": 30,
+   "excerpt": "An RSS feed of your published jobs for job aggregators and partner sites. (Business)",
+   "legacy": {
+    "xml-feed": ""
+   }
+  },
+  {
+   "slug": "recruiter-mcp",
+   "title": "Recruiter MCP",
+   "topic": "integrations",
+   "order": 40,
+   "excerpt": "Let recruiters manage their jobs and applications from an AI assistant, through the Model Context Protocol. (Business)",
+   "legacy": {
+    "mcp": ""
+   }
+  },
+  {
+   "slug": "php-hooks",
+   "title": "PHP hooks",
+   "topic": "integrations",
+   "order": 50,
+   "excerpt": "Filters and actions for changing the board's behaviour from your own theme or plugin code.",
+   "legacy": {
+    "hooks": ""
+   }
+  },
+  {
+   "slug": "development-and-testing",
+   "title": "Development and testing",
+   "topic": "integrations",
+   "order": 60,
+   "excerpt": "Commands for working on Modern Job Board's own code: installing dependencies, running tests and coding-standard checks.",
+   "legacy": {
+    "development": ""
+   }
+  }
+ ]
+}
