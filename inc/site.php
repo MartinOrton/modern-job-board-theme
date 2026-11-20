@@ -75,6 +75,24 @@ function mjb_theme_site_styles() {
 add_action( 'wp_enqueue_scripts', 'mjb_theme_site_styles', 20 );
 
 /**
+ * Navigation progress on every public page: a bar at the top and a spinner
+ * on the link or button used, until the next page shows.
+ */
+function mjb_theme_nav_progress_script() {
+	wp_enqueue_script(
+		'mjb-nav-progress',
+		get_template_directory_uri() . '/js/nav-progress.js',
+		array(),
+		MJB_THEME_VERSION,
+		array(
+			'in_footer' => true,
+			'strategy'  => 'defer',
+		)
+	);
+}
+add_action( 'wp_enqueue_scripts', 'mjb_theme_nav_progress_script', 20 );
+
+/**
  * The same styles inside the block editor.
  */
 function mjb_theme_site_editor_styles() {

@@ -5,7 +5,7 @@
  * @package ModernJobBoardTheme
  */
 
-define( 'MJB_THEME_VERSION', '0.9.0-beta.73' );
+define( 'MJB_THEME_VERSION', '0.9.0-beta.74' );
 
 if ( ! function_exists( 'mjb_theme_setup' ) ) {
 	/**

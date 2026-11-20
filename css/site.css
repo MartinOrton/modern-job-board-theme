@@ -1370,3 +1370,90 @@
 .site-main--content .entry-content > .mjb-kb-topics {
     margin-top: 0.5rem;
 }
+
+/* ===== Navigation progress (js/nav-progress.js) ===== */
+.mjb-nav-progress {
+    position: fixed;
+    z-index: 100000;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 3px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.admin-bar .mjb-nav-progress {
+    top: 32px;
+}
+
+@media (max-width: 782px) {
+    .admin-bar .mjb-nav-progress {
+        top: 46px;
+    }
+}
+
+.mjb-nav-progress.is-active {
+    opacity: 1;
+    transition: none;
+}
+
+.mjb-nav-progress__fill {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--primary-hover) 60%, var(--accent) 100%);
+    box-shadow: 0 0 8px rgba(15, 118, 110, 0.45);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    transition: transform 0.25s ease;
+}
+
+.mjb-nav-spin {
+    display: inline-block;
+    flex: 0 0 auto;
+    width: 0.85em;
+    height: 0.85em;
+    margin-left: 0.45em;
+    box-sizing: border-box;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    vertical-align: -0.1em;
+    animation: mjb-nav-spin 0.65s linear infinite;
+}
+
+.is-nav-pending {
+    cursor: progress;
+}
+
+/* On call-to-action buttons the spinner takes the place of the arrow / play icon. */
+body:not(.mjb-demo) a.btn.is-nav-pending::after,
+.wp-block-button.mjb-btn .wp-block-button__link.is-nav-pending::after,
+body:not(.mjb-demo) a.btn.is-nav-pending > svg:last-of-type {
+    display: none;
+}
+
+a.btn .mjb-nav-spin,
+.wp-block-button__link .mjb-nav-spin,
+button .mjb-nav-spin {
+    width: 1.05em;
+    height: 1.05em;
+    margin-left: 0;
+}
+
+@keyframes mjb-nav-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mjb-nav-progress__fill {
+        transition: none;
+    }
+
+    .mjb-nav-spin {
+        animation-duration: 1.6s;
+    }
+}

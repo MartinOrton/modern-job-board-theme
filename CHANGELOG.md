@@ -2,6 +2,13 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.74] - 2026-11-20
+
+### Added
+- Navigation progress on every public page (`js/nav-progress.js`, styles in `css/site.css`). When a visitor follows an internal link or sends a form that loads a new page, a thin bar runs along the top of the window (teal to orange). After 150 ms the link or button they used shows a small spinner, which replaces the arrow on call-to-action buttons. The next page completes the bar, so the wait reads as one movement.
+- It leaves alone anything another script already handles: AJAX job search, dashboard tabs, the contact form, KB search suggestions. It also skips new-tab links, downloads (including CV links), same-page anchors, clicks with a modifier key, and links or forms marked `data-no-progress`.
+- It works with WordPress speculative loading: a page prerendered on hover finishes the bar when it is shown. It resets when a page comes back from the back/forward cache, and gives up after 12 seconds if no new page arrives. With reduced motion the bar jumps rather than glides.
+
 ## [0.9.0-beta.73] - 2026-11-20
 
 ### Changed
