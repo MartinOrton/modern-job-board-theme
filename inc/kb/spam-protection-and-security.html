@@ -1,0 +1,67 @@
+<!-- wp:paragraph -->
+<p>Modern Job Board protects its public application and registration forms in several layers. You will find the settings under <strong>Settings → People &amp; access</strong>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"built-in-protection"} -->
+<h2 id="built-in-protection" class="wp-block-heading">Built-in protection</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Hidden field.</strong> Every form has a field people cannot see. Bots that fill it in are refused.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Time trap.</strong> Forms sent faster than a person could fill them in are treated as spam. Set the minimum under <strong>Application Security → Form time trap (seconds)</strong>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Rate limits.</strong> Applications and registrations from one visitor are limited per hour.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Banned IPs.</strong> Add addresses under <strong>Application Security → Banned IPs</strong>, one per line, to stop them applying or registering.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"anchor":"google-recaptcha"} -->
+<h2 id="google-recaptcha" class="wp-block-heading">Google reCAPTCHA</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>For stronger protection, add reCAPTCHA:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Create a site key and secret key in the Google reCAPTCHA admin console, for your site's domain.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>In <strong>Settings → People &amp; access → Application Security</strong>, switch on <strong>Enable reCAPTCHA</strong> and paste the <strong>Site Key</strong> and <strong>Secret Key</strong>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Submit a test application to check that it still goes through.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:heading {"anchor":"approving-new-accounts"} -->
+<h2 id="approving-new-accounts" class="wp-block-heading">Approving new accounts</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Under <strong>Registration</strong>, switch on <strong>Recruiter approval</strong> or <strong>Candidate approval</strong> to hold new accounts as pending until a staff member approves them. This suits boards for a closed group, such as a professional body's members.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"private-boards"} -->
+<h2 id="private-boards" class="wp-block-heading">Private boards</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><strong>Settings → Job board → Board Mode → Private job search</strong> makes visitors log in before they can browse jobs.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"other-safeguards"} -->
+<h2 id="other-safeguards" class="wp-block-heading">Other safeguards</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>CVs are kept in a private folder and only sent to signed-in users who are allowed to see them. See <a href="{{home}}/docs/cv-privacy/">CV privacy and talent access</a>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Remote feeds on private or local network addresses are refused, so an import cannot be used to reach your internal network.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>The REST API only shows each recruiter their own jobs and applications, and each candidate their own profile.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
