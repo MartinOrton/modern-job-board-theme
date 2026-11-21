@@ -203,7 +203,8 @@
 						var parent = editor.getBlockRootClientId( props.clientId );
 						var attributes = parent ? editor.getBlockAttributes( parent ) : null;
 
-						return !! ( attributes && /(^|\s)mjb-fb-cards(\s|$)/.test( attributes.className || '' ) );
+						// Card lists, and the Contact page's quick links.
+						return !! ( attributes && /(^|\s)(mjb-fb-cards|mjb-contact-links)(\s|$)/.test( attributes.className || '' ) );
 					},
 					[ props.name, props.clientId ]
 				);

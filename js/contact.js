@@ -16,9 +16,14 @@
 	var submit = form.querySelector( '.mjb-contact-form__submit' );
 	var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+	// Optional; a bare domain is fine (the server adds https://).
+	var urlPattern = /^(https?:\/\/)?[^\s\/:?#]+\.[^\s\/:?#]+(:\d+)?([\/?#]\S*)?$/i;
+
 	var messages = {
-		name: 'Please enter your name.',
+		first_name: 'Please enter your first name.',
+		last_name: 'Please enter your last name.',
 		email: 'Please enter a valid email address.',
+		company_url: 'Please enter a valid website address, like example.com.',
 		topic: 'Please choose a topic.',
 		message: 'Please write a message of at least 10 characters.',
 		consent: 'Please tick the box so we may use your details to reply.'
@@ -64,6 +69,10 @@
 
 		if ( 'email' === name ) {
 			return emailPattern.test( value ) ? '' : messages.email;
+		}
+
+		if ( 'company_url' === name ) {
+			return ! value || urlPattern.test( value ) ? '' : messages.company_url;
 		}
 
 		if ( 'message' === name ) {

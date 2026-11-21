@@ -2,6 +2,15 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.75] - 2026-11-21
+
+### Changed
+- Contact form: "Your name" is now two required fields, First name and Last name. "Company or website" is now two optional fields, Company and Website. The website field is named `company_url`, because `website` is the honeypot. It takes a bare domain (`example.com`), adds `https://`, and rejects other schemes and addresses without a dot, both in the browser and on the server (`mjb_theme_contact_normalise_url()`).
+- Contact messages store `_mjb_contact_first_name`, `_mjb_contact_last_name` and `_mjb_contact_website`. `_mjb_contact_name` keeps the full name, so the admin list and older messages still work. The notification email and the message screen show Company and Website on separate lines.
+- The Send button now matches the other call-to-action buttons: same type, 1px border and hover, plus the nudging arrow that speeds up on hover. While sending, the arrow becomes a spinner.
+- Contact page: the quick links (Documentation, Live demo, Pricing) have icons in a tinted tile. They use the `mjb-i-{name}` list-item classes, and the editor's icon picker now also works on lists with the class `mjb-contact-links`.
+- Contact page, Company details: the new address (Spaces Broadacres, Sandton) and a line saying Modern Job Board is developed by 4Mation Digital®, which replaces the "designed and developed by Martin Orton" line. Links in the contact cards are now underlined in the primary colour.
+
 ## [0.9.0-beta.74] - 2026-11-20
 
 ### Added

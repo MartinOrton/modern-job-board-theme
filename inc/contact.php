@@ -292,9 +292,12 @@ function mjb_theme_render_contact_form( $attributes ) {
 		<div class="mjb-contact-form__grid">
 			<?php
 			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- Built from escaped parts.
-			echo $field( 'name', __( 'Your name', 'modern-job-board-theme' ), '<input type="text"' . $aria( 'name' ) . ' autocomplete="name" maxlength="100" value="' . esc_attr( $value( 'name' ) ) . '" />' );
+			echo $field( 'first_name', __( 'First name', 'modern-job-board-theme' ), '<input type="text"' . $aria( 'first_name' ) . ' autocomplete="given-name" maxlength="60" value="' . esc_attr( $value( 'first_name' ) ) . '" />' );
+			echo $field( 'last_name', __( 'Last name', 'modern-job-board-theme' ), '<input type="text"' . $aria( 'last_name' ) . ' autocomplete="family-name" maxlength="60" value="' . esc_attr( $value( 'last_name' ) ) . '" />' );
 			echo $field( 'email', __( 'Email address', 'modern-job-board-theme' ), '<input type="email"' . $aria( 'email' ) . ' autocomplete="email" maxlength="190" value="' . esc_attr( $value( 'email' ) ) . '" />' );
-			echo $field( 'company', __( 'Company or website', 'modern-job-board-theme' ), '<input type="text"' . $aria( 'company', false ) . ' autocomplete="organization" maxlength="150" value="' . esc_attr( $value( 'company' ) ) . '" />', false );
+			echo $field( 'company', __( 'Company', 'modern-job-board-theme' ), '<input type="text"' . $aria( 'company', false ) . ' autocomplete="organization" maxlength="150" value="' . esc_attr( $value( 'company' ) ) . '" />', false );
+			// "website" is the honeypot's name, so the real field is company_url.
+			echo $field( 'company_url', __( 'Website', 'modern-job-board-theme' ), '<input type="text" inputmode="url"' . $aria( 'company_url', false ) . ' autocomplete="url" maxlength="200" placeholder="example.com" value="' . esc_attr( $value( 'company_url' ) ) . '" />', false );
 			echo $field( 'topic', __( 'Topic', 'modern-job-board-theme' ), '<select' . $aria( 'topic' ) . '>' . $topic_options . '</select>' );
 			echo $field( 'message', __( 'Message', 'modern-job-board-theme' ), '<textarea' . $aria( 'message' ) . ' rows="7" minlength="10" maxlength="5000">' . esc_textarea( $value( 'message' ) ) . '</textarea>' );
 			// phpcs:enable
@@ -377,6 +380,42 @@ function mjb_theme_contact_block_attributes( $page_id ) {
 }
 
 /**
+ * Tidy an optional website address: adds https:// when no scheme was typed.
+ *
+ * @param string $raw What the visitor typed.
+ * @return string|null The address ('' when left empty), or null when it isn't a usable web address.
+ */
+function mjb_theme_contact_normalise_url( $raw ) {
+	$raw = trim( (string) $raw );
+
+	if ( '' === $raw ) {
+		return '';
+	}
+
+	if ( mb_strlen( $raw ) > 200 || preg_match( '/\s/', $raw ) ) {
+		return null;
+	}
+
+	if ( ! preg_match( '#^https?://#i', $raw ) ) {
+		if ( preg_match( '#^[a-z][a-z0-9+.-]*:#i', $raw ) && ! preg_match( '#^[^/:]+:\d+#', $raw ) ) {
+			return null; // Another scheme (javascript:, mailto: and so on).
+		}
+
+		$raw = 'https://' . ltrim( $raw, '/' );
+	}
+
+	$host = wp_parse_url( $raw, PHP_URL_HOST );
+
+	if ( ! is_string( $host ) || false === strpos( $host, '.' ) || ! preg_match( '/^[\p{L}\p{N}.-]+$/u', $host ) ) {
+		return null;
+	}
+
+	$url = esc_url_raw( $raw, array( 'http', 'https' ) );
+
+	return '' === $url ? null : $url;
+}
+
+/**
  * Handle a submission (admin-post.php, logged in or not).
  */
 function mjb_theme_contact_handle() {
@@ -387,12 +426,14 @@ function mjb_theme_contact_handle() {
 	$back    = $page_id ? get_permalink( $page_id ) : home_url( '/' );
 
 	$values = array(
-		'name'    => isset( $_POST['name'] ) ? sanitize_text_field( wp_unslash( $_POST['name'] ) ) : '',
-		'email'   => isset( $_POST['email'] ) ? sanitize_email( wp_unslash( $_POST['email'] ) ) : '',
-		'company' => isset( $_POST['company'] ) ? sanitize_text_field( wp_unslash( $_POST['company'] ) ) : '',
-		'topic'   => isset( $_POST['topic'] ) ? sanitize_text_field( wp_unslash( $_POST['topic'] ) ) : '',
-		'message' => isset( $_POST['message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['message'] ) ) : '',
-		'consent' => empty( $_POST['consent'] ) ? '' : '1',
+		'first_name'  => isset( $_POST['first_name'] ) ? sanitize_text_field( wp_unslash( $_POST['first_name'] ) ) : '',
+		'last_name'   => isset( $_POST['last_name'] ) ? sanitize_text_field( wp_unslash( $_POST['last_name'] ) ) : '',
+		'email'       => isset( $_POST['email'] ) ? sanitize_email( wp_unslash( $_POST['email'] ) ) : '',
+		'company'     => isset( $_POST['company'] ) ? sanitize_text_field( wp_unslash( $_POST['company'] ) ) : '',
+		'company_url' => isset( $_POST['company_url'] ) ? sanitize_text_field( wp_unslash( $_POST['company_url'] ) ) : '',
+		'topic'       => isset( $_POST['topic'] ) ? sanitize_text_field( wp_unslash( $_POST['topic'] ) ) : '',
+		'message'     => isset( $_POST['message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['message'] ) ) : '',
+		'consent'     => empty( $_POST['consent'] ) ? '' : '1',
 	);
 	$honeypot = isset( $_POST['website'] ) ? trim( (string) wp_unslash( $_POST['website'] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Only checked for emptiness.
 	$stamp    = isset( $_POST['mjb_contact_ts'] ) ? sanitize_text_field( wp_unslash( $_POST['mjb_contact_ts'] ) ) : '';
@@ -456,10 +497,16 @@ function mjb_theme_contact_handle() {
 
 	$errors = array();
 
-	if ( '' === $values['name'] ) {
-		$errors['name'] = __( 'Please enter your name.', 'modern-job-board-theme' );
-	} elseif ( mb_strlen( $values['name'] ) > 100 ) {
-		$errors['name'] = __( 'Please use 100 characters or fewer.', 'modern-job-board-theme' );
+	if ( '' === $values['first_name'] ) {
+		$errors['first_name'] = __( 'Please enter your first name.', 'modern-job-board-theme' );
+	} elseif ( mb_strlen( $values['first_name'] ) > 60 ) {
+		$errors['first_name'] = __( 'Please use 60 characters or fewer.', 'modern-job-board-theme' );
+	}
+
+	if ( '' === $values['last_name'] ) {
+		$errors['last_name'] = __( 'Please enter your last name.', 'modern-job-board-theme' );
+	} elseif ( mb_strlen( $values['last_name'] ) > 60 ) {
+		$errors['last_name'] = __( 'Please use 60 characters or fewer.', 'modern-job-board-theme' );
 	}
 
 	if ( '' === $values['email'] || ! is_email( $values['email'] ) ) {
@@ -468,6 +515,12 @@ function mjb_theme_contact_handle() {
 
 	if ( mb_strlen( $values['company'] ) > 150 ) {
 		$errors['company'] = __( 'Please use 150 characters or fewer.', 'modern-job-board-theme' );
+	}
+
+	$website = mjb_theme_contact_normalise_url( $values['company_url'] );
+
+	if ( null === $website ) {
+		$errors['company_url'] = __( 'Please enter a valid website address, like example.com.', 'modern-job-board-theme' );
 	}
 
 	if ( ! in_array( $values['topic'], mjb_theme_contact_topic_list( $attrs['topics'] ), true ) ) {
@@ -499,17 +552,22 @@ function mjb_theme_contact_handle() {
 
 	set_transient( $rate_key, $count + 1, HOUR_IN_SECONDS );
 
+	$full_name = trim( $values['first_name'] . ' ' . $values['last_name'] );
+
 	$message_id = wp_insert_post(
 		array(
 			'post_type'    => MJB_THEME_CONTACT_CPT,
 			'post_status'  => 'private',
 			/* translators: 1: sender name, 2: topic */
-			'post_title'   => sprintf( __( '%1$s: %2$s', 'modern-job-board-theme' ), $values['name'], $values['topic'] ),
+			'post_title'   => sprintf( __( '%1$s: %2$s', 'modern-job-board-theme' ), $full_name, $values['topic'] ),
 			'post_content' => $values['message'],
 			'meta_input'   => array(
-				'_mjb_contact_name'    => $values['name'],
-				'_mjb_contact_email'   => $values['email'],
-				'_mjb_contact_company' => $values['company'],
+				'_mjb_contact_name'       => $full_name,
+				'_mjb_contact_first_name' => $values['first_name'],
+				'_mjb_contact_last_name'  => $values['last_name'],
+				'_mjb_contact_email'      => $values['email'],
+				'_mjb_contact_company'    => $values['company'],
+				'_mjb_contact_website'    => (string) $website,
 				'_mjb_contact_topic'   => $values['topic'],
 				'_mjb_contact_page'    => $page_id,
 				'_mjb_contact_consent' => gmdate( 'c' ),
@@ -524,9 +582,10 @@ function mjb_theme_contact_handle() {
 		/* translators: %s: site name */
 		sprintf( __( 'New message from the contact form on %s', 'modern-job-board-theme' ), $site ),
 		'',
-		__( 'Name:', 'modern-job-board-theme' ) . ' ' . $values['name'],
+		__( 'Name:', 'modern-job-board-theme' ) . ' ' . $full_name,
 		__( 'Email:', 'modern-job-board-theme' ) . ' ' . $values['email'],
-		__( 'Company or website:', 'modern-job-board-theme' ) . ' ' . ( '' !== $values['company'] ? $values['company'] : '-' ),
+		__( 'Company:', 'modern-job-board-theme' ) . ' ' . ( '' !== $values['company'] ? $values['company'] : '-' ),
+		__( 'Website:', 'modern-job-board-theme' ) . ' ' . ( '' !== (string) $website ? $website : '-' ),
 		__( 'Topic:', 'modern-job-board-theme' ) . ' ' . $values['topic'],
 		'',
 		__( 'Message:', 'modern-job-board-theme' ),
@@ -540,7 +599,7 @@ function mjb_theme_contact_handle() {
 		$lines[] = __( 'Saved in WordPress:', 'modern-job-board-theme' ) . ' ' . admin_url( 'post.php?post=' . $message_id . '&action=edit' );
 	}
 
-	$name_header = str_replace( array( '"', "\r", "\n" ), '', $values['name'] );
+	$name_header = str_replace( array( '"', "\r", "\n" ), '', $full_name );
 	$sent        = wp_mail(
 		$recipient,
 		/* translators: 1: site name, 2: topic, 3: sender name */
@@ -606,7 +665,8 @@ function mjb_theme_contact_meta_box() {
 			$rows = array(
 				__( 'Name', 'modern-job-board-theme' )               => get_post_meta( $post->ID, '_mjb_contact_name', true ),
 				__( 'Email', 'modern-job-board-theme' )              => get_post_meta( $post->ID, '_mjb_contact_email', true ),
-				__( 'Company or website', 'modern-job-board-theme' ) => get_post_meta( $post->ID, '_mjb_contact_company', true ),
+				__( 'Company', 'modern-job-board-theme' )            => get_post_meta( $post->ID, '_mjb_contact_company', true ),
+				__( 'Website', 'modern-job-board-theme' )            => get_post_meta( $post->ID, '_mjb_contact_website', true ),
 				__( 'Topic', 'modern-job-board-theme' )              => get_post_meta( $post->ID, '_mjb_contact_topic', true ),
 				__( 'Received', 'modern-job-board-theme' )           => get_the_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $post ),
 				__( 'Email sent', 'modern-job-board-theme' )         => 'yes' === get_post_meta( $post->ID, '_mjb_contact_mailed', true ) ? __( 'Yes', 'modern-job-board-theme' ) : __( 'Failed', 'modern-job-board-theme' ),

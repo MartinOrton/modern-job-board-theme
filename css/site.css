@@ -228,8 +228,53 @@
     margin-top: 1rem;
 }
 
+/* Quick links with an icon (mjb-i-{name} on the list item, css/list-icons.css):
+   a tinted tile beside the link, the description below the link. */
+.mjb-contact-links li[class*="mjb-i-"],
+.site-main--content .entry-content .mjb-contact-links li[class*="mjb-i-"] {
+    position: relative;
+    min-height: 2.25rem;
+    padding-left: 3rem;
+}
+
+.mjb-contact-links li[class*="mjb-i-"]::before,
+.mjb-contact-links li[class*="mjb-i-"]::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.mjb-contact-links li[class*="mjb-i-"]::before {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.625rem;
+    background: color-mix(in srgb, var(--primary) 10%, transparent);
+}
+
+.mjb-contact-links li[class*="mjb-i-"]::after {
+    top: 0.5rem;
+    left: 0.5rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    background-color: var(--primary);
+    -webkit-mask: var(--mjb-li-icon) center / contain no-repeat;
+    mask: var(--mjb-li-icon) center / contain no-repeat;
+}
+
 .mjb-contact-links a {
     color: var(--primary);
+}
+
+.mjb-contact-card p a {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+.mjb-contact-card p a:hover {
+    color: var(--primary-hover);
+    text-decoration-thickness: 2px;
 }
 
 @media (min-width: 782px) {
@@ -393,16 +438,51 @@
     margin-top: 0.25rem;
 }
 
+/* A <button>, styled exactly like the site's call-to-action links (.btn):
+   same border, type and hover, plus the same nudging arrow. */
 .mjb-contact-form__submit {
     min-width: 11rem;
-    border: 0;
-    font: inherit;
-    cursor: pointer;
+    justify-content: center;
+    font-family: inherit;
+    line-height: inherit;
+}
+
+body:not(.mjb-demo) .mjb-contact-form__submit::after {
+    content: "";
+    flex: 0 0 auto;
+    width: 1.05em;
+    height: 1.05em;
+    background-color: currentColor;
+    -webkit-mask: var(--mjb-icon-arrow) center / contain no-repeat;
+    mask: var(--mjb-icon-arrow) center / contain no-repeat;
+    animation: mjb-btn-nudge 2.6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+body:not(.mjb-demo) .mjb-contact-form__submit:hover::after {
+    animation-duration: 0.9s;
 }
 
 .mjb-contact-form__submit.is-busy {
     opacity: 0.7;
     cursor: progress;
+}
+
+/* While sending, the arrow turns into a spinner. */
+body:not(.mjb-demo) .mjb-contact-form__submit.is-busy::after {
+    box-sizing: border-box;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    background: none;
+    -webkit-mask: none;
+    mask: none;
+    animation: mjb-nav-spin 0.65s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body:not(.mjb-demo) .mjb-contact-form__submit:not(.is-busy)::after {
+        animation: none;
+    }
 }
 
 /* Honeypot: out of sight, out of the tab order (aria-hidden in the markup). */
