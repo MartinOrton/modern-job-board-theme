@@ -1,0 +1,81 @@
+<!-- wp:paragraph -->
+<p>The ingest routes let an agency ATS or a multiposting tool such as Broadbean push jobs straight onto your board. They accept the field names those tools commonly use and create or update the job.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"switch-it-on"} -->
+<h2 id="switch-it-on" class="wp-block-heading">Switch it on</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Open <strong>Settings → Integrations → Job Ingestion &amp; Backfill</strong>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Enter a long random <strong>Ingestion webhook secret</strong> and save. While it is empty, the routes reply <code>403 mjb_ingest_disabled</code>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Give the secret and the route address to whoever sets up the ATS.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:heading {"anchor":"authentication"} -->
+<h2 id="authentication" class="wp-block-heading">Authentication</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Send the secret in the <code>X-MJB-Ingest-Secret</code> header (recommended), or as a <code>secret</code> field in the JSON body. A wrong secret gets <code>401 mjb_ingest_auth</code>. These routes do not use a WordPress user.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"create-or-update-one-job"} -->
+<h2 id="create-or-update-one-job" class="wp-block-heading">Create or update one job</h2>
+<!-- /wp:heading -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>POST /wp-json/mjb/v1/ingest/job</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>curl -X POST "https://example.com/wp-json/mjb/v1/ingest/job" \
+  -H "Content-Type: application/json" \
+  -H "X-MJB-Ingest-Secret: YOUR_SECRET" \
+  -d '{
+    "title": "Senior Developer",
+    "description": "Build modern job boards…",
+    "company": "Acme Corp",
+    "location": "Remote",
+    "external_id": "ATS-1042",
+    "apply_url": "https://example.com/apply/1042",
+    "job_type": "Full-time",
+    "status": "publish"
+  }'</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>If a job with the same <code>external_id</code> (or <code>id</code> or <code>reference</code>) already exists, it is updated instead of duplicated. Always send your ATS's own job reference so updates land on the right job.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"fields"} -->
+<h2 id="fields" class="wp-block-heading">Fields</h2>
+<!-- /wp:heading -->
+
+<!-- wp:table {"className":"mjb-stack-table"} -->
+<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>Field</th><th>Required</th><th>Also accepted as</th></tr></thead><tbody><tr><td><code>title</code></td><td>Yes</td><td><code>job_title</code>, <code>jobTitle</code>, <code>position</code></td></tr><tr><td><code>description</code></td><td>No</td><td><code>body</code>, <code>job_description</code>, <code>jobDescription</code></td></tr><tr><td><code>company</code></td><td>No</td><td><code>company_name</code>, <code>companyName</code>, <code>advertiser</code></td></tr><tr><td><code>location</code></td><td>No</td><td><code>city</code>, <code>job_location</code></td></tr><tr><td><code>external_id</code></td><td>No</td><td><code>id</code>, <code>reference</code>, <code>job_reference</code>, <code>requisition_id</code></td></tr><tr><td><code>apply_url</code></td><td>No</td><td><code>application_url</code>, <code>url</code>, <code>link</code></td></tr><tr><td><code>status</code></td><td>No</td><td><code>publish</code> (default), <code>draft</code> or <code>pending</code></td></tr><tr><td><code>job_type</code></td><td>No</td><td><code>employmentType</code></td></tr><tr><td><code>featured</code></td><td>No</td><td>Any true value marks the job featured</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:heading {"anchor":"import-many-jobs-at-once"} -->
+<h2 id="import-many-jobs-at-once" class="wp-block-heading">Import many jobs at once</h2>
+<!-- /wp:heading -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>POST /wp-json/mjb/v1/ingest/batch</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>Send an array of job objects, or <code>{ "jobs": [ … ] }</code>, with the same secret. Each job is handled exactly like the single route. A batch can hold up to 50 jobs; split larger feeds into several requests.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"when-a-search-finds-nothing"} -->
+<h2 id="when-a-search-finds-nothing" class="wp-block-heading">When a search finds nothing</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Under <strong>Job Ingestion &amp; Backfill</strong> you can also choose what visitors see when a search returns no jobs: a message of your own (<strong>Backfill message</strong>) or a link to a partner job site (<strong>Backfill partner URL</strong>).</p>
+<!-- /wp:paragraph -->
