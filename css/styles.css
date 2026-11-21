@@ -4110,6 +4110,16 @@ body:not(.mjb-demo) a.btn:hover > svg:last-child,
     color: var(--text-primary);
 }
 
+/* Text that runs on: a second paragraph, or a short intro before a list or
+   table, gets the same 20px gap as a section heading has above its list. */
+.site-main--content .entry-content .mjb-feature-body p + p {
+    margin-top: 1.25rem;
+}
+
+.site-main--content .entry-content .mjb-feature-body .mjb-fb-section p + :is(.mjb-fb-steps, .mjb-fb-cards, .wp-block-table) {
+    margin-top: 1.25rem;
+}
+
 /* Numbered steps */
 .mjb-feature-body .mjb-fb-steps {
     display: grid;

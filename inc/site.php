@@ -116,6 +116,10 @@ add_action( 'enqueue_block_assets', 'mjb_theme_site_editor_styles' );
  */
 function mjb_theme_site_pages() {
 	return array(
+		'about-us'              => array(
+			'title'   => __( 'About Us', 'modern-job-board-theme' ),
+			'excerpt' => __( 'Modern Job Board is built and supported by 4Mation Digital®, a digital agency in Johannesburg that has been building websites since 1999.', 'modern-job-board-theme' ),
+		),
 		'contact'               => array(
 			'title'   => __( 'Contact', 'modern-job-board-theme' ),
 			'excerpt' => __( 'Questions about plans, a Complete Site build or a technical problem? Send us a message and we will reply by email.', 'modern-job-board-theme' ),
@@ -159,6 +163,8 @@ function mjb_theme_site_page_content( $slug ) {
 		array(
 			'{{home}}'    => untrailingslashit( home_url() ),
 			'{{updated}}' => '19 November 2026',
+			// The shared call-to-action band (a synced pattern), as on the feature pages.
+			'{{cta}}'     => false !== strpos( $content, '{{cta}}' ) && function_exists( 'mjb_theme_cta_block' ) ? mjb_theme_cta_block() : '',
 		)
 	);
 }
@@ -294,8 +300,16 @@ function mjb_theme_site_setup() {
 		}
 	);
 
+	mjb_theme_site_once(
+		'mjb_theme_page_about',
+		static function () {
+			return mjb_theme_site_create_page( 'about-us' );
+		}
+	);
+
 	mjb_theme_site_once( 'mjb_theme_footer_menu_v2', 'mjb_theme_site_build_footer_menu' );
 	mjb_theme_site_once( 'mjb_theme_legal_fonts_v1', 'mjb_theme_site_legal_drop_google_fonts' );
+	mjb_theme_site_once( 'mjb_theme_footer_about_v1', 'mjb_theme_site_footer_about' );
 }
 add_action( 'init', 'mjb_theme_site_setup', 30 );
 
@@ -457,7 +471,7 @@ function mjb_theme_site_build_footer_menu() {
 		__( 'Company', 'modern-job-board-theme' )   => array(
 			$find( $footer, '#pricing' ) ? $find( $footer, '#pricing' ) : $custom( __( 'Pricing', 'modern-job-board-theme' ), '/#pricing' ),
 			$page_link( 'contact' ),
-			$find( $footer, 'martinorton.com' ),
+			$page_link( 'about-us' ),
 		),
 		__( 'Legal', 'modern-job-board-theme' )     => array(
 			$page_link( 'privacy-policy' ),
@@ -510,6 +524,72 @@ function mjb_theme_site_build_footer_menu() {
 	}
 
 	return 'columns';
+}
+
+/**
+ * Footer, Company column: the About Us page takes the place of the old
+ * "Author" link (martinorton.com). If there is no such link, About Us is added
+ * after Contact. Nothing happens if the footer already links to the page.
+ *
+ * @return string
+ */
+function mjb_theme_site_footer_about() {
+	$page      = get_page_by_path( 'about-us' );
+	$locations = get_nav_menu_locations();
+	$menu_id   = isset( $locations['footer'] ) ? (int) $locations['footer'] : 0;
+
+	if ( ! $page instanceof WP_Post || 'publish' !== $page->post_status ) {
+		return 'no-page';
+	}
+
+	if ( ! $menu_id || ! wp_get_nav_menu_object( $menu_id ) ) {
+		return 'no-menu';
+	}
+
+	$items   = (array) wp_get_nav_menu_items( $menu_id, array( 'post_status' => 'any' ) );
+	$author  = null;
+	$contact = null;
+
+	foreach ( $items as $item ) {
+		if ( 'post_type' === $item->type && (int) $item->object_id === (int) $page->ID ) {
+			return 'already-linked';
+		}
+
+		if ( ! $author && false !== strpos( (string) $item->url, 'martinorton.com' ) ) {
+			$author = $item;
+		}
+
+		if ( ! $contact && 'post_type' === $item->type && 'contact' === get_post_field( 'post_name', (int) $item->object_id ) ) {
+			$contact = $item;
+		}
+	}
+
+	$data = array(
+		'menu-item-object-id' => $page->ID,
+		'menu-item-object'    => 'page',
+		'menu-item-type'      => 'post_type',
+		'menu-item-title'     => __( 'About Us', 'modern-job-board-theme' ),
+		'menu-item-status'    => 'publish',
+	);
+
+	if ( $author ) {
+		// Same place in the menu; the external link becomes the page.
+		$data['menu-item-parent-id'] = (int) $author->menu_item_parent;
+		$data['menu-item-position']  = (int) $author->menu_order;
+		$saved                       = wp_update_nav_menu_item( $menu_id, $author->ID, $data );
+
+		return is_wp_error( $saved ) ? 'failed' : 'replaced-author';
+	}
+
+	if ( ! $contact ) {
+		return 'no-company-column';
+	}
+
+	$data['menu-item-parent-id'] = (int) $contact->menu_item_parent;
+	$data['menu-item-position']  = (int) $contact->menu_order + 1;
+	$saved                       = wp_update_nav_menu_item( $menu_id, 0, $data );
+
+	return is_wp_error( $saved ) ? 'failed' : 'added';
 }
 
 /**

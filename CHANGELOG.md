@@ -2,6 +2,15 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.78] - 2026-11-21
+
+### Added
+- About Us page (`inc/pages/about-us.html`), created once by the site set-up (option `mjb_theme_page_about`). It uses the same blocks as the feature pages: a hero with the company illustration, an answer box on who is behind Modern Job Board, icon cards on the problems it solves and what we believe in, the Complete Site build steps, company details, an FAQ and the shared call-to-action band. Every product claim is taken from the feature pages and the pricing table. The company facts come from 4mation.digital. Page set-up content can use `{{cta}}` for the call-to-action band.
+
+### Changed
+- Footer, Company column: About Us replaces the "Author" link (martinorton.com), in the same position. This is a one-off step (`mjb_theme_site_footer_about()`, option `mjb_theme_footer_about_v1`). If there is no Author link, About Us is added after Contact. On a new site, the footer menu builder adds About Us directly.
+- Feature-style pages: a second paragraph, or a short intro paragraph before a card list, step list or table, now gets the same 20px gap as a section heading above its list. No existing feature page uses either pattern, so none of them change.
+
 ## [0.9.0-beta.77] - 2026-11-21
 
 ### Changed
