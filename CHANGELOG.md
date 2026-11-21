@@ -2,6 +2,11 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.76] - 2026-11-21
+
+### Fixed
+- Text links now use the site's standard text-link style everywhere: teal, semi-bold, a faint underline that fills in from the left on hover, and darker teal on hover, as on the feature pages. This covers the Contact page (quick links, company details, the consent checkbox), the legal pages, KB articles and the KB help box. Before, each of these had its own plain-underline style. All of them are now one rule in `css/site.css`.
+
 ## [0.9.0-beta.75] - 2026-11-21
 
 ### Changed

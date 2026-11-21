@@ -262,20 +262,6 @@
     mask: var(--mjb-li-icon) center / contain no-repeat;
 }
 
-.mjb-contact-links a {
-    color: var(--primary);
-}
-
-.mjb-contact-card p a {
-    color: var(--primary);
-    text-decoration: underline;
-    text-underline-offset: 0.15em;
-}
-
-.mjb-contact-card p a:hover {
-    color: var(--primary-hover);
-    text-decoration-thickness: 2px;
-}
 
 @media (min-width: 782px) {
     .mjb-contact__aside {
@@ -283,6 +269,35 @@
         top: calc(var(--mjb-header-offset) + 1.5rem);
         align-self: flex-start;
     }
+}
+
+/* ===== Text links =====
+   One style for links in running text, the same as the feature pages
+   (.mjb-feature-body a in styles.css): teal, semi-bold, a faint underline
+   that fills in from the left on hover. */
+.mjb-contact-links a,
+.mjb-contact-card p a,
+.mjb-check a,
+.mjb-page-legal .site-main--content .entry-content a:not(.btn):not(.wp-block-button__link),
+.mjb-kb-article .entry-content a:not(.btn):not(.wp-block-button__link),
+.mjb-kb__main .mjb-kb-help a:not(.btn) {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    background:
+        linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat,
+        linear-gradient(rgba(15, 118, 110, 0.3), rgba(15, 118, 110, 0.3)) 0 100% / 100% 1px no-repeat;
+    transition: background-size 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
+}
+
+.mjb-contact-links a:hover,
+.mjb-contact-card p a:hover,
+.mjb-check a:hover,
+.mjb-page-legal .site-main--content .entry-content a:not(.btn):not(.wp-block-button__link):hover,
+.mjb-kb-article .entry-content a:not(.btn):not(.wp-block-button__link):hover,
+.mjb-kb__main .mjb-kb-help a:not(.btn):hover {
+    color: var(--primary-dark);
+    background-size: 100% 1px, 100% 1px;
 }
 
 /* ===== Contact form block ===== */
@@ -428,11 +443,6 @@
     outline-offset: 2px;
 }
 
-.mjb-check a {
-    color: var(--primary);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-}
 
 .mjb-contact-form__actions {
     margin-top: 0.25rem;
@@ -640,17 +650,6 @@ body:not(.mjb-demo) .mjb-contact-form__submit.is-busy::after {
     margin-top: 0.75rem;
 }
 
-.mjb-page-legal .site-main--content .entry-content a {
-    color: var(--primary);
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
-}
-
-.mjb-page-legal .site-main--content .entry-content a:hover {
-    color: var(--primary-hover);
-    text-decoration-thickness: 2px;
-}
 
 /* ===== Knowledge base ===== */
 .mjb-kb-icon {
@@ -1202,17 +1201,6 @@ body:not(.mjb-demo) .mjb-contact-form__submit.is-busy::after {
     margin-top: 0;
 }
 
-.mjb-kb-article .entry-content a,
-.mjb-kb__main .mjb-kb-help a:not(.btn) {
-    color: var(--primary);
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
-}
-
-.mjb-kb-article .entry-content a:hover {
-    text-decoration-thickness: 2px;
-}
 
 .mjb-kb-article .entry-content :not(pre) > code,
 .mjb-page-legal .entry-content :not(pre) > code,
