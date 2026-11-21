@@ -242,7 +242,8 @@ function mjb_theme_render_contact_form( $attributes ) {
 			$error ? ' has-error' : '',
 			esc_attr( $id ),
 			esc_html( $label ),
-			$required ? ' <span class="mjb-field__req" aria-hidden="true">*</span>' : ' <span class="mjb-field__opt">' . esc_html__( '(optional)', 'modern-job-board-theme' ) . '</span>',
+			// Same markers as the plugin's forms: a red asterisk, or an "Optional" badge.
+			$required ? '<span class="mjb-field__req" aria-hidden="true">*</span>' : '<span class="mjb-field__opt">' . esc_html__( 'Optional', 'modern-job-board-theme' ) . '</span>',
 			$input,
 			$error ? '' : ' hidden',
 			esc_html( $error )

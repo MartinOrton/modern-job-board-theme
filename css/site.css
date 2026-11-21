@@ -277,7 +277,7 @@
    that fills in from the left on hover. */
 .mjb-contact-links a,
 .mjb-contact-card p a,
-.mjb-check a,
+.mjb-contact-form .mjb-check a,
 .mjb-page-legal .site-main--content .entry-content a:not(.btn):not(.wp-block-button__link),
 .mjb-kb-article .entry-content a:not(.btn):not(.wp-block-button__link),
 .mjb-kb__main .mjb-kb-help a:not(.btn) {
@@ -292,7 +292,7 @@
 
 .mjb-contact-links a:hover,
 .mjb-contact-card p a:hover,
-.mjb-check a:hover,
+.mjb-contact-form .mjb-check a:hover,
 .mjb-page-legal .site-main--content .entry-content a:not(.btn):not(.wp-block-button__link):hover,
 .mjb-kb-article .entry-content a:not(.btn):not(.wp-block-button__link):hover,
 .mjb-kb__main .mjb-kb-help a:not(.btn):hover {
@@ -309,7 +309,7 @@
 .mjb-contact-form__grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 1.25rem;
+    gap: 1.25rem 0.75rem;
 }
 
 @media (min-width: 640px) {
@@ -317,129 +317,261 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .mjb-field--message,
-    .mjb-field--consent,
+    .mjb-contact-form .mjb-field--message,
+    .mjb-contact-form .mjb-field--consent,
     .mjb-contact-form__actions {
         grid-column: 1 / -1;
     }
 }
 
-.mjb-field {
+/* Fields: the same chrome as the plugin's forms (registration, login, Filter
+   Jobs: modern-job-board/assets/css/mjb-style.css and mjb-fields.css), using
+   the plugin's tokens when it is active and the same values when it isn't. */
+.mjb-contact-form {
+    --mjb-f-ink: var(--mjb-ink, #15232B);
+    --mjb-f-muted: var(--mjb-muted, #5F707A);
+    --mjb-f-line: var(--mjb-line, #E2E7E7);
+    --mjb-f-card: var(--mjb-card, #FFFFFF);
+    --mjb-f-primary: var(--mjb-primary, #0F766E);
+    --mjb-f-primary-dark: var(--mjb-primary-dark, #0B5F58);
+    --mjb-f-wash: color-mix(in srgb, var(--mjb-f-primary) 8%, transparent);
+    --mjb-f-danger: var(--mjb-danger, #A32A1E);
+    --mjb-f-grey: var(--mjb-grey-bg, #EDF0F0);
+    --mjb-f-radius: var(--mjb-radius, 0.75rem);
+    --mjb-f-radius-sm: var(--mjb-radius-sm, 0.5rem);
+    --mjb-f-fs: var(--mjb-fs-base, 0.9375rem);
+    --mjb-f-pop: var(--mjb-shadow-pop, 0 12px 32px -8px rgba(21, 35, 43, 0.16));
+    --mjb-f-fast: var(--mjb-dur-fast, 0.15s);
+}
+
+.mjb-contact-form .mjb-field {
     margin: 0;
 }
 
-.mjb-field > label {
+.mjb-contact-form .mjb-field > label {
     display: block;
-    margin-bottom: 0.45rem;
-    color: var(--text-primary);
-    font-size: 0.9375rem;
+    margin-bottom: 0.4rem;
+    color: var(--mjb-f-ink);
+    font-size: var(--mjb-f-fs);
     font-weight: 600;
+    line-height: 1.35;
 }
 
-.mjb-field__req {
-    color: var(--accent);
+.mjb-contact-form .mjb-field__req {
+    margin-left: 0.15em;
+    color: var(--mjb-f-danger);
+    font-weight: 700;
+    line-height: 1;
 }
 
-.mjb-field__opt {
-    color: var(--text-muted);
-    font-size: 0.875rem;
-    font-weight: 400;
+.mjb-contact-form .mjb-field__opt {
+    display: inline-block;
+    margin-left: 0.35rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 999px;
+    background: var(--mjb-f-grey);
+    color: var(--mjb-f-muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    vertical-align: middle;
 }
 
-.mjb-field input[type="text"],
-.mjb-field input[type="email"],
-.mjb-field select,
-.mjb-field textarea {
+.mjb-contact-form .mjb-field input[type="text"],
+.mjb-contact-form .mjb-field input[type="email"],
+.mjb-contact-form .mjb-field select,
+.mjb-contact-form .mjb-field textarea,
+.mjb-contact-form .mjb-dd__trigger {
     display: block;
     width: 100%;
     margin: 0;
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--border-strong);
-    border-radius: 0.625rem;
-    background-color: #fff;
-    color: var(--text-primary);
-    font: inherit;
-    font-size: 1rem;
-    line-height: 1.5;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    padding: 0.75rem 0.85rem;
+    border: 1px solid var(--mjb-f-line);
+    border-radius: var(--mjb-f-radius);
+    background-color: var(--mjb-f-card);
+    box-shadow: none;
+    color: var(--mjb-f-ink);
+    font-family: inherit;
+    font-size: var(--mjb-f-fs);
+    font-weight: 400;
+    line-height: 1.45;
+    box-sizing: border-box;
+    transition: border-color var(--mjb-f-fast) ease, box-shadow var(--mjb-f-fast) ease;
 }
 
-.mjb-field select {
-    padding-right: 2.75rem;
+/* Without JavaScript the native select gets the same box and chevron. */
+.mjb-contact-form .mjb-field select {
+    padding-right: 2.5rem;
     appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-    background-position: right 1rem center;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235F707A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-position: right 0.85rem center;
     background-repeat: no-repeat;
-    background-size: 1.1rem;
+    background-size: 16px;
     cursor: pointer;
 }
 
-.mjb-field textarea {
+.mjb-contact-form .mjb-field textarea {
     min-height: 10rem;
     resize: vertical;
 }
 
-.mjb-field input:hover,
-.mjb-field select:hover,
-.mjb-field textarea:hover {
-    border-color: var(--text-muted);
-}
-
-.mjb-field input:focus,
-.mjb-field select:focus,
-.mjb-field textarea:focus {
-    border-color: var(--primary);
+.mjb-contact-form .mjb-field input:focus,
+.mjb-contact-form .mjb-field select:focus,
+.mjb-contact-form .mjb-field textarea:focus,
+.mjb-contact-form .mjb-dd__trigger:focus-visible,
+.mjb-contact-form .mjb-dd.is-open .mjb-dd__trigger {
+    border-color: var(--mjb-f-primary);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.18);
+    box-shadow: 0 0 0 3px var(--mjb-f-wash);
 }
 
-.mjb-field.has-error input,
-.mjb-field.has-error select,
-.mjb-field.has-error textarea {
-    border-color: #dc2626;
+.mjb-contact-form .mjb-field.has-error input:not([type="checkbox"]),
+.mjb-contact-form .mjb-field.has-error select,
+.mjb-contact-form .mjb-field.has-error textarea,
+.mjb-contact-form .mjb-field.has-error .mjb-dd__trigger {
+    border-color: var(--mjb-f-danger);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--mjb-f-danger) 12%, transparent);
 }
 
-.mjb-field.has-error input:focus,
-.mjb-field.has-error select:focus,
-.mjb-field.has-error textarea:focus {
-    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+.mjb-contact-form .mjb-field__error,
+.site-main--content .entry-content .mjb-contact-form .mjb-field__error {
+    margin: 0.35rem 0 0;
+    color: var(--mjb-f-danger);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.35;
 }
 
-.mjb-field__error {
-    margin: 0.4rem 0 0;
-    color: #b91c1c;
+/* Dropdown (js/contact.js enhanceSelect): the plugin's .mjb-dd / .mjb-ac__menu. */
+.mjb-contact-form .mjb-dd {
+    position: relative;
+    width: 100%;
+}
+
+.mjb-contact-form .mjb-dd__native {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+.mjb-contact-form .mjb-dd__trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: left;
+    cursor: pointer;
+    appearance: none;
+}
+
+.mjb-contact-form .mjb-dd__value {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.mjb-contact-form .mjb-dd__chevron {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    color: var(--mjb-f-muted);
+    transition: transform var(--mjb-f-fast) ease;
+}
+
+.mjb-contact-form .mjb-dd.is-open .mjb-dd__chevron {
+    transform: rotate(180deg);
+}
+
+.mjb-contact-form .mjb-dd__menu {
+    position: absolute;
+    top: calc(100% + 0.4rem);
+    right: 0;
+    left: 0;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    max-height: 16rem;
+    margin: 0;
+    padding: 0.35rem;
+    overflow-y: auto;
+    border: 1px solid var(--mjb-f-line);
+    border-radius: var(--mjb-f-radius);
+    background: var(--mjb-f-card);
+    box-shadow: var(--mjb-f-pop);
+    box-sizing: border-box;
+}
+
+.mjb-contact-form .mjb-dd__menu[hidden] {
+    display: none !important;
+}
+
+.mjb-contact-form .mjb-dd__item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0.55rem 0.7rem;
+    border: 0;
+    border-radius: var(--mjb-f-radius-sm);
+    background: transparent;
+    color: var(--mjb-f-ink);
+    font: inherit;
     font-size: 0.875rem;
-    line-height: 1.4;
+    font-weight: 500;
+    line-height: 1.3;
+    text-align: left;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: background-color var(--mjb-f-fast) ease, color var(--mjb-f-fast) ease;
 }
 
-.site-main--content .entry-content .mjb-field__error {
-    margin-top: 0.4rem;
+.mjb-contact-form .mjb-dd__item.is-selected {
+    color: var(--mjb-f-primary-dark);
+    font-weight: 600;
 }
 
-.mjb-field > label.mjb-check,
-.mjb-check {
+.mjb-contact-form .mjb-dd__item:hover,
+.mjb-contact-form .mjb-dd__item.is-active {
+    background: var(--mjb-f-wash);
+    color: var(--mjb-f-primary);
+    outline: none;
+}
+
+/* Consent checkbox: the plugin's inline checkbox label. */
+.mjb-contact-form .mjb-field > label.mjb-check,
+.mjb-contact-form .mjb-check {
     display: flex;
     margin: 0;
-    font-weight: 400;
     align-items: flex-start;
-    gap: 0.75rem;
-    color: var(--text-secondary);
-    font-size: 0.9375rem;
-    line-height: 1.5;
+    gap: 0.5rem;
+    color: var(--mjb-f-ink);
+    font-size: var(--mjb-f-fs);
+    font-weight: 500;
+    line-height: 1.45;
     cursor: pointer;
 }
 
-.mjb-check input {
+.mjb-contact-form .mjb-check input {
     flex: 0 0 auto;
-    width: 1.15rem;
-    height: 1.15rem;
-    margin: 0.15rem 0 0;
-    accent-color: var(--primary);
+    width: 16px;
+    height: 16px;
+    margin: 0.15em 0 0;
+    accent-color: var(--mjb-f-primary);
     cursor: pointer;
 }
 
-.mjb-field.has-error .mjb-check input {
-    outline: 2px solid #dc2626;
+.mjb-contact-form .mjb-field.has-error .mjb-check input {
+    outline: 2px solid var(--mjb-f-danger);
     outline-offset: 2px;
 }
 
@@ -510,24 +642,46 @@ body:not(.mjb-demo) .mjb-contact-form__submit.is-busy::after {
 
 .site-main--content .entry-content .mjb-contact-form__notice,
 .mjb-contact-form__notice {
-    margin: 0 0 1.25rem;
-    padding: 0.875rem 1rem;
-    border-radius: 0.625rem;
+    /* The plugin's status box (.mjb-message in mjb-shared.css). */
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0 0 1rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--mjb-notice-line, transparent);
+    border-radius: var(--mjb-radius, 0.75rem);
+    color: var(--mjb-ink, #15232B);
     font-weight: 500;
-    line-height: 1.5;
+    line-height: 1.45;
+}
+
+.mjb-contact-form__notice::before {
+    content: "";
+    flex: none;
+    width: 18px;
+    height: 18px;
+    margin-right: 0.75rem;
+    background: center / 18px 18px no-repeat;
 }
 
 .mjb-contact-form__notice.is-success {
-    border: 1px solid rgba(15, 118, 110, 0.25);
-    background: var(--primary-surface);
-    color: var(--primary-dark);
+    --mjb-notice-line: #15803d;
+    background-color: #f0fdf4;
+}
+
+.mjb-contact-form__notice.is-success::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2315803D' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='m9 12 2 2 4-4'/%3E%3C/svg%3E");
 }
 
 .mjb-contact-form__notice.is-error {
-    border: 1px solid #fecaca;
-    background: #fef2f2;
-    color: #991b1b;
+    --mjb-notice-line: #b91c1c;
+    background-color: #fef2f2;
 }
+
+.mjb-contact-form__notice.is-error::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B91C1C' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='m15 9-6 6'/%3E%3Cpath d='m9 9 6 6'/%3E%3C/svg%3E");
+}
+
 
 /* ===== Legal pages ===== */
 .mjb-page-legal .site-main--content .entry-content {

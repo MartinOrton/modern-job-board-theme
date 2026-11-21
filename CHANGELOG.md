@@ -2,6 +2,15 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.77] - 2026-11-21
+
+### Changed
+- Contact form: the Topic dropdown is now the plugin's dropdown instead of the browser's native list. It has a field-style trigger with a chevron that rotates, a floating white menu with a soft shadow, and teal-tinted options on hover and for the selected item. It is a port of the plugin's `enhanceSelect`, with the same keyboard handling: arrows, Home and End, Enter or Space, Escape, Tab, and typing a letter to jump to an option. It uses `aria-activedescendant` and points the label at the trigger. The native `<select>` stays in the form, so posting without JavaScript still works, and it gets the same box and chevron.
+- Contact form fields now match the plugin's forms, checked value by value against the registration and login forms in every state: labels, the red required asterisk, the "Optional" pill badge, inputs and textarea (normal, hover, focus, error), error messages, the consent checkbox, and the success and error status boxes with their icons. When the plugin is active, the fields use its tokens (`--mjb-line`, `--mjb-primary` and so on), with the same values as fallbacks.
+
+### Fixed
+- The contact form's field CSS was unscoped (`.mjb-field`), so it also restyled the plugin's candidate dashboard fields. All contact form rules are now scoped to `.mjb-contact-form`.
+
 ## [0.9.0-beta.76] - 2026-11-21
 
 ### Fixed
