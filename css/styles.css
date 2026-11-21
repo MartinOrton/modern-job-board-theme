@@ -664,7 +664,6 @@ body.mjb-demo .navbar {
 
 .mjb-content-hero__intro {
     margin: 0;
-    max-width: 42rem;
     font-size: 1.125rem;
     line-height: 1.6;
     color: var(--text-secondary);
@@ -731,7 +730,6 @@ body.mjb-demo .navbar {
     font-size: 1.125rem;
     color: var(--text-secondary);
     margin-bottom: 2rem;
-    max-width: 32rem;
 }
 
 .hero-actions {
@@ -3232,7 +3230,6 @@ footer {
 
 .site-main--content .entry-content .mjb-feature-cta p,
 .mjb-feature-cta p {
-    max-width: 34rem;
     font-size: 1rem;
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.85);
@@ -3679,7 +3676,6 @@ body:not(.mjb-demo) a.btn:hover > svg:last-child,
 
 .mjb-feature-hero .mjb-feature-hero__lead,
 .site-main--content .entry-content .mjb-feature-hero .mjb-feature-hero__lead {
-    max-width: 35rem;
     margin: -0.325em 0 calc(var(--mjb-hero-rhythm, 3.75rem) - 0.325em);
     font-size: clamp(1.02rem, 1.25vw, 1.15rem);
     line-height: 1.65;
@@ -4035,7 +4031,6 @@ body:not(.mjb-demo) a.btn:hover > svg:last-child,
 }
 
 .site-main--content .entry-content .mjb-feature-body h2.wp-block-heading {
-    max-width: 46rem;
     margin: 0 0 1.25rem;
     font-size: clamp(1.45rem, 2.4vw, 1.9rem);
     font-weight: 700;
@@ -4047,7 +4042,6 @@ body:not(.mjb-demo) a.btn:hover > svg:last-child,
 }
 
 .site-main--content .entry-content .mjb-feature-body p {
-    max-width: 46rem;
     margin: 0;
     font-size: 1.05rem;
     line-height: 1.7;
@@ -4105,7 +4099,6 @@ body:not(.mjb-demo) a.btn:hover > svg:last-child,
 }
 
 .site-main--content .entry-content .mjb-feature-body .mjb-fb-answer p {
-    max-width: 52rem;
     font-size: clamp(1.05rem, 1.3vw, 1.15rem);
     color: var(--text-primary);
 }

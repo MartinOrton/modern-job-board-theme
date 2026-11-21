@@ -2,6 +2,23 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.79] - 2026-11-21
+
+### Changed
+- Content now fills the full width of its block, in line with the content column, instead of stopping short with a gap on the right. Removed caps:
+  - page intros under titles (`.mjb-content-hero__intro`, 42rem)
+  - the home hero text (`.hero-text` 32rem, and 34rem in `home.css`)
+  - the feature hero lead (35rem)
+  - feature, About and FAQ headings and paragraphs (46rem)
+  - answer-box paragraphs (52rem)
+  - legal page bodies (50rem)
+  - the KB search box (44rem)
+  - KB article bodies, lists, help box and pager (46rem)
+  - the CTA band text (34rem; it still has its own column beside the buttons)
+  - the footer brand blurb (22rem; unchanged on desktop, where its grid column sets the width)
+- Kept, because they are centred and leave no right-hand gap: home section headers, the home FAQ list, the comparison table and the device screenshots.
+- A scan of all 37 pages at 1600, 1280, 1024, 768 and 390px widths finds no remaining left-aligned element that is capped narrower than its block.
+
 ## [0.9.0-beta.78] - 2026-11-21
 
 ### Added

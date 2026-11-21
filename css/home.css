@@ -200,7 +200,6 @@ body.home .hero-title .italic-highlight::after {
 body.home .hero-text {
     font-size: clamp(1.075rem, 1.35vw, 1.225rem);
     line-height: 1.65;
-    max-width: 34rem;
     margin-left: 0 !important;
     margin-right: auto !important;
     margin-bottom: 2.25rem;
