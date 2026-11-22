@@ -1354,18 +1354,24 @@ body:not(.mjb-demo) .mjb-contact-form__submit.is-busy::after {
     font-size: 0.875em;
 }
 
+/* Code blocks: the home page's code window (.code-window in styles.css).
+   js/kb.js wraps each block in .mjb-code-window with the three-dot bar and
+   the copy icon, and colours the code (.mjb-tok--*) with the same palette:
+   comments #64748B, keys #67E8F9, strings #6EE7B7, numbers and keywords
+   #F472B6, functions #A78BFA, other text #CBD5E1 on #1E293B. Without
+   JavaScript the block keeps the same colours, without the bar. */
 .mjb-kb-article .entry-content .wp-block-code {
     position: relative;
     margin: 1.25rem 0;
-    padding: 1.1rem 1.25rem;
+    padding: 1.5rem;
     overflow-x: auto;
     border: 0;
-    border-radius: 0.875rem;
-    background: #0f172a;
-    color: #e2e8f0;
+    border-radius: 1rem;
+    background: #1e293b;
+    color: #cbd5e1;
     font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-    font-size: 0.85rem;
-    line-height: 1.65;
+    font-size: 0.875rem;
+    line-height: 1.6;
     tab-size: 4;
 }
 
@@ -1377,31 +1383,172 @@ body:not(.mjb-demo) .mjb-contact-form__submit.is-busy::after {
     white-space: pre;
 }
 
-.mjb-kb-article .entry-content .wp-block-code.has-copy {
-    padding-right: 5rem;
+.mjb-code-window {
+    margin: 1.25rem 0;
+    border-radius: 1rem;
+    background: #1e293b;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
 }
 
-.mjb-kb-copy {
-    position: absolute;
-    top: 0.6rem;
-    right: 0.6rem;
-    padding: 0.3rem 0.65rem;
-    border: 1px solid rgba(226, 232, 240, 0.25);
-    border-radius: 0.45rem;
-    background: rgba(255, 255, 255, 0.06);
-    color: #e2e8f0;
-    font: 500 0.75rem/1.4 var(--font-sans);
+.mjb-code-window__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 2.6rem;
+    padding: 0.35rem 0.6rem 0.35rem 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 1rem 1rem 0 0;
+    background: #0f172a;
+}
+
+.mjb-code-window__dots {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.mjb-code-window__dots span {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 50%;
+    background: #f87171;
+}
+
+.mjb-code-window__dots span:nth-child(2) {
+    background: #fbbf24;
+}
+
+.mjb-code-window__dots span:nth-child(3) {
+    background: #4ade80;
+}
+
+.mjb-kb-article .entry-content .mjb-code-window .wp-block-code {
+    margin: 0;
+    border-radius: 0 0 1rem 1rem;
+    background: transparent;
+}
+
+.mjb-tok--comment {
+    color: #64748b;
+}
+
+.mjb-tok--key {
+    color: #67e8f9;
+}
+
+.mjb-tok--string {
+    color: #6ee7b7;
+}
+
+.mjb-tok--number,
+.mjb-tok--keyword {
+    color: #f472b6;
+}
+
+.mjb-tok--func {
+    color: #a78bfa;
+}
+
+/* Copy icon, with the plugin's teal pill tooltip (.mjb-icon-btn__tooltip). */
+.mjb-code-copy {
+    position: relative;
+    display: inline-flex;
+}
+
+.mjb-code-copy__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    background: transparent;
+    color: #94a3b8;
     cursor: pointer;
-    transition: background 0.15s ease;
+    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
 }
 
-.mjb-kb-copy:hover {
-    background: rgba(255, 255, 255, 0.14);
+.mjb-code-copy__btn:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.08);
+    color: #e2e8f0;
 }
 
-.mjb-kb-copy.is-done {
-    border-color: rgba(45, 212, 191, 0.6);
+.mjb-code-copy__btn:focus-visible {
+    outline: 2px solid #2dd4bf;
+    outline-offset: 2px;
+    color: #e2e8f0;
+}
+
+.mjb-code-copy__icon--done,
+.mjb-code-copy.is-done .mjb-code-copy__icon--copy {
+    display: none;
+}
+
+.mjb-code-copy.is-done .mjb-code-copy__icon--done {
+    display: block;
+}
+
+.mjb-code-copy.is-done .mjb-code-copy__btn {
     color: #5eead4;
+}
+
+.mjb-code-copy__tooltip {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 0.4rem);
+    z-index: 50;
+    box-sizing: border-box;
+    width: max-content;
+    max-width: 12rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    background: var(--mjb-primary, #0f766e);
+    color: #fff;
+    font-family: var(--mjb-font, var(--font-sans));
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    text-align: center;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) translateY(0.15rem);
+    transition:
+        opacity 0.15s ease,
+        transform 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+        visibility 0.15s ease;
+}
+
+.mjb-code-copy:hover .mjb-code-copy__tooltip,
+.mjb-code-copy:has(:focus-visible) .mjb-code-copy__tooltip,
+.mjb-code-copy.is-done .mjb-code-copy__tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* As in the plugin: no hover tooltip on touch screens ("Copied" still shows). */
+@media (hover: none) {
+    .mjb-code-copy:not(.is-done) .mjb-code-copy__tooltip {
+        display: none;
+    }
+}
+
+.screen-reader-text {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 /* Callouts: note, tip, warning. */

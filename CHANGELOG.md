@@ -2,6 +2,17 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.82] - 2026-11-22
+
+### Changed
+- Documentation code blocks now look like the home page's code window:
+  - The same slate panel and three-dot title bar.
+  - The same colour coding: comments grey, keys cyan, strings green, numbers and keywords pink, functions purple.
+  - `js/kb.js` works out each block's language from its content: JSON, PHP, JavaScript, shell/curl, HTTP requests and headers, or nginx. Plain URL lists stay plain.
+  - All 35 code blocks in the docs are covered. Copying still gives the original text.
+- The "Copy" text button is now a copy icon in the title bar. On hover or keyboard focus it shows the plugin's teal pill tooltip ("Copy", styled like `.mjb-icon-btn__tooltip`). After copying, the icon becomes a tick, the tooltip says "Copied" for 1.8 seconds, and screen readers hear "Copied". As in the plugin, the hover tooltip is hidden on touch screens.
+- Added a `.screen-reader-text` utility class.
+
 ## [0.9.0-beta.81] - 2026-11-22
 
 ### Fixed
