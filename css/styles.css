@@ -4603,7 +4603,7 @@ body:not(.mjb-demo) a.btn:hover > svg:last-child,
     transition: border-color 0.25s ease, box-shadow 0.35s ease;
 }
 
-.mjb-feature-body .mjb-fb-faq__item[open] {
+.mjb-feature-body .mjb-fb-faq__item[open]:not(.is-closing) {
     border-color: rgba(15, 118, 110, 0.3);
     box-shadow: 0 16px 32px -24px rgba(11, 95, 88, 0.45);
 }
@@ -4649,7 +4649,7 @@ body:not(.mjb-demo) a.btn:hover > svg:last-child,
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.mjb-feature-body .mjb-fb-faq__item[open] summary::after {
+.mjb-feature-body .mjb-fb-faq__item[open]:not(.is-closing) summary::after {
     transform: rotate(45deg);
 }
 

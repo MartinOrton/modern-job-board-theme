@@ -2,6 +2,16 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.80] - 2026-11-22
+
+### Changed
+- FAQ sections built from Details blocks (`.mjb-fb-faq`, used on all 14 feature pages, the Features page and About Us) now behave like the home page FAQ:
+  - Opening an answer closes the one that was open, so only one is open at a time. This also holds when an answer is opened some other way, such as find-in-page.
+  - Answers slide open and closed with the home page timing (0.4s, `cubic-bezier(0.16, 1, 0.3, 1)`), and the answer fades in.
+  - While an answer closes, the + icon and the border change straight away (class `is-closing`).
+  - With reduced motion, answers open and close instantly, still one at a time.
+  - Without JavaScript, the Details blocks still open and close as before.
+
 ## [0.9.0-beta.79] - 2026-11-21
 
 ### Changed
