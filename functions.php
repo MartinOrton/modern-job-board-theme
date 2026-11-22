@@ -5,7 +5,7 @@
  * @package ModernJobBoardTheme
  */
 
-define( 'MJB_THEME_VERSION', '0.9.0-beta.38' );
+define( 'MJB_THEME_VERSION', '0.9.0-beta.83' );
 
 if ( ! function_exists( 'mjb_theme_setup' ) ) {
 	/**
@@ -50,7 +50,7 @@ if ( ! function_exists( 'mjb_theme_setup' ) ) {
 
 		add_editor_style(
 			array(
-				'https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap',
+				'css/fonts.css',
 				'css/styles.css',
 				'css/editor.css',
 				'style.css',
@@ -64,17 +64,18 @@ add_action( 'after_setup_theme', 'mjb_theme_setup' );
  * Enqueue frontend scripts and styles.
  */
 function mjb_theme_scripts() {
+	// DM Sans is served from the theme: no requests to Google Fonts.
 	wp_enqueue_style(
-		'mjb-google-fonts',
-		'https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap',
+		'mjb-theme-fonts',
+		get_template_directory_uri() . '/css/fonts.css',
 		array(),
-		null
+		MJB_THEME_VERSION
 	);
 
 	wp_enqueue_style(
 		'mjb-main-style',
 		get_template_directory_uri() . '/css/styles.css',
-		array( 'mjb-google-fonts' ),
+		array( 'mjb-theme-fonts' ),
 		MJB_THEME_VERSION
 	);
 
@@ -85,6 +86,26 @@ function mjb_theme_scripts() {
 		MJB_THEME_VERSION
 	);
 
+	// Icons for card lists in page content (feature pages).
+	if ( is_singular() && ! is_front_page() ) {
+		wp_enqueue_style(
+			'mjb-list-icons',
+			get_template_directory_uri() . '/css/list-icons.css',
+			array( 'mjb-main-style' ),
+			MJB_THEME_VERSION
+		);
+	}
+
+	// Home page polish layer: front page only, additive, scoped to body.home.
+	if ( is_front_page() ) {
+		wp_enqueue_style(
+			'mjb-home-style',
+			get_template_directory_uri() . '/css/home.css',
+			array( 'mjb-main-style' ),
+			MJB_THEME_VERSION
+		);
+	}
+
 	wp_enqueue_script(
 		'mjb-main-script',
 		get_template_directory_uri() . '/js/script.js',
@@ -92,6 +113,26 @@ function mjb_theme_scripts() {
 		MJB_THEME_VERSION,
 		true
 	);
+
+	// Features mega menu: keyboard, touch and aria-expanded handling.
+	wp_enqueue_script(
+		'mjb-mega-menu',
+		get_template_directory_uri() . '/js/mega-menu.js',
+		array(),
+		MJB_THEME_VERSION,
+		true
+	);
+
+	// Home page pointer effects (hero card tilt, card spotlight). Front page only.
+	if ( is_front_page() ) {
+		wp_enqueue_script(
+			'mjb-home-script',
+			get_template_directory_uri() . '/js/home.js',
+			array(),
+			MJB_THEME_VERSION,
+			true
+		);
+	}
 }
 add_action( 'wp_enqueue_scripts', 'mjb_theme_scripts' );
 
@@ -100,16 +141,24 @@ add_action( 'wp_enqueue_scripts', 'mjb_theme_scripts' );
  */
 function mjb_theme_editor_assets() {
 	wp_enqueue_style(
-		'mjb-google-fonts-editor',
-		'https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap',
+		'mjb-theme-fonts-editor',
+		get_template_directory_uri() . '/css/fonts.css',
 		array(),
-		null
+		MJB_THEME_VERSION
 	);
 
 	wp_enqueue_style(
 		'mjb-main-style-editor',
 		get_template_directory_uri() . '/css/styles.css',
-		array( 'mjb-google-fonts-editor' ),
+		array( 'mjb-theme-fonts-editor' ),
+		MJB_THEME_VERSION
+	);
+
+	// Card list icons, for the icon picker in the sidebar.
+	wp_enqueue_style(
+		'mjb-list-icons-editor',
+		get_template_directory_uri() . '/css/list-icons.css',
+		array(),
 		MJB_THEME_VERSION
 	);
 
@@ -138,6 +187,13 @@ function mjb_theme_block_assets() {
 	);
 
 	wp_enqueue_style(
+		'mjb-list-icons-block-editor',
+		get_template_directory_uri() . '/css/list-icons.css',
+		array( 'mjb-main-style-block-editor' ),
+		MJB_THEME_VERSION
+	);
+
+	wp_enqueue_style(
 		'mjb-editor-style-block-editor',
 		get_template_directory_uri() . '/css/editor.css',
 		array( 'mjb-main-style-block-editor' ),
@@ -160,8 +216,11 @@ function mjb_landing_block_editor_styles( $editor_settings ) {
 		$editor_settings['styles'] = array();
 	}
 
+	// baseURL lets the editor resolve relative URLs in the CSS (such as
+	// ../images/frames/desktop.svg) from the css/ folder, not from wp-admin/.
 	$editor_settings['styles'][] = array(
-		'css' => $editor_css,
+		'css'     => $editor_css,
+		'baseURL' => get_template_directory_uri() . '/css/',
 	);
 
 	return $editor_settings;
@@ -403,18 +462,16 @@ function mjb_theme_render_nav_auth_dropdown( $key, $action ) {
 	?>
 	<div class="mjb-nav-auth" data-mjb-nav-auth>
 		<button type="button"
-			class="btn btn-outline btn-sm mjb-nav-auth__toggle"
+			class="btn btn-outline btn-sm btn-icon mjb-nav-auth__toggle"
 			data-mjb-nav-auth-toggle
 			aria-expanded="false"
 			aria-haspopup="menu"
-			aria-controls="<?php echo esc_attr( $menu_id ); ?>">
+			aria-controls="<?php echo esc_attr( $menu_id ); ?>"
+			aria-label="<?php echo esc_attr( $btn_label ); ?>">
 			<span class="mjb-nav-auth__toggle-icon" aria-hidden="true">
 				<?php echo mjb_theme_render_nav_icon( $icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</span>
-			<span class="mjb-nav-auth__toggle-label"><?php echo esc_html( $btn_label ); ?></span>
-			<span class="mjb-nav-auth__chevron" aria-hidden="true">
-				<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
-			</span>
+			<span class="mjb-nav-auth__tooltip" role="tooltip" aria-hidden="true"><?php echo esc_html( $btn_label ); ?></span>
 		</button>
 		<div id="<?php echo esc_attr( $menu_id ); ?>"
 			class="mjb-nav-auth__menu"
@@ -542,3 +599,61 @@ function mjb_theme_render_nav_icon( $name, $size = 18 ) {
 		$icons[ $name ]
 	);
 }
+
+/**
+ * Feature pages: "Learn More" links on the home feature cards and the /features/ pages they point to.
+ */
+require get_template_directory() . '/inc/feature-pages.php';
+
+/**
+ * Keep the version in the home page badge ("WordPress Plugin • v0.9.0-beta.N")
+ * current: when the plugin is active, the number shown is the installed
+ * plugin's version, whatever number is stored in the page. The badge is any
+ * element with the class "badge", in a Custom HTML block (as on the home page)
+ * or a Paragraph block. Remove the version from the badge in the block editor
+ * and nothing is added back.
+ *
+ * @param string $html Rendered block.
+ * @return string
+ */
+function mjb_theme_badge_plugin_version( $html ) {
+	if ( ! defined( 'MJB_VERSION' ) || false === strpos( $html, 'badge' ) || false === strpos( $html, 'WordPress Plugin' ) ) {
+		return $html;
+	}
+
+	$updated = preg_replace(
+		'/(<(?:p|div|span)\b[^>]*\bclass="[^"]*\bbadge\b[^"]*"[^>]*>(?:(?!<\/(?:p|div)>).)*?WordPress Plugin\s*(?:\x{2022}|&bull;|&#8226;)\s*v)\d+\.\d+(?:\.\d+)?(?:-[a-z]+(?:\.\d+)?)?/su',
+		'${1}' . esc_html( MJB_VERSION ),
+		$html,
+		1
+	);
+
+	return is_string( $updated ) ? $updated : $html;
+}
+add_filter( 'render_block_core/paragraph', 'mjb_theme_badge_plugin_version' );
+add_filter( 'render_block_core/html', 'mjb_theme_badge_plugin_version' );
+
+/**
+ * Breadcrumbs and the Features mega menu.
+ */
+require get_template_directory() . '/inc/navigation.php';
+
+/**
+ * Block editor: Feature Grid block, patterns, page excerpts.
+ */
+require get_template_directory() . '/inc/blocks.php';
+
+/**
+ * Menus managed under Appearance > Menus (walker, footer location, first-run menus).
+ */
+require get_template_directory() . '/inc/menus.php';
+
+/**
+ * One-off conversion of generated content into editable blocks.
+ */
+require get_template_directory() . '/inc/conversion.php';
+
+/**
+ * Footer columns, contact form, legal pages and knowledge base.
+ */
+require get_template_directory() . '/inc/site.php';
