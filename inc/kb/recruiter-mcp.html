@@ -1,5 +1,9 @@
 <!-- wp:paragraph -->
-<p>Recruiter MCP lets a recruiter connect an AI assistant that supports the Model Context Protocol (MCP) to the board. The assistant can then list and update their jobs, review applications and edit their company, in plain language, within the same limits as the recruiter dashboard.</p>
+<p>Recruiter MCP lets a recruiter run their hiring by chatting with an AI assistant, such as Claude or Gemini. They can ask it things like &#8220;Which of my jobs have new applications?&#8221; or &#8220;Move everyone still New after 14 days to Reviewed&#8221;, and the assistant lists and updates their jobs, reviews applications and edits their company on the board, within the same limits as the recruiter dashboard.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>MCP stands for Model Context Protocol, the open standard AI assistants use to work with other systems. The rest of this article is the technical reference for connecting an assistant.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:code -->
@@ -20,6 +24,65 @@
 
 <!-- wp:paragraph -->
 <p>Use an <a href="{{home}}/docs/rest-api-authentication/">application password</a> for the recruiter's account when you connect the assistant.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"which-ai-assistants-can-connect"} -->
+<h2 id="which-ai-assistants-can-connect" class="wp-block-heading">Which AI assistants can connect</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Any MCP app that can send a fixed <code>Authorization</code> header to a remote server. The board signs in with an application password, sent as HTTP Basic authentication; it does not offer an OAuth sign-in. Connecting is a one-time job, usually for whoever looks after the website. After that the recruiter simply chats.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Claude Code</strong> and <strong>Gemini CLI</strong> send the header themselves. See the examples below.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Claude Desktop</strong> connects through a local bridge such as <code>mcp-remote</code> in its configuration file, which passes the header on.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>ChatGPT</strong> and the <strong>Claude website</strong> connect to custom MCP servers only with OAuth or with no sign-in, so they cannot connect to the board yet.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>The header value is <code>Basic</code> followed by the recruiter's user name and application password, joined by a colon and Base64-encoded:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>printf '%s' "RECRUITER:APPLICATION_PASSWORD" | base64</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>Claude Code:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>claude mcp add --transport http job-board \
+  https://example.com/wp-json/mjb/v1/mcp \
+  --header "Authorization: Basic BASE64_CREDENTIALS"</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>Gemini CLI, in <code>settings.json</code>:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>{
+  "mcpServers": {
+    "job-board": {
+      "httpUrl": "https://example.com/wp-json/mjb/v1/mcp",
+      "headers": { "Authorization": "Basic BASE64_CREDENTIALS" }
+    }
+  }
+}</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"mjb-callout mjb-callout-note"} -->
+<p class="mjb-callout mjb-callout-note">Use Modern Job Board 0.9.0-beta.177 or later. Earlier versions sent two tool schemas in a form that standard MCP clients reject, so the assistant found no tools.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"anchor":"example"} -->

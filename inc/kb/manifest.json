@@ -1,5 +1,5 @@
 {
- "home_excerpt": "Guides for setting up and running Modern Job Board, and the developer reference for the REST API, webhooks and recruiter MCP.",
+ "home_excerpt": "Guides for setting up and running Modern Job Board, and the developer reference for the REST API, webhooks and recruiter MCP (AI assistant access for recruiters).",
  "topics": [
   {
    "slug": "getting-started",
@@ -41,7 +41,7 @@
    "slug": "integrations",
    "name": "Integrations",
    "icon": "plug",
-   "description": "Webhooks, ATS job ingest, the XML feed, recruiter MCP and PHP hooks for developers."
+   "description": "Webhooks, ATS job ingest, the XML feed, recruiter MCP for AI assistants, and PHP hooks for developers."
   }
  ],
  "articles": [
@@ -354,7 +354,7 @@
    "title": "Recruiter MCP",
    "topic": "integrations",
    "order": 40,
-   "excerpt": "Let recruiters manage their jobs and applications from an AI assistant, through the Model Context Protocol. (Business)",
+   "excerpt": "Let recruiters manage their jobs and applications by chatting with an AI assistant such as Claude or Gemini, through the Model Context Protocol (MCP). (Business)",
    "legacy": {
     "mcp": ""
    }

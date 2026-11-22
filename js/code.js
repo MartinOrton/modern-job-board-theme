@@ -42,7 +42,7 @@
 		shell: [
 			[ COMMENT_HASH, 'comment' ],
 			[ STRING, 'string' ],
-			[ /\b(?:curl|sudo|nginx|systemctl|wp|php|git)\b/, 'func' ],
+			[ /\b(?:curl|sudo|nginx|systemctl|wp|php|git|claude|gemini|npx|printf|base64)\b/, 'func' ],
 			[ /(?<=\s)--?[A-Za-z][\w-]*/, 'key' ]
 		],
 		// A request line or headers, and often a JSON body below them.
@@ -68,7 +68,7 @@
 		if ( /^[\[{]/.test( text ) && /"\s*:/.test( text ) ) {
 			return 'json';
 		}
-		if ( /^(?:curl|sudo|wp|git)\b/m.test( text ) ) {
+		if ( /^(?:curl|sudo|wp|git|claude|gemini|npx|printf)\b/m.test( text ) ) {
 			return 'shell';
 		}
 		if ( /<\?php|\badd_(?:filter|action)\s*\(|\bdefine\s*\(|^\s*\$\w+\s*=/m.test( text ) ) {

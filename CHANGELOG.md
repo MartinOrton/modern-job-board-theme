@@ -2,6 +2,17 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.84] - 2026-11-22
+
+### Changed
+- Recruiter MCP is now explained in plain language wherever it appears, for recruiters as well as developers: recruiters manage their jobs and applications by chatting with an AI assistant such as Claude or Gemini, with example requests, and MCP (Model Context Protocol) is explained as the open standard AI assistants use to work with other systems. Seed copy updated in:
+  - the feature page's hero, answer box and FAQ, plus a new "Which AI assistants can I use?" section and a "Do recruiters need to be technical?" FAQ
+  - the REST API feature card and the plans table
+  - the docs (Recruiter MCP, Recruiter accounts, Introduction, Plans, REST API overview and Authentication)
+  - About Us, the License & Refund Policy and the docs index
+- The compatibility notes are accurate as of November 2026. Claude Code, Claude Desktop (through a bridge) and Gemini CLI can connect, because they can send the application-password header. ChatGPT and the Claude website cannot connect yet, because they accept only OAuth or no sign-in. The Recruiter MCP guide shows how to build the header and set up Claude Code and Gemini CLI, and says to use plugin 0.9.0-beta.177 or later.
+- Code highlighting recognises `claude`, `gemini`, `npx`, `printf` and `base64` commands as shell.
+
 ## [0.9.0-beta.83] - 2026-11-22
 
 ### Changed

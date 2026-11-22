@@ -1206,7 +1206,7 @@
      [
       "bot",
       "Recruiter MCP",
-      "The same plan includes <a href=\"{f:recruiter-mcp-business}\">tools for AI assistants</a>."
+      "The same plan includes <a href=\"{f:recruiter-mcp-business}\">recruiter MCP</a>, so employers can manage their jobs and applications by chatting with an AI assistant such as Claude or Gemini."
      ],
      [
       "plug",
@@ -1813,7 +1813,15 @@
     "t": "text",
     "h": "What is the recruiter MCP?",
     "p": [
-     "It is a Model Context Protocol endpoint that lets an employer run their hiring through an AI assistant such as Claude. Signed in as that employer, the assistant can list and edit their jobs, read and move their applications, update the company profile and check remaining credits. It cannot reach any other employer's records."
+     "It lets an employer run their hiring by chatting with an AI assistant such as Claude or Gemini, instead of clicking through a dashboard. Ask &#8220;Which of my jobs have new applications?&#8221;, &#8220;Move everyone still New after 14 days to Reviewed&#8221; or &#8220;Draft an interview invitation for Sam Lee&#8221;, and the assistant does it on the board. MCP stands for Model Context Protocol, the open standard AI assistants use to work with other systems. Signed in as that employer, the assistant can list and edit their jobs, read and move their applications, update the company profile and check remaining credits. It cannot reach any other employer's records."
+    ]
+   },
+   {
+    "t": "text",
+    "h": "Which AI assistants can I use?",
+    "p": [
+     "Any AI app that can connect to an MCP server with a password. Today that includes Claude Code, Claude Desktop and Gemini CLI. Whoever looks after your website sets up the connection once, with an application password for the recruiter's account, and from then on the recruiter simply chats. The <a href=\"{docs}recruiter-mcp/\">Recruiter MCP guide</a> has the set-up details.",
+     "ChatGPT and the Claude website connect only through a one-click sign-in (OAuth), which Modern Job Board does not offer yet."
     ]
    },
    {
@@ -1925,7 +1933,11 @@
     "items": [
      [
       "What is MCP?",
-      "The Model Context Protocol is an open standard that lets AI assistants call tools in other systems. Modern Job Board exposes its recruiter tools over it, so an assistant can act on an employer's behalf."
+      "MCP stands for Model Context Protocol. It is an open standard, now supported by the major AI assistants, that lets an assistant use tools in other systems. Modern Job Board offers its recruiter tools over MCP, so an assistant can act for an employer when they ask it to in plain English."
+     ],
+     [
+      "Do recruiters need to be technical to use it?",
+      "No. Once the assistant is connected, recruiters just chat with it. Connecting it is a one-time job for whoever looks after your website."
      ],
      [
       "Can the assistant see other employers' data?",
@@ -1968,7 +1980,7 @@
    [
     "Business",
     "$299 a year",
-    "Everything in Pro, plus the REST API, XML job feed, webhooks and recruiter MCP."
+    "Everything in Pro, plus the REST API, XML job feed, webhooks and recruiter MCP, which lets recruiters manage hiring from an AI assistant such as Claude or Gemini."
    ],
    [
     "Complete Site",
