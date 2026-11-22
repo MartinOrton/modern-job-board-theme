@@ -2,6 +2,13 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.83] - 2026-11-22
+
+### Changed
+- The code samples on the SEO Ready, REST API, Feeds & Webhooks and Recruiter MCP feature pages now use the same code window as the docs: the slate panel and three-dot bar, the home page's colour coding, and the copy icon with its tooltip. They replace the dark-teal panel and keep their 30rem scroll height. Without JavaScript they show the same slate colours.
+- The code window lives in a shared script, `js/code.js`, moved out of `js/kb.js`. It loads only on pages with a Code block. Its strings are now localized as `mjbCode`.
+- HTTP samples (a request line, then a JSON body) now colour the body as JSON too.
+
 ## [0.9.0-beta.82] - 2026-11-22
 
 ### Changed

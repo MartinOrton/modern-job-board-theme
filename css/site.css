@@ -1355,7 +1355,7 @@ body:not(.mjb-demo) .mjb-contact-form__submit.is-busy::after {
 }
 
 /* Code blocks: the home page's code window (.code-window in styles.css).
-   js/kb.js wraps each block in .mjb-code-window with the three-dot bar and
+   js/code.js wraps each block in .mjb-code-window with the three-dot bar and
    the copy icon, and colours the code (.mjb-tok--*) with the same palette:
    comments #64748B, keys #67E8F9, strings #6EE7B7, numbers and keywords
    #F472B6, functions #A78BFA, other text #CBD5E1 on #1E293B. Without
@@ -1422,10 +1422,18 @@ body:not(.mjb-demo) .mjb-contact-form__submit.is-busy::after {
     background: #4ade80;
 }
 
+.mjb-code-window pre.wp-block-code,
 .mjb-kb-article .entry-content .mjb-code-window .wp-block-code {
     margin: 0;
+    border: 0;
     border-radius: 0 0 1rem 1rem;
     background: transparent;
+    box-shadow: none;
+}
+
+/* Feature pages: the section spacing already sits around the sample. */
+.mjb-feature-body .mjb-code-window {
+    margin: 0;
 }
 
 .mjb-tok--comment {

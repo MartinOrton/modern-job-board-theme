@@ -75,6 +75,37 @@ function mjb_theme_site_styles() {
 add_action( 'wp_enqueue_scripts', 'mjb_theme_site_styles', 20 );
 
 /**
+ * Code blocks (docs articles, feature pages): the home page's code window,
+ * colour coding and a copy icon with a tooltip (js/code.js). Loaded only on
+ * pages that have a Code block.
+ */
+function mjb_theme_code_script() {
+	$post = is_singular() ? get_queried_object() : null;
+
+	if ( ! $post instanceof WP_Post || ! has_block( 'core/code', $post ) ) {
+		return;
+	}
+
+	wp_enqueue_script(
+		'mjb-code',
+		get_template_directory_uri() . '/js/code.js',
+		array(),
+		MJB_THEME_VERSION,
+		true
+	);
+	wp_localize_script(
+		'mjb-code',
+		'mjbCode',
+		array(
+			'copy'     => __( 'Copy', 'modern-job-board-theme' ),
+			'copied'   => __( 'Copied', 'modern-job-board-theme' ),
+			'copyCode' => __( 'Copy code', 'modern-job-board-theme' ),
+		)
+	);
+}
+add_action( 'wp_enqueue_scripts', 'mjb_theme_code_script', 25 );
+
+/**
  * Navigation progress on every public page: a bar at the top and a spinner
  * on the link or button used, until the next page shows.
  */

@@ -408,9 +408,6 @@ function mjb_theme_kb_assets() {
 		'mjbKb',
 		array(
 			'search'  => esc_url_raw( rest_url( 'wp/v2/search' ) ),
-			'copy'     => __( 'Copy', 'modern-job-board-theme' ),
-			'copyCode' => __( 'Copy code', 'modern-job-board-theme' ),
-			'copied'  => __( 'Copied', 'modern-job-board-theme' ),
 			'none'    => __( 'No matching articles. Press Enter to search all text.', 'modern-job-board-theme' ),
 			'legacy'  => is_page( 'docs' ) ? mjb_theme_kb_legacy_map() : (object) array(),
 			'showAll' => __( 'See all results', 'modern-job-board-theme' ),
