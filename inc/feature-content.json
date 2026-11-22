@@ -1205,8 +1205,8 @@
      ],
      [
       "bot",
-      "Recruiter MCP",
-      "The same plan includes <a href=\"{f:recruiter-mcp-business}\">recruiter MCP</a>, so employers can manage their jobs and applications by chatting with an AI assistant such as Claude or Gemini."
+      "AI assistant for recruiters",
+      "The same plan lets employers manage their jobs and applications by chatting with ChatGPT, Claude or Gemini, through the <a href=\"{f:recruiter-mcp-business}\">AI assistant for recruiters</a>."
      ],
      [
       "plug",
@@ -1811,17 +1811,17 @@
   "recruiter-mcp-business": [
    {
     "t": "text",
-    "h": "What is the recruiter MCP?",
+    "h": "What is the AI assistant for recruiters?",
     "p": [
-     "It lets an employer run their hiring by chatting with an AI assistant such as Claude or Gemini, instead of clicking through a dashboard. Ask &#8220;Which of my jobs have new applications?&#8221;, &#8220;Move everyone still New after 14 days to Reviewed&#8221; or &#8220;Draft an interview invitation for Sam Lee&#8221;, and the assistant does it on the board. MCP stands for Model Context Protocol, the open standard AI assistants use to work with other systems. Signed in as that employer, the assistant can list and edit their jobs, read and move their applications, update the company profile and check remaining credits. It cannot reach any other employer's records."
+     "It lets an employer run their hiring by chatting with an AI assistant such as ChatGPT, Claude or Gemini, instead of clicking through a dashboard. Ask &#8220;Which of my jobs have new applications?&#8221;, &#8220;Move everyone still New after 14 days to Reviewed&#8221; or &#8220;Draft an interview invitation for Sam Lee&#8221;, and the assistant does it on the board. MCP stands for Model Context Protocol, the open standard AI assistants use to work with other systems. Signed in as that employer, the assistant can list and edit their jobs, read and move their applications, update the company profile and check remaining credits. It cannot reach any other employer's records."
     ]
    },
    {
     "t": "text",
     "h": "Which AI assistants can I use?",
     "p": [
-     "Any AI app that can connect to an MCP server with a password. Today that includes Claude Code, Claude Desktop and Gemini CLI. Whoever looks after your website sets up the connection once, with an application password for the recruiter's account, and from then on the recruiter simply chats. The <a href=\"{docs}recruiter-mcp/\">Recruiter MCP guide</a> has the set-up details.",
-     "ChatGPT and the Claude website connect only through a one-click sign-in (OAuth), which Modern Job Board does not offer yet."
+     "ChatGPT, Claude and any other AI assistant that can add a custom connector. The recruiter connects it themselves in about a minute: they copy the board's address from the AI assistant tab of their dashboard, paste it into the assistant, sign in and choose Allow. From then on they simply chat. Custom connectors are only available on some ChatGPT and Claude plans.",
+     "Developer tools such as Claude Code and Gemini CLI can also connect with an application password. The <a href=\"{docs}recruiter-mcp/\">AI assistant guide</a> covers both."
     ]
    },
    {
@@ -1835,16 +1835,16 @@
     "h": "How does an assistant connect?",
     "items": [
      [
-      "The employer signs in",
-      "Every call runs as a WordPress user with the employer role."
+      "The recruiter adds the board",
+      "They paste the address from their dashboard into ChatGPT, Claude or another assistant as a custom connector."
      ],
      [
-      "The assistant initializes",
-      "It sends <code>initialize</code> and then <code>tools/list</code> to discover the tools."
+      "They sign in and choose Allow",
+      "The board's own sign-in page opens. The assistant gets a token for that recruiter, never their password."
      ],
      [
-      "It calls a tool",
-      "<code>tools/call</code> with a tool name and its arguments, as JSON-RPC."
+      "The assistant finds the tools",
+      "It sends <code>initialize</code> and <code>tools/list</code>, then <code>tools/call</code> with a tool name and its arguments, as JSON-RPC."
      ],
      [
       "Limits are enforced",
@@ -1924,12 +1924,12 @@
    },
    {
     "t": "plan",
-    "h": "Which plan includes the recruiter MCP?",
+    "h": "Which plan includes the AI assistant for recruiters?",
     "p": "Business, at $299 a year, together with the <a href=\"{f:rest-api-feeds-webhooks-business}\">REST API, XML feed and webhooks</a>. <a href=\"{pricing}\">See pricing</a>."
    },
    {
     "t": "faq",
-    "h": "Recruiter MCP questions",
+    "h": "AI assistant questions",
     "items": [
      [
       "What is MCP?",
@@ -1937,11 +1937,15 @@
      ],
      [
       "Do recruiters need to be technical to use it?",
-      "No. Once the assistant is connected, recruiters just chat with it. Connecting it is a one-time job for whoever looks after your website."
+      "No. They add the board to ChatGPT or Claude as a custom connector, sign in and choose Allow, all in about a minute. After that they just chat."
      ],
      [
       "Can the assistant see other employers' data?",
       "No. Every tool is limited to the signed-in employer's own jobs, the applications to those jobs and their company."
+     ],
+     [
+      "How do I disconnect an assistant?",
+      "Open AI assistant in the recruiter dashboard and choose Disconnect. Changing the account's password, or removing its recruiter role, disconnects every assistant at once."
      ],
      [
       "Does the assistant send emails by itself?",
@@ -1980,7 +1984,7 @@
    [
     "Business",
     "$299 a year",
-    "Everything in Pro, plus the REST API, XML job feed, webhooks and recruiter MCP, which lets recruiters manage hiring from an AI assistant such as Claude or Gemini."
+    "Everything in Pro, plus the REST API, XML job feed, webhooks and the AI assistant for recruiters, so recruiters can manage hiring from ChatGPT, Claude or Gemini."
    ],
    [
     "Complete Site",

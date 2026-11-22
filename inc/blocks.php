@@ -501,7 +501,7 @@ function mjb_theme_feature_hero_copy( $slug, $title = '', $description = '' ) {
 		),
 		'recruiter-mcp-business'           => array(
 			__( 'Let recruiters manage hiring from their AI assistant', 'modern-job-board-theme' ),
-			__( 'Recruiters can ask an AI assistant such as Claude or Gemini to list and edit their jobs, review applications and check remaining credits, in plain English. MCP is the open standard that connects the assistant to the board, and it only ever reaches that employer\'s own records.', 'modern-job-board-theme' ),
+			__( 'Recruiters can ask an AI assistant such as ChatGPT, Claude or Gemini to list and edit their jobs, review applications and check remaining credits, in plain English. MCP is the open standard that connects the assistant to the board, and it only ever reaches that employer\'s own records.', 'modern-job-board-theme' ),
 			'assistant',
 		),
 	);

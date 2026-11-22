@@ -1,9 +1,9 @@
 <!-- wp:paragraph -->
-<p>Recruiter MCP lets a recruiter run their hiring by chatting with an AI assistant, such as Claude or Gemini. They can ask it things like &#8220;Which of my jobs have new applications?&#8221; or &#8220;Move everyone still New after 14 days to Reviewed&#8221;, and the assistant lists and updates their jobs, reviews applications and edits their company on the board, within the same limits as the recruiter dashboard.</p>
+<p>The AI assistant for recruiters lets a recruiter run their hiring by chatting with ChatGPT, Claude, Gemini or another AI assistant. They can ask it things like &#8220;Which of my jobs have new applications?&#8221; or &#8220;Move everyone still New after 14 days to Reviewed&#8221;, and the assistant lists and updates their jobs, reviews applications and edits their company on the board, within the same limits as the recruiter dashboard.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>MCP stands for Model Context Protocol, the open standard AI assistants use to work with other systems. The rest of this article is the technical reference for connecting an assistant.</p>
+<p>MCP stands for Model Context Protocol, the open standard AI assistants use to work with other systems. The first section below is all a recruiter needs; the rest is the technical reference.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:code -->
@@ -22,34 +22,56 @@
 <p>Every call must come from a signed-in user with the recruiter (<code>employer</code>) role. Candidates, visitors and administrators who are not recruiters are refused. Results are limited to that recruiter's own jobs, the applications to those jobs, and their company. There is no tool for candidate logins or for checkout.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
-<p>Use an <a href="{{home}}/docs/rest-api-authentication/">application password</a> for the recruiter's account when you connect the assistant.</p>
-<!-- /wp:paragraph -->
-
 <!-- wp:heading {"anchor":"which-ai-assistants-can-connect"} -->
 <h2 id="which-ai-assistants-can-connect" class="wp-block-heading">Which AI assistants can connect</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Any MCP app that can send a fixed <code>Authorization</code> header to a remote server. The board signs in with an application password, sent as HTTP Basic authentication; it does not offer an OAuth sign-in. Connecting is a one-time job, usually for whoever looks after the website. After that the recruiter simply chats.</p>
+<p>Any AI assistant that can add a custom MCP connector. There are two ways to connect, and both give the assistant the same tools.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li><strong>Claude Code</strong> and <strong>Gemini CLI</strong> send the header themselves. See the examples below.</li>
+<li><strong>One-click sign-in</strong>, for <strong>ChatGPT</strong>, <strong>Claude</strong> and other assistants that support OAuth. The recruiter connects it themselves in about a minute. Custom connectors are only available on some ChatGPT and Claude plans.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Claude Desktop</strong> connects through a local bridge such as <code>mcp-remote</code> in its configuration file, which passes the header on.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li><strong>ChatGPT</strong> and the <strong>Claude website</strong> connect to custom MCP servers only with OAuth or with no sign-in, so they cannot connect to the board yet.</li>
+<li><strong>An application password</strong>, for developer tools such as <strong>Claude Code</strong> and <strong>Gemini CLI</strong> that can send a fixed <code>Authorization</code> header. Usually set up by whoever looks after the website.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
+<!-- wp:heading {"level":3,"anchor":"connect-with-one-click-sign-in"} -->
+<h3 id="connect-with-one-click-sign-in" class="wp-block-heading">Connect with one-click sign-in</h3>
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>In the recruiter dashboard, open <strong>AI assistant</strong> and copy the server address.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>In ChatGPT or Claude, add a custom connector and paste the address as the server URL. Leave any client ID and secret fields empty.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>The board's sign-in page opens. Sign in as the recruiter, check what the assistant will and will not be able to do, and choose <strong>Allow</strong>.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
 <!-- wp:paragraph -->
-<p>The header value is <code>Basic</code> followed by the recruiter's user name and application password, joined by a colon and Base64-encoded:</p>
+<p>The assistant never sees the recruiter's password. It gets a token that only works for that recruiter's MCP tools. Every connected assistant is listed under <strong>AI assistant</strong> in the dashboard, where the recruiter can disconnect it at any time. Changing the account's password, or removing its recruiter role, disconnects all of them.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>For developers: the sign-in is OAuth 2.1 with PKCE (<code>S256</code>) and dynamic client registration. Clients discover it from the <code>WWW-Authenticate</code> header on a <code>401</code> response, or from <code>/.well-known/oauth-protected-resource</code> and <code>/.well-known/oauth-authorization-server</code>. The scope is <code>mjb:recruiter</code>. Access tokens last an hour; refresh tokens last 30 days and are replaced each time they are used. The board must be served over HTTPS.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3,"anchor":"connect-with-an-application-password"} -->
+<h3 id="connect-with-an-application-password" class="wp-block-heading">Connect with an application password</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Create an <a href="{{home}}/docs/rest-api-authentication/">application password</a> for the recruiter's account. The header value is <code>Basic</code> followed by the recruiter's user name and application password, joined by a colon and Base64-encoded:</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:code -->
@@ -82,7 +104,7 @@
 <!-- /wp:code -->
 
 <!-- wp:paragraph {"className":"mjb-callout mjb-callout-note"} -->
-<p class="mjb-callout mjb-callout-note">Use Modern Job Board 0.9.0-beta.177 or later. Earlier versions sent two tool schemas in a form that standard MCP clients reject, so the assistant found no tools.</p>
+<p class="mjb-callout mjb-callout-note">One-click sign-in needs Modern Job Board 0.9.0-beta.178 or later. The application-password route needs 0.9.0-beta.177 or later: earlier versions sent two tool schemas in a form that standard MCP clients reject, so the assistant found no tools.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"anchor":"example"} -->

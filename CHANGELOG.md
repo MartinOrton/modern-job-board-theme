@@ -2,6 +2,15 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.85] - 2026-11-22
+
+### Changed
+- "Recruiter MCP" is renamed "AI assistant for recruiters" in the seed copy, matching the feature page title and menu label ("AI Assistant for Recruiters (Business)"): the feature page headings and REST API card, the plans table, the docs article title ("AI assistant for recruiters (MCP)") and its excerpt, the docs home and Integrations topic descriptions, the Recruiter accounts, Introduction, Plans, REST API overview and Authentication docs, About Us and the License & Refund Policy. "MCP" stays where developers need it.
+- ChatGPT and Claude can now connect, with the one-click sign-in in Modern Job Board 0.9.0-beta.178. The copy now names ChatGPT alongside Claude and Gemini, and:
+  - the feature page's "Which AI assistants can I use?" section, connection steps and "Do recruiters need to be technical?" FAQ describe the one-click sign-in, and a new FAQ explains how to disconnect an assistant
+  - the docs article has a "Connect with one-click sign-in" walkthrough (dashboard AI assistant tab, custom connector, sign in, Allow) and the technical details of the OAuth sign-in, and keeps the application-password route for Claude Code and Gemini CLI under "Connect with an application password"
+  - the hero text names ChatGPT, Claude or Gemini.
+
 ## [0.9.0-beta.84] - 2026-11-22
 
 ### Changed
