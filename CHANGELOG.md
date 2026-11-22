@@ -2,6 +2,11 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.81] - 2026-11-22
+
+### Fixed
+- FAQ answers could stay part-closed when the page wasn't drawing frames, such as a background tab, because the close waited for the animation's finish event. A timer now completes the close after the slide's duration (480ms) if that event hasn't fired.
+
 ## [0.9.0-beta.80] - 2026-11-22
 
 ### Changed

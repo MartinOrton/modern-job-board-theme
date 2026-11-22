@@ -107,6 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const faqStop = (item) => {
+        window.clearTimeout(item.mjbFaqTimer);
+
         if (item.mjbFaqAnim) {
             item.mjbFaqAnim.onfinish = null;
             item.mjbFaqAnim.cancel();
@@ -123,16 +125,21 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        // Finish once, from the animation or from the timer. The timer covers
+        // a page that isn't drawing frames (a background tab), where the
+        // animation's finish event would wait until the page is shown again.
+        const finish = () => {
+            faqStop(item);
+            done();
+        };
+
         item.style.overflow = 'hidden';
         item.mjbFaqAnim = item.animate(
             { height: [from + 'px', to + 'px'] },
             { duration: 400, easing: faqEase }
         );
-        item.mjbFaqAnim.onfinish = () => {
-            item.mjbFaqAnim = null;
-            item.style.overflow = '';
-            done();
-        };
+        item.mjbFaqAnim.onfinish = finish;
+        item.mjbFaqTimer = window.setTimeout(finish, 480);
     };
 
     const faqClosedHeight = (item) => {
