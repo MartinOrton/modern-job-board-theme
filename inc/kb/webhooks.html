@@ -1,0 +1,93 @@
+<!-- wp:paragraph -->
+<p>Webhooks send a JSON message to your own URL whenever something happens on the board, so another system (your ATS, a CRM, Slack through Zapier, your own code) can react straight away.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"set-up-a-webhook"} -->
+<h2 id="set-up-a-webhook" class="wp-block-heading">Set up a webhook</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Open <strong>Settings → Integrations → Google Jobs &amp; Webhooks</strong>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>In <strong>Webhook URLs</strong>, enter the address that should receive the messages. Use full <code>https://</code> addresses, one per line; every event is sent to each of them.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>In <strong>Webhook Secret</strong>, enter a long random string. It is used to sign each message so the receiver can check it came from your board.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Save, then submit a test application to see the first message arrive.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:heading {"anchor":"events"} -->
+<h2 id="events" class="wp-block-heading">Events</h2>
+<!-- /wp:heading -->
+
+<!-- wp:table {"className":"mjb-stack-table"} -->
+<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>Event</th><th>Sent when</th></tr></thead><tbody><tr><td><code>application.submitted</code></td><td>A new application is saved</td></tr><tr><td><code>application.status_updated</code></td><td>An application moves to a new stage</td></tr><tr><td><code>job.submitted</code></td><td>A recruiter submits a job from the front end</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:heading {"anchor":"message-format"} -->
+<h2 id="message-format" class="wp-block-heading">Message format</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Every message is a <code>POST</code> with a JSON body in the same envelope:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>{
+  "event": "application.submitted",
+  "timestamp": 1722000000,
+  "site": "https://example.com/",
+  "data": { }
+}</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p><code>data</code> holds the details for that event, such as the application or the job. <code>timestamp</code> is a Unix time in seconds.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"check-the-signature"} -->
+<h2 id="check-the-signature" class="wp-block-heading">Check the signature</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>When a secret is set, each request carries this header:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>X-MJB-Signature: {HMAC-SHA256 of the raw request body, as hex}</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>Work out the same HMAC on the <strong>raw</strong> body you received, with your secret, and compare. Reject the message if they differ. In PHP:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>$body      = file_get_contents( 'php://input' );
+$expected  = hash_hmac( 'sha256', $body, 'your-webhook-secret' );
+$signature = $_SERVER&#91;'HTTP_X_MJB_SIGNATURE'] ?? '';
+
+if ( ! hash_equals( $expected, $signature ) ) {
+	http_response_code( 401 );
+	exit;
+}
+
+$event = json_decode( $body, true );</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"mjb-callout mjb-callout-warning"} -->
+<p class="mjb-callout mjb-callout-warning">Calculate the signature on the body exactly as received, before decoding it. Decoding and re-encoding the JSON changes the bytes and the signature will not match.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"delivery-and-retries"} -->
+<h2 id="delivery-and-retries" class="wp-block-heading">Delivery and retries</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Reply with any <code>2xx</code> status to confirm a message. Failed deliveries are queued and retried later, with a longer wait after each failure, so a short outage on your side does not lose events. Because a message can arrive more than once, use the event, the timestamp and the record's ID to ignore duplicates.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Developers can change the body before it is sent with the <code>mjb_webhook_payload</code> filter. See <a href="{{home}}/docs/php-hooks/">PHP hooks</a>.</p>
+<!-- /wp:paragraph -->

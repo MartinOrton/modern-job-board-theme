@@ -1,0 +1,73 @@
+<!-- wp:paragraph -->
+<p>Modern Job Board has a REST API for connecting your board to other systems: an applicant tracking system, a mobile app, a reporting tool or your own code. It is part of the Business plan; on other plans the routes are not registered.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"two-versions"} -->
+<h2 id="two-versions" class="wp-block-heading">Two versions</h2>
+<!-- /wp:heading -->
+
+<!-- wp:table {"className":"mjb-stack-table"} -->
+<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>Version</th><th>Base path</th><th>For</th><th>Authentication</th></tr></thead><tbody><tr><td>v1</td><td><code>/wp-json/mjb/v1/</code></td><td>Public job search</td><td>None</td></tr><tr><td>v2</td><td><code>/wp-json/mjb/v2/</code></td><td>Recruiter and candidate data</td><td>A signed-in WordPress user</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:paragraph -->
+<p>Two more routes live under v1 but have their own rules: <a href="{{home}}/docs/job-ingest-api/">Job ingest</a> uses a shared secret instead of a user, and <a href="{{home}}/docs/recruiter-mcp/">Recruiter MCP</a> uses the JSON-RPC protocol so recruiters can manage their jobs and applications from an AI assistant such as Claude or Gemini.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"conventions"} -->
+<h2 id="conventions" class="wp-block-heading">Conventions</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":3,"anchor":"urls"} -->
+<h3 id="urls" class="wp-block-heading">URLs</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>All routes are under your site's address. In the examples, replace <code>https://example.com</code> with your own site, without a trailing slash:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>https:&#47;&#47;example.com/wp-json/mjb/v1/…
+https://example.com/wp-json/mjb/v2/…
+https://example.com/feed/job-listings</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>The public job search uses the same filters as the board's readable search URLs (default base <code>/jobs/</code>), and v1 also accepts a path-style search that mirrors them.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3,"anchor":"request-and-response-format"} -->
+<h3 id="request-and-response-format" class="wp-block-heading">Request and response format</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Requests and responses use JSON in UTF-8. Send <code>Content-Type: application/json</code> with a request body.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3,"anchor":"pagination"} -->
+<h3 id="pagination" class="wp-block-heading">Pagination</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>List routes accept <code>page</code> and <code>per_page</code>, and return these headers:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:table {"className":"mjb-stack-table"} -->
+<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>Header</th><th>Meaning</th></tr></thead><tbody><tr><td><code>X-WP-Total</code></td><td>Total number of matching records</td></tr><tr><td><code>X-WP-TotalPages</code></td><td>Total number of pages</td></tr><tr><td><code>Link</code></td><td>On v1 job lists: the canonical, readable search URL for the same filters (<code>rel="canonical"</code>)</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:heading {"level":3,"anchor":"updating-with-patch"} -->
+<h3 id="updating-with-patch" class="wp-block-heading">Updating with PATCH</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Update routes use <code>PATCH</code>. If your HTTP client or server cannot send <code>PATCH</code>, send <code>POST</code> with the header <code>X-HTTP-Method-Override: PATCH</code>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"routes-at-a-glance"} -->
+<h2 id="routes-at-a-glance" class="wp-block-heading">Routes at a glance</h2>
+<!-- /wp:heading -->
+
+<!-- wp:table {"className":"mjb-stack-table"} -->
+<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>Method</th><th>Route</th><th>What it does</th></tr></thead><tbody><tr><td>GET</td><td><code>/mjb/v1/jobs</code></td><td>Search published jobs</td></tr><tr><td>GET</td><td><code>/mjb/v1/jobs/search/{path}</code></td><td>Search with a readable path</td></tr><tr><td>GET</td><td><code>/mjb/v2/applications</code></td><td>A recruiter's applications</td></tr><tr><td>PATCH</td><td><code>/mjb/v2/applications/{id}</code></td><td>Change an application's stage</td></tr><tr><td>GET</td><td><code>/mjb/v2/analytics</code></td><td>A recruiter's job performance</td></tr><tr><td>GET</td><td><code>/mjb/v2/candidate/profile</code></td><td>The signed-in candidate's profile</td></tr><tr><td>PATCH</td><td><code>/mjb/v2/candidate/profile</code></td><td>Update that profile</td></tr><tr><td>POST</td><td><code>/mjb/v1/ingest/job</code></td><td>Create or update a job from an ATS</td></tr><tr><td>POST</td><td><code>/mjb/v1/ingest/batch</code></td><td>Up to 50 jobs at once</td></tr><tr><td>POST</td><td><code>/mjb/v1/mcp</code></td><td>Recruiter MCP: AI assistant tools for recruiters (JSON-RPC)</td></tr></tbody></table></figure>
+<!-- /wp:table -->
