@@ -81,6 +81,151 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // FAQ sections built from Details blocks (feature pages, About Us and any
+    // page with an .mjb-fb-faq group) behave like the home page FAQ: one answer
+    // open at a time, sliding open and closed with the same timing
+    // (0.4s, cubic-bezier(0.16, 1, 0.3, 1)) and fading in the same way.
+    // While an answer slides shut it has the class is-closing, so the icon and
+    // border change straight away, as on the home page.
+    const faqEase = 'cubic-bezier(0.16, 1, 0.3, 1)';
+    const faqReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    const faqGroup = (item) => item.closest('.mjb-fb-faq') || item.parentElement;
+
+    const faqItems = (group) =>
+        Array.from(group.querySelectorAll('details')).filter((el) => faqGroup(el) === group);
+
+    const faqIsOpen = (item) => item.open && !item.classList.contains('is-closing');
+
+    // Change "open" from script. The toggle event this causes fires later and
+    // is ignored (see the toggle listener below).
+    const faqSetOpen = (item, open) => {
+        if (item.open !== open) {
+            item.mjbFaqSelf = (item.mjbFaqSelf || 0) + 1;
+            item.open = open;
+        }
+    };
+
+    const faqStop = (item) => {
+        window.clearTimeout(item.mjbFaqTimer);
+
+        if (item.mjbFaqAnim) {
+            item.mjbFaqAnim.onfinish = null;
+            item.mjbFaqAnim.cancel();
+            item.mjbFaqAnim = null;
+        }
+        item.style.overflow = '';
+    };
+
+    const faqAnimate = (item, from, to, done) => {
+        faqStop(item);
+
+        if (faqReduceMotion.matches || from === to || typeof item.animate !== 'function') {
+            done();
+            return;
+        }
+
+        // Finish once, from the animation or from the timer. The timer covers
+        // a page that isn't drawing frames (a background tab), where the
+        // animation's finish event would wait until the page is shown again.
+        const finish = () => {
+            faqStop(item);
+            done();
+        };
+
+        item.style.overflow = 'hidden';
+        item.mjbFaqAnim = item.animate(
+            { height: [from + 'px', to + 'px'] },
+            { duration: 400, easing: faqEase }
+        );
+        item.mjbFaqAnim.onfinish = finish;
+        item.mjbFaqTimer = window.setTimeout(finish, 480);
+    };
+
+    const faqClosedHeight = (item) => {
+        const summary = item.querySelector('summary');
+        const style = getComputedStyle(item);
+
+        return (summary ? summary.offsetHeight : 0) +
+            parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth);
+    };
+
+    const faqClose = (item) => {
+        if (!faqIsOpen(item)) {
+            return;
+        }
+
+        const from = item.offsetHeight;
+
+        item.classList.add('is-closing');
+        faqAnimate(item, from, faqClosedHeight(item), () => {
+            item.classList.remove('is-closing');
+            faqSetOpen(item, false);
+        });
+    };
+
+    const faqOpen = (item) => {
+        const from = item.open ? item.offsetHeight : faqClosedHeight(item);
+
+        faqStop(item);
+        item.classList.remove('is-closing');
+        faqSetOpen(item, true);
+        faqAnimate(item, from, item.offsetHeight, () => {});
+
+        // The answer fades in, as on the home page.
+        if (!faqReduceMotion.matches && typeof item.animate === 'function') {
+            Array.from(item.children).forEach((child) => {
+                if (child.tagName !== 'SUMMARY') {
+                    child.animate(
+                        { opacity: [0, 1] },
+                        { duration: 250, delay: 50, easing: 'ease', fill: 'backwards' }
+                    );
+                }
+            });
+        }
+
+        faqItems(faqGroup(item)).forEach((other) => {
+            if (other !== item) {
+                faqClose(other);
+            }
+        });
+    };
+
+    document.querySelectorAll('.mjb-fb-faq details').forEach((item) => {
+        const summary = item.querySelector('summary');
+
+        if (summary) {
+            summary.addEventListener('click', (event) => {
+                event.preventDefault();
+
+                if (faqIsOpen(item)) {
+                    faqClose(item);
+                } else {
+                    faqOpen(item);
+                }
+            });
+        }
+
+        // Opened some other way (find in page, a link to text inside it):
+        // still only one answer open at a time.
+        item.addEventListener('toggle', () => {
+            if (item.mjbFaqSelf) {
+                item.mjbFaqSelf -= 1;
+                return;
+            }
+
+            if (item.open) {
+                faqItems(faqGroup(item)).forEach((other) => {
+                    if (other !== item && other.open) {
+                        faqStop(other);
+                        other.classList.remove('is-closing');
+                        faqSetOpen(other, false);
+                    }
+                });
+            }
+        });
+    });
+
     // Reveal Animations
     const observerOptions = {
         root: null,
