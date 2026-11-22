@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1282 858" width="1282" height="858">
+  <!-- Modern Job Board browser frame. The screenshot (1280 x 800) sits on top of
+       this image at x 1, y 57; see .mjb-devices__desktop in css/styles.css.
+       Replace the screenshot, not this file. -->
+  <rect x="0.5" y="0.5" width="1281" height="857" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+  <path d="M12.5 1H1269.5A11.5 11.5 0 0 1 1281 12.5V57H1V12.5A11.5 11.5 0 0 1 12.5 1Z" fill="#F5F5F7"/>
+  <path d="M1 56.5H1281" stroke="#e2e8f0"/>
+  <circle cx="27" cy="28.5" r="6" fill="#1a1a2e" fill-opacity="0.16"/>
+  <circle cx="47" cy="28.5" r="6" fill="#1a1a2e" fill-opacity="0.16"/>
+  <circle cx="67" cy="28.5" r="6" fill="#1a1a2e" fill-opacity="0.16"/>
+  <rect x="96.5" y="13.5" width="1166" height="30" rx="15" fill="#ffffff" stroke="#e2e8f0"/>
+  <g fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="113" y="27" width="10" height="8" rx="1.5"/>
+    <path d="M115 27v-2.5a3 3 0 0 1 6 0V27"/>
+  </g>
+  <text x="132" y="33" font-family="'Roboto Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12.5" letter-spacing="0.3" fill="#64748b">yourjobboard.com</text>
+</svg>
