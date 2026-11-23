@@ -793,7 +793,7 @@
      [
       "megaphone",
       "Ad banners",
-      "<code>[[mjb_ad_banner]]</code> shows a banner you have set up."
+      "<code>[[mjb_ad_banner]]</code> shows a banner you set up in Settings → Plans &amp; payments → Ad Banners."
      ],
      [
       "circle-user-round",
@@ -1426,7 +1426,7 @@
      [
       "Ad banners",
       "Above the job list, between job cards, or wherever you place <code>[[mjb_ad_banner]]</code>",
-      "Create banners in the admin and choose their positions"
+      "Create banners in Settings → Plans &amp; payments → Ad Banners and choose their positions"
      ],
      [
       "Social webhook",

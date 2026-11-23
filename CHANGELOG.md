@@ -2,6 +2,11 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.87] - 2026-11-23
+
+### Changed
+- Ad banner docs point to the new place in the plugin (0.9.0-beta.186): **Settings → Plans & payments → Ad Banners**. Updated in the Jobs map & promotions article (with how positions and `[mjb_ad_banner position="0"]` / `label="Name"` work), the Shortcodes & blocks table, and the feature pages.
+
 ## [0.9.0-beta.86] - 2026-11-23
 
 ### Changed
