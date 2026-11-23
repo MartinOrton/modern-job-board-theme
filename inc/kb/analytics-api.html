@@ -1,0 +1,26 @@
+<!-- wp:code -->
+<pre class="wp-block-code"><code>GET /wp-json/mjb/v2/analytics</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>Returns a performance summary for the signed-in recruiter: totals across their jobs, and one row per job.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>curl -u "recruiter:xxxx xxxx xxxx xxxx" "https://example.com/wp-json/mjb/v2/analytics"</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>{
+  "totals": { "jobs": 3, "views": 120, "applications": 14, "conversion_rate": "11.7" },
+  "jobs": &#91; ]
+}</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:table {"className":"mjb-stack-table"} -->
+<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>Field</th><th>Meaning</th></tr></thead><tbody><tr><td><code>jobs</code></td><td>Number of the recruiter's jobs</td></tr><tr><td><code>views</code></td><td>All-time views of those jobs</td></tr><tr><td><code>applications</code></td><td>Applications received</td></tr><tr><td><code>conversion_rate</code></td><td>Applications as a percentage of views</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:paragraph {"className":"mjb-callout mjb-callout-note"} -->
+<p class="mjb-callout mjb-callout-note">Views are all-time totals. The board does not keep a day-by-day history, referrers or clicks, so the API cannot report trends over time. Repeat views by the same visitor within an hour are counted once.</p>
+<!-- /wp:paragraph -->

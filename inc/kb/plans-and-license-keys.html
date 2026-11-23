@@ -1,0 +1,57 @@
+<!-- wp:heading {"anchor":"what-each-plan-unlocks"} -->
+<h2 id="what-each-plan-unlocks" class="wp-block-heading">What each plan unlocks</h2>
+<!-- /wp:heading -->
+
+<!-- wp:table {"className":"mjb-stack-table"} -->
+<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>Plan</th><th>Highlights</th></tr></thead><tbody><tr><td>Free</td><td>The core board: search, dashboards, alerts, maps, companies and private CVs. Up to 100 published jobs.</td></tr><tr><td>Pro</td><td>Unlimited jobs, WooCommerce monetization, custom fields, import and export.</td></tr><tr><td>Business</td><td>Everything in Pro, plus the REST API, XML job feed, webhooks and the AI assistant for recruiters, so recruiters can manage hiring from ChatGPT, Claude or Gemini.</td></tr><tr><td>Complete Site</td><td>A done-for-you build. Business features are included for the first year.</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:paragraph -->
+<p>Prices and the full comparison are on the <a href="{{home}}/#pricing">pricing section</a>. Licensing terms, renewals and refunds are explained in the <a href="{{home}}/license-refund-policy/">License &amp; Refund Policy</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"activate-a-license-key"} -->
+<h2 id="activate-a-license-key" class="wp-block-heading">Activate a license key</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Buy a plan. Your license key is sent to you by email after payment.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>In wp-admin, go to <strong>Modern Job Board → Settings</strong>, open <strong>Plans &amp; payments → License &amp; Plan</strong>, and paste the key into <strong>License key</strong>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Select <strong>Save Changes</strong>. <strong>Current plan</strong> shows the plan the key unlocked, and the paid features are available straight away.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Keys look like <code>MJB-PRO-20271119-ABCD1234</code>: the plan, the date the license runs to, and a checksum. Activation works offline; the plugin does not need to contact our servers.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"mjb-callout mjb-callout-note"} -->
+<p class="mjb-callout mjb-callout-note">When a license reaches its end date, the paid features you activated keep working. You stop receiving updates and support until you renew.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"free-plan-limits"} -->
+<h2 id="free-plan-limits" class="wp-block-heading">Free plan limits</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>On the Free plan, up to 100 jobs can be published at the same time. Only published jobs count: drafts, pending and expired jobs do not, but a filled job that is still published does. When the limit is reached, a newly submitted job is held as <strong>Pending</strong> instead of going live, and the admin shows a notice. Editing a job that is already published never counts as a new one.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"set-a-plan-in-wp-config-php"} -->
+<h2 id="set-a-plan-in-wp-config-php" class="wp-block-heading">Set a plan in wp-config.php</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>On a staging or development copy of your site you can force a plan without a key:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>define( 'MJB_LICENSE_PLAN', 'business' ); // free, pro, business or complete_site</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>Add the line to <code>wp-config.php</code> above the line that says "That's all, stop editing!". Use this only on sites you own and for the plan you have bought.</p>
+<!-- /wp:paragraph -->
