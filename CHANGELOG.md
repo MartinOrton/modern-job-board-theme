@@ -2,6 +2,14 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.86] - 2026-11-23
+
+### Changed
+- Screenshots are no longer links. The seeded feature pages stop linking the desktop screenshot to its file, and a render filter (`mjb_theme_feature_shot_render()`) drops any link that only opens a screenshot file, so pages saved earlier lose it too. Links to anything else are kept.
+- Screenshot addresses carry the file's modification time (`?ver=`), so a replaced screenshot shows at once instead of a cached copy.
+- Device screenshots fade in when they come into view: the browser window first, then the phone, a 12px rise over about 0.7 seconds. The page is marked in the head (`mjb_theme_intro_flag()`) so nothing flashes; nothing moves for visitors who prefer less motion, and without JavaScript the screenshots simply show.
+- New admin screenshots (Admin Dashboard, Shortcodes Setup, Custom Fields, Resume Privacy, Google Jobs; desktop and phone) and a new phone screenshot of recruiter applications, taken with Modern Job Board 0.9.0-beta.179: the admin bar avatar shows instead of a broken image, the phone tables are cards with icon buttons, and the filter pills wrap.
+
 ## [0.9.0-beta.85] - 2026-11-22
 
 ### Changed

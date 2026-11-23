@@ -5,7 +5,7 @@
  * @package ModernJobBoardTheme
  */
 
-define( 'MJB_THEME_VERSION', '0.9.0-beta.85' );
+define( 'MJB_THEME_VERSION', '0.9.0-beta.86' );
 
 if ( ! function_exists( 'mjb_theme_setup' ) ) {
 	/**
@@ -135,6 +135,20 @@ function mjb_theme_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'mjb_theme_scripts' );
+
+/**
+ * Mark the page for the screenshot fade-in before it is first painted (see
+ * .mjb-intro in css/styles.css and js/script.js), only when the visitor has
+ * not asked for less motion. If js/script.js never runs, the mark is removed
+ * once the page has loaded, so the screenshots can't stay hidden.
+ */
+function mjb_theme_intro_flag() {
+	if ( is_admin() ) {
+		return;
+	}
+	echo "<script>(function(d){if(!('IntersectionObserver' in window)||window.matchMedia('(prefers-reduced-motion: reduce)').matches){return;}d.classList.add('mjb-intro');window.addEventListener('load',function(){if(!d.classList.contains('mjb-intro-ready')){d.classList.remove('mjb-intro');}});})(document.documentElement);</script>\n";
+}
+add_action( 'wp_head', 'mjb_theme_intro_flag', 1 );
 
 /**
  * Enqueue landing styles in the block editor (parent frame + block assets).

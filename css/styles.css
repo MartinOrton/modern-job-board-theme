@@ -4438,6 +4438,25 @@ body:not(.mjb-demo) a.btn:hover > svg:last-child,
     background: #fff;
 }
 
+/* Intro: the browser window fades in, then the phone, once the screenshots
+   are on screen. html.mjb-intro is set in the head (mjb_theme_intro_flag())
+   so nothing flashes; js/script.js adds .is-in. Skipped when the visitor
+   prefers less motion; without JavaScript the screenshots simply show. */
+.mjb-intro .mjb-devices__desktop,
+.mjb-intro .mjb-devices__mobile {
+    transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mjb-intro .mjb-devices__mobile {
+    transition-delay: 0.3s;
+}
+
+.mjb-intro .mjb-devices:not(.is-in) .mjb-devices__desktop,
+.mjb-intro .mjb-devices:not(.is-in) .mjb-devices__mobile {
+    opacity: 0;
+    transform: translateY(12px);
+}
+
 /* Caption under the frames, centred under the browser window */
 .site-main--content .entry-content .mjb-devices p.mjb-devices__caption,
 .mjb-devices .mjb-devices__caption {

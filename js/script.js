@@ -1,4 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Device screenshots: a short fade-in, browser window first, then the
+    // phone, when they come into view (html.mjb-intro is set in the head by
+    // mjb_theme_intro_flag(); see .mjb-intro in styles.css).
+    (() => {
+        const root = document.documentElement;
+        if (!root.classList.contains('mjb-intro')) {
+            return;
+        }
+        root.classList.add('mjb-intro-ready');
+        const seen = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-in');
+                    seen.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.mjb-devices').forEach((set) => seen.observe(set));
+    })();
+
     document.querySelectorAll('[data-demo-path]').forEach((link) => {
         const path = link.getAttribute('data-demo-path') || '/jobs/';
         link.setAttribute('href', path.startsWith('/') ? path : `/${path}`);

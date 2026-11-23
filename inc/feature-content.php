@@ -199,7 +199,7 @@ function mjb_theme_b_table( $rows, $class ) {
 }
 
 /**
- * A screenshot from images/features/, linked to the full-size file.
+ * A screenshot from images/features/ (not linked).
  *
  * @param string $name    File name without extension.
  * @param string $alt     Alternative text.
@@ -211,7 +211,7 @@ function mjb_theme_b_shot( $name, $alt, $caption, $width = 0 ) {
 	$url   = esc_url( get_template_directory_uri() . '/images/features/' . sanitize_file_name( $name ) . '.webp' );
 	$class = 'mjb-fb-shot' . ( $width >= 1500 ? ' mjb-fb-shot--wide' : '' );
 
-	return "<!-- wp:image {\"sizeSlug\":\"full\",\"linkDestination\":\"custom\",\"className\":\"{$class}\"} -->\n<figure class=\"wp-block-image size-full {$class}\"><a href=\"{$url}\"><img src=\"{$url}\" alt=\"" . esc_attr( $alt ) . "\"/></a><figcaption class=\"wp-element-caption\">{$caption}</figcaption></figure>\n<!-- /wp:image -->";
+	return "<!-- wp:image {\"sizeSlug\":\"full\",\"linkDestination\":\"none\",\"className\":\"{$class}\"} -->\n<figure class=\"wp-block-image size-full {$class}\"><img src=\"{$url}\" alt=\"" . esc_attr( $alt ) . "\"/><figcaption class=\"wp-element-caption\">{$caption}</figcaption></figure>\n<!-- /wp:image -->";
 }
 
 /**
@@ -237,7 +237,7 @@ function mjb_theme_b_devices( $name, $alt_desktop, $alt_mobile, $caption ) {
 	$desktop = esc_url( $base . 'desktop/' . $file );
 	$mobile  = esc_url( $base . 'mobile/' . $file );
 
-	$inner = "<!-- wp:image {\"sizeSlug\":\"full\",\"linkDestination\":\"custom\",\"className\":\"mjb-devices__desktop\"} -->\n<figure class=\"wp-block-image size-full mjb-devices__desktop\"><a href=\"{$desktop}\"><img src=\"{$desktop}\" alt=\"" . esc_attr( $alt_desktop ) . "\"/></a></figure>\n<!-- /wp:image -->"
+	$inner = "<!-- wp:image {\"sizeSlug\":\"full\",\"linkDestination\":\"none\",\"className\":\"mjb-devices__desktop\"} -->\n<figure class=\"wp-block-image size-full mjb-devices__desktop\"><img src=\"{$desktop}\" alt=\"" . esc_attr( $alt_desktop ) . "\"/></figure>\n<!-- /wp:image -->"
 		. "\n\n<!-- wp:image {\"sizeSlug\":\"full\",\"linkDestination\":\"none\",\"className\":\"mjb-devices__mobile\"} -->\n<figure class=\"wp-block-image size-full mjb-devices__mobile\"><img src=\"{$mobile}\" alt=\"" . esc_attr( $alt_mobile ) . "\"/></figure>\n<!-- /wp:image -->"
 		. "\n\n" . mjb_theme_b_paragraph( $caption, 'mjb-devices__caption' );
 
@@ -446,6 +446,34 @@ function mjb_theme_feature_shot_dimensions( $html ) {
 	return str_replace( $img[0], $tag, $html );
 }
 add_filter( 'render_block_core/image', 'mjb_theme_feature_shot_dimensions' );
+
+/**
+ * The theme's screenshots are pictures, not links: drop a link that only
+ * opens the screenshot file itself (older seeded content had one), and add
+ * the file's modification time to its address so a replaced screenshot is
+ * shown at once instead of a cached copy. Links to anything else are kept.
+ *
+ * @param string $html Rendered Image block.
+ * @return string
+ */
+function mjb_theme_feature_shot_render( $html ) {
+	if ( false === strpos( $html, '/images/features/' ) ) {
+		return $html;
+	}
+
+	$html = preg_replace( '#<a\b[^>]*\shref="[^"]*/images/features/[^"]*\.webp"[^>]*>\s*(<img\b[^>]*>)\s*</a>#i', '$1', $html );
+
+	return preg_replace_callback(
+		'#(<img\b[^>]*\ssrc=")([^"?]*/images/features/((?:desktop/|mobile/)?[a-z0-9-]+\.webp))"#i',
+		static function ( $m ) {
+			$file = get_template_directory() . '/images/features/' . $m[3];
+
+			return is_readable( $file ) ? $m[1] . $m[2] . '?ver=' . filemtime( $file ) . '"' : $m[0];
+		},
+		$html
+	);
+}
+add_filter( 'render_block_core/image', 'mjb_theme_feature_shot_render', 11 );
 
 /**
  * Add the column heading to every cell of a reference table, so the phone
