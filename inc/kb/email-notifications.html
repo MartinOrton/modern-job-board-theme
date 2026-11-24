@@ -1,0 +1,77 @@
+<!-- wp:heading {"anchor":"the-emails-the-board-sends"} -->
+<h2 id="the-emails-the-board-sends" class="wp-block-heading">The emails the board sends</h2>
+<!-- /wp:heading -->
+
+<!-- wp:table {"className":"mjb-stack-table"} -->
+<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>Email</th><th>Sent to</th><th>When</th></tr></thead><tbody><tr><td>New Job Submitted</td><td>Site admin</td><td>A recruiter submits a job</td></tr><tr><td>New Application</td><td>Recruiter</td><td>A candidate applies to their job</td></tr><tr><td>Application Received</td><td>Candidate</td><td>Their application is saved</td></tr><tr><td>Account Ready</td><td>Recruiter or candidate</td><td>Their account is created</td></tr><tr><td>Pending Approval</td><td>Recruiter or candidate</td><td>Their account is waiting for approval</td></tr><tr><td>Interview Invitation</td><td>Candidate</td><td>A recruiter invites them to an interview</td></tr><tr><td>Application Declined</td><td>Candidate</td><td>A recruiter turns down their application</td></tr><tr><td>Application Status</td><td>Candidate</td><td>Their application moves to a new stage</td></tr><tr><td>Outreach Draft</td><td>-</td><td>A draft for recruiters to copy into their own email. It is never sent by the board.</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:paragraph -->
+<p>Job alert digests are sent on the schedule each candidate chose. See <a href="{{home}}/docs/job-alerts-saved-jobs-talent/">Job alerts, saved jobs and the talent pool</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"change-the-wording"} -->
+<h2 id="change-the-wording" class="wp-block-heading">Change the wording</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Open <strong>Modern Job Board → Emails</strong> and choose an email. Edit its subject and body, then save. Words in curly brackets are filled in when the email is sent:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:table {"className":"mjb-stack-table"} -->
+<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>Placeholder</th><th>Becomes</th></tr></thead><tbody><tr><td><code>{job_title}</code>, <code>{job_url}</code></td><td>The job's title and its page</td></tr><tr><td><code>{company}</code></td><td>The employer's company name</td></tr><tr><td><code>{candidate_name}</code>, <code>{candidate_email}</code></td><td>The candidate</td></tr><tr><td><code>{user_name}</code></td><td>The person the email is sent to</td></tr><tr><td><code>{dashboard_url}</code></td><td>Their dashboard</td></tr><tr><td><code>{message}</code></td><td>The candidate's application message</td></tr><tr><td><code>{status}</code></td><td>The application's new stage</td></tr><tr><td><code>{note}</code></td><td>The note the recruiter added</td></tr><tr><td><code>{edit_link}</code></td><td>The job's edit screen in wp-admin</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:heading {"anchor":"brand-the-emails"} -->
+<h2 id="brand-the-emails" class="wp-block-heading">Brand the emails</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Under <strong>Settings → Integrations → Email</strong>, switch on <strong>Branded emails</strong> to send every message in an HTML layout with your <strong>Logo</strong>, accent <strong>Colour</strong> and <strong>Footer</strong> text. The footer can use <code>{site_link}</code>, your site name linked to your site. <strong>Powered by Modern Job Board</strong> is added below the footer; on Pro and Business you can switch it off with <strong>Powered by</strong>. Every link to your site in an email carries Google Analytics (UTM) tags: source <code>notification</code>, medium <code>email</code>, the type of email as the campaign, and which link it was as the content (for example <code>job-url</code> or <code>dashboard-url</code>), so you can see in Analytics which emails and links bring people back. <strong>Recruiter versions</strong> lets recruiters adjust the wording of the candidate emails they send.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"make-sure-emails-arrive"} -->
+<h2 id="make-sure-emails-arrive" class="wp-block-heading">Make sure emails arrive</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>By default WordPress sends mail through your server's PHP mail function. Many hosts deliver this badly, or not at all, so for a live board send through a proper mail server:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>In <strong>Settings → Integrations → Email</strong>, switch on <strong>Send through SMTP</strong>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Enter your mail provider's <strong>SMTP host</strong>, <strong>Port</strong> and <strong>Encryption</strong> (usually port 587 with TLS, or 465 with SSL).</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Switch on <strong>Authentication</strong> and enter the <strong>Username</strong> and <strong>Password</strong> your provider gave you.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Set the <strong>From email</strong> to an address on your own domain, and a <strong>From name</strong> such as your board's name.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Save, then use <strong>Test email</strong> to send yourself a message.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"mjb-callout mjb-callout-warning"} -->
+<p class="mjb-callout mjb-callout-warning">Use a From address on your own domain, and set up SPF and DKIM for it with your mail provider. Without them, many inboxes send board emails to spam.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>To check your setup, open <strong>Tools → Health</strong>. <strong>Email Delivery</strong> shows how the board sends email, the sender address and the sender name, and marks anything that tends to send email to spam: no SMTP, WordPress's default <code>wordpress@</code> address (which has no mailbox behind it), or a sender on a different domain from your site. The Dashboard's Board health list shows the same check. When no From name is set, emails use your site name.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"mailchimp"} -->
+<h2 id="mailchimp" class="wp-block-heading">Mailchimp</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Switch on <strong>Enable Mailchimp</strong>, paste your Mailchimp <strong>API key</strong>, and enter the <strong>Recruiter audience ID</strong> and <strong>Candidate audience ID</strong>. New recruiters and candidates who agree to receive news are added to the matching audience.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"candidates-control-their-own-email"} -->
+<h2 id="candidates-control-their-own-email" class="wp-block-heading">Candidates control their own email</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>In the candidate dashboard, under <strong>Account settings</strong>, candidates can switch off application emails and recruiter-message emails. Tips and news stay off until a candidate turns them on.</p>
+<!-- /wp:paragraph -->
