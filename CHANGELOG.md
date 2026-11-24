@@ -2,6 +2,11 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.95] - 2026-11-24
+
+### Changed
+- Email notifications: the {site_link} footer tag, Powered by Modern Job Board, and UTM tags on footer links (plugin 0.9.0-beta.195).
+
 ## [0.9.0-beta.94] - 2026-11-24
 
 ### Changed
