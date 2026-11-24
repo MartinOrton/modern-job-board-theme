@@ -2,6 +2,11 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.96] - 2026-11-24
+
+### Changed
+- Email notifications: UTM tags on every link to the site, and the Powered by switch for Pro and Business (plugin 0.9.0-beta.196).
+
 ## [0.9.0-beta.95] - 2026-11-24
 
 ### Changed
