@@ -2,6 +2,11 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.92] - 2026-11-24
+
+### Changed
+- Admin console: how Trash, Restore and Delete Permanently work for jobs, applications and companies (plugin 0.9.0-beta.192).
+
 ## [0.9.0-beta.91] - 2026-11-24
 
 ### Changed
