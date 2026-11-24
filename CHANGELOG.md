@@ -2,6 +2,11 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.93] - 2026-11-24
+
+### Changed
+- Posting and managing jobs: recruiters can delete and restore their jobs from Deleted Jobs (plugin 0.9.0-beta.193).
+
 ## [0.9.0-beta.92] - 2026-11-24
 
 ### Changed
