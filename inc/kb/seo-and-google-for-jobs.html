@@ -1,0 +1,59 @@
+<!-- wp:heading {"anchor":"what-is-added-for-you"} -->
+<h2 id="what-is-added-for-you" class="wp-block-heading">What is added for you</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Every job page carries <strong>JobPosting</strong> structured data, written from the listing: title, description, date posted, employer, location, employment type and a direct-apply flag. Search engines read it to show jobs in dedicated results such as Google for Jobs.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The board also gives each job a readable URL built from its location and title, links each job to related jobs, and gives category, location and company pages clearer titles and meta descriptions.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"map-your-job-types"} -->
+<h2 id="map-your-job-types" class="wp-block-heading">Map your job types</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Google expects a fixed set of employment types, such as <code>FULL_TIME</code>, <code>PART_TIME</code> and <code>CONTRACTOR</code>. Your own job types may be called something else.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Open <strong>Settings → Integrations → Google Jobs &amp; Webhooks</strong>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>In the <strong>Google Jobs type map</strong>, choose the Google type for each of your job types. Types you do not map are matched by name.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Under <strong>Google Jobs static fields</strong>, you can set a base salary currency, value and unit for every job, if that applies to your board.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:heading {"anchor":"check-the-markup"} -->
+<h2 id="check-the-markup" class="wp-block-heading">Check the markup</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Open a published job and copy its address.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Paste it into Google's Rich Results Test. It should find a <strong>Job posting</strong> with no errors.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Fix any warnings in the job itself: salary and a full location help most.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>The admin dashboard's <strong>Board health</strong> warns you if search engines are discouraged from indexing the site (<strong>Settings → Reading</strong> in WordPress). Staging sites should block indexing; live sites must not.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"mjb-callout mjb-callout-note"} -->
+<p class="mjb-callout mjb-callout-note">Structured data makes a job eligible for Google for Jobs, but Google decides what it shows. Keep jobs current, fill in salary and location, and mark roles filled so your listings stay trustworthy.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"for-developers"} -->
+<h2 id="for-developers" class="wp-block-heading">For developers</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The <code>mjb_job_schema</code> and <code>mjb_google_jobs_schema</code> filters let you change the JSON-LD before it is printed. See <a href="{{home}}/docs/php-hooks/">PHP hooks</a>.</p>
+<!-- /wp:paragraph -->
