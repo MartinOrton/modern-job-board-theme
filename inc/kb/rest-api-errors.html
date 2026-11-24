@@ -1,0 +1,37 @@
+<!-- wp:paragraph -->
+<p>Errors come back as JSON with a <code>code</code>, a human-readable <code>message</code>, and the HTTP status in <code>data.status</code>:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>{
+  "code": "mjb_rest_forbidden",
+  "message": "Recruiter access required.",
+  "data": { "status": 403 }
+}</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:heading {"anchor":"error-codes"} -->
+<h2 id="error-codes" class="wp-block-heading">Error codes</h2>
+<!-- /wp:heading -->
+
+<!-- wp:table {"className":"mjb-stack-table"} -->
+<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>HTTP status</th><th>Code</th><th>Meaning</th></tr></thead><tbody><tr><td>401</td><td><code>mjb_rest_auth_required</code></td><td>Not signed in</td></tr><tr><td>403</td><td><code>mjb_rest_forbidden</code></td><td>Wrong role, or no access to that job or application</td></tr><tr><td>400</td><td><code>mjb_invalid_status</code></td><td>The application stage is not one of the allowed values</td></tr><tr><td>400</td><td><code>mjb_missing_fields</code></td><td>A required field is missing</td></tr><tr><td>500</td><td><code>mjb_update_failed</code></td><td>The change could not be saved</td></tr><tr><td>403</td><td><code>mjb_ingest_disabled</code></td><td>Job ingest has no secret set, so it is switched off</td></tr><tr><td>401</td><td><code>mjb_ingest_auth</code></td><td>The job ingest secret is wrong</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:paragraph -->
+<p>WordPress's own errors, such as <code>rest_no_route</code> (the route does not exist, often because the plan does not include the API) can also appear.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"handling-errors"} -->
+<h2 id="handling-errors" class="wp-block-heading">Handling errors</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Treat <code>401</code> as "sign in again": check the username and application password.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Treat <code>403</code> as permanent for that record: retrying will not help.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Retry <code>500</code> errors and network failures a few times with an increasing wait.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
