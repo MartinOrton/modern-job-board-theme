@@ -2,6 +2,11 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.97] - 2026-11-24
+
+### Changed
+- Pricing cards: style for a plan's first row ("All features in Free", "All features in Pro"…), in bold with a divider under it, so each paid plan lists only what it adds.
+
 ## [0.9.0-beta.96] - 2026-11-24
 
 ### Changed

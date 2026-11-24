@@ -1446,6 +1446,15 @@ body.mjb-demo .navbar {
     color: var(--text-primary);
 }
 
+/* First row of a paid plan: "All features in <previous plan>", then what it adds. */
+.price-features li.is-base {
+    padding-bottom: 0.85rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border, rgba(100, 116, 139, 0.18));
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
 .price-features li.is-unavailable {
     opacity: 0.55;
 }
