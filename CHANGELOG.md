@@ -2,6 +2,12 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.91] - 2026-11-24
+
+### Changed
+- Companies and careers mode: describes the new company editor (plugin 0.9.0-beta.191).
+- Jobs map and promotions: how to choose featured companies (Feature this company, Featured until).
+
 ## [0.9.0-beta.90] - 2026-11-24
 
 ### Changed
