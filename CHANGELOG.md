@@ -2,6 +2,11 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.98] - 2026-11-24
+
+### Changed
+- **Footer background:** the hero's aurora gradient, flipped vertically. It rises from the bottom, with the accent orange at the bottom right, fades into white at the top, and has the same slow drift and film grain. The drift stops for visitors who prefer reduced motion.
+
 ## [0.9.0-beta.97] - 2026-11-24
 
 ### Changed
