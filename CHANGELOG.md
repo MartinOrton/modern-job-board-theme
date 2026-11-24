@@ -2,6 +2,11 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.90] - 2026-11-24
+
+### Changed
+- Settings reference: **Board staff** (was Collaborators): what staff can and can't do, and the Remove button (plugin 0.9.0-beta.190).
+
 ## [0.9.0-beta.89] - 2026-11-24
 
 ### Changed
