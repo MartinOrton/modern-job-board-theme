@@ -2,6 +2,11 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.89] - 2026-11-24
+
+### Changed
+- Admin console docs: the jobs console's Recruiter / Posted by column and filter, the Columns menu, and the poster in the CSV export (plugin 0.9.0-beta.189).
+
 ## [0.9.0-beta.88] - 2026-11-24
 
 ### Changed
