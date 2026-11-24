@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentation - Modern Job Board</title>
-    <meta name="description" content="Reference guide for Modern Job Board: install, shortcodes, REST API, webhooks, feeds, and deploy notes.">
+    <meta name="description" content="Reference guide for Modern Job Board: install, shortcodes, admin, REST API, ingest, webhooks, feeds, and deploy notes.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -40,7 +40,7 @@
         <section class="mjb-content-hero alignfull docs-hero" id="top">
             <div class="mjb-content-hero__inner container">
                 <h1 class="mjb-content-hero__title">Modern Job Board documentation</h1>
-                <p class="mjb-content-hero__intro">Install the plugin, create frontend pages, and extend it with shortcodes, REST, feeds, and webhooks.</p>
+                <p class="mjb-content-hero__intro">Install the plugin, create frontend pages, and extend it with shortcodes, the admin console, REST, ingest, feeds, and webhooks.</p>
             </div>
         </section>
 
@@ -57,6 +57,7 @@
                         <li><a href="#conventions">Conventions</a></li>
                         <li><a href="#getting-started">Getting started</a></li>
                         <li><a href="#shortcodes">Shortcodes &amp; blocks</a></li>
+                        <li><a href="#admin">Admin console</a></li>
                         <li><a href="#licensing">Licensing &amp; plans</a></li>
                         <li><a href="#storage">Storage &amp; deploy</a></li>
                     </ul>
@@ -79,6 +80,12 @@
                                 <li><a href="#v2-candidate-update"><span class="docs-method-tag">PATCH</span> Update</a></li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="#ingest"><span class="docs-method-tag">POST</span> Ingest job</a>
+                            <ul class="docs-toc docs-toc--nested">
+                                <li><a href="#ingest-batch"><span class="docs-method-tag">POST</span> Batch</a></li>
+                            </ul>
+                        </li>
                     </ul>
                     <p class="docs-sidebar-title">Integrations</p>
                     <ul class="docs-toc">
@@ -98,7 +105,7 @@
                 <section class="docs-section" id="introduction">
                     <h2>Introduction</h2>
                     <p>Modern Job Board is a proprietary freemium WordPress plugin for self-hosted job boards. Listing data lives in your WordPress database; employers and candidates use frontend shortcodes (or blocks); optional monetization uses WooCommerce on paid plans.</p>
-                    <p><strong>Current public line:</strong> <code>0.9.0-beta.9</code> (pre-stable). Treat as beta until <code>1.0.0</code>.</p>
+                    <p><strong>Current public line:</strong> <code>0.9.0-beta.104</code> (pre-stable). Treat as beta until <code>1.0.0</code>.</p>
                     <div class="docs-note">
                         <strong>Plan gating.</strong> REST API, XML feed, and webhooks require the <strong>Business</strong> plan (or Complete Site). WooCommerce monetization, custom fields, and import tools require <strong>Pro</strong> or higher. See <a href="#licensing">Licensing</a>.
                     </div>
@@ -135,7 +142,7 @@
                     <h3>Installation</h3>
                     <ol>
                         <li>Upload <code>modern-job-board</code> to <code>wp-content/plugins/</code> and activate it.</li>
-                        <li>Open <strong>Job Board → Setup</strong> and create missing pages.</li>
+                        <li>Open <strong>Modern Job Board → Setup</strong> and create missing pages.</li>
                         <li>Configure <strong>Settings</strong> (listing duration, reCAPTCHA, webhooks, license key).</li>
                         <li>Post a test job and submit a test application.</li>
                     </ol>
@@ -173,6 +180,22 @@
                                     <td>Registration</td>
                                     <td><code>[[mjb_employer_registration]]</code> / <code>[[mjb_candidate_registration]]</code></td>
                                 </tr>
+                                <tr>
+                                    <td>Jobs map (optional)</td>
+                                    <td><code>[[mjb_map]]</code> or <code>[[mjb_jobs_map]]</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Job alerts (optional)</td>
+                                    <td><code>[[mjb_job_alerts]]</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Talent pool (optional)</td>
+                                    <td><code>[[mjb_talent_pool]]</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Messages (optional)</td>
+                                    <td><code>[[mjb_messages]]</code></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -183,48 +206,158 @@
 
                 <section class="docs-section" id="shortcodes">
                     <h2>Shortcodes &amp; blocks</h2>
-                    <p>Every shortcode is also available as a Gutenberg block under <strong>Modern Job Board</strong> in the block inserter.</p>
+                    <p>The eight <strong>core</strong> shortcodes (jobs, job form, recruiter/candidate dashboards, login, and registration) are also Gutenberg blocks under <strong>Modern Job Board</strong> in the block inserter. Extra shortcodes below do not have blocks yet — paste them on a page.</p>
                     <div class="docs-table-wrap">
                         <table class="docs-table">
                             <thead>
                                 <tr>
                                     <th>Shortcode</th>
                                     <th>Description</th>
+                                    <th>Block</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td><code>[[mjb_jobs]]</code></td>
-                                    <td>AJAX job search and listings</td>
+                                    <td>AJAX job search with predictive title/company/location suggestions, filter chips, and pretty <code>/jobs/</code> URLs</td>
+                                    <td>Job Listings</td>
                                 </tr>
                                 <tr>
                                     <td><code>[[mjb_job_form]]</code></td>
-                                    <td>Frontend job submission / edit</td>
+                                    <td>Frontend job submission / edit (mark filled, schedule, republish from the recruiter dashboard)</td>
+                                    <td>Job Submission Form</td>
                                 </tr>
                                 <tr>
                                     <td><code>[[mjb_dashboard]]</code></td>
-                                    <td>Employer jobs and applications</td>
+                                    <td>Recruiter jobs, applications, credits, and Feature this job</td>
+                                    <td>Recruiter Dashboard</td>
                                 </tr>
                                 <tr>
                                     <td><code>[[mjb_candidate_dashboard]]</code></td>
-                                    <td>Candidate profile, resume, applications</td>
+                                    <td>Candidate profile, resume, applications, saved jobs, completeness</td>
+                                    <td>Candidate Dashboard</td>
                                 </tr>
                                 <tr>
                                     <td><code>[[mjb_employer_login]]</code></td>
-                                    <td>Employer login + link to register</td>
+                                    <td>Recruiter login + link to register</td>
+                                    <td>Recruiter Login</td>
                                 </tr>
                                 <tr>
                                     <td><code>[[mjb_candidate_login]]</code></td>
                                     <td>Job seeker login + link to register</td>
+                                    <td>Candidate Login</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[[mjb_employer_registration]]</code></td>
+                                    <td>Multi-step recruiter signup (you → company → account)</td>
+                                    <td>Recruiter Registration</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[[mjb_candidate_registration]]</code></td>
+                                    <td>Multi-step candidate signup (about you → resume → account)</td>
+                                    <td>Candidate Registration</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[[mjb_map]]</code> / <code>[[mjb_jobs_map]]</code></td>
+                                    <td>Multi-marker jobs map (Google Maps API key in Settings)</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[[mjb_job_alerts]]</code></td>
+                                    <td>Manage saved search alerts (daily/weekly). A subscribe CTA also renders under the public filter form.</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[[mjb_talent_pool]]</code></td>
+                                    <td>Public talent browse (respects the resume access matrix)</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[[mjb_messages]]</code></td>
+                                    <td>Recruiter / candidate inbox</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[[mjb_packages]]</code></td>
+                                    <td>Job / credit package listing (WooCommerce, Pro+)</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[[mjb_featured_companies]]</code></td>
+                                    <td>Featured company showcase</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[[mjb_ad_banner]]</code></td>
+                                    <td>Ad banner slot (also injectable between job cards from Settings)</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[[mjb_related_jobs]]</code></td>
+                                    <td>Related jobs (also shown on single job templates)</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[[mjb_language_switcher]]</code></td>
+                                    <td>Board language switcher</td>
+                                    <td>—</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </section>
 
+                <section class="docs-section" id="admin">
+                    <h2>Admin console</h2>
+                    <p>Open <strong>Modern Job Board</strong> in wp-admin. The shell loads tabs over AJAX (<code>mjb_admin_load_tab</code>). Dashboard is the default; other tabs use <code>admin.php?page=modern-job-board&amp;tab={id}</code>.</p>
+                    <div class="docs-table-wrap">
+                        <table class="docs-table">
+                            <thead>
+                                <tr>
+                                    <th>Tab</th>
+                                    <th>What it does</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Dashboard</td>
+                                    <td>Board health, open items, latest jobs, plan/capacity. Listing views are all-time <code>_mjb_view_count</code> (no time-series).</td>
+                                </tr>
+                                <tr>
+                                    <td>Jobs</td>
+                                    <td>Jobs console: views (all, attention, expiring, zero views, no apps, published, pending, draft, expired, filled), predictive search (title, company, location), filters, sort, pagination, bulk actions, CSV export.</td>
+                                </tr>
+                                <tr>
+                                    <td>Applications / Companies / Resumes</td>
+                                    <td>Data-grid lists with paging.</td>
+                                </tr>
+                                <tr>
+                                    <td>Settings</td>
+                                    <td>Listing duration, maps, security (reCAPTCHA, time-trap, IP bans), integrations, license &amp; plan. Subtabs per section.</td>
+                                </tr>
+                                <tr>
+                                    <td>Setup</td>
+                                    <td>Create missing frontend pages (jobs, forms, dashboards, login, registration).</td>
+                                </tr>
+                                <tr>
+                                    <td>Custom Fields</td>
+                                    <td>Job and application field builder. <strong>Pro+</strong>.</td>
+                                </tr>
+                                <tr>
+                                    <td>Tools</td>
+                                    <td>CSV/XML import and export, remote feed URLs, scheduled imports, XML backup. <strong>Pro+</strong>.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="docs-note">
+                        <strong>Jobs search.</strong> The Jobs tab typeahead uses <code>mjb_admin_jobs_suggest</code> (same interaction model as public Filter Jobs). Selecting a suggestion or pressing Enter applies the filter; keystrokes do not reload the table (that would destroy the dropdown).
+                    </div>
+                </section>
+
                 <section class="docs-section" id="licensing">
                     <h2>Licensing &amp; plans</h2>
-                    <p>Activate a key under <strong>Job Board → Settings → License &amp; plan</strong>, or force a plan in <code>wp-config.php</code>:</p>
+                    <p>Activate a key under <strong>Modern Job Board → Settings → License &amp; plan</strong>, or force a plan in <code>wp-config.php</code>:</p>
                     <pre class="docs-code">define('MJB_LICENSE_PLAN', 'business'); // free | pro | business | complete_site</pre>
                     <div class="docs-table-wrap">
                         <table class="docs-table">
@@ -237,7 +370,7 @@
                             <tbody>
                                 <tr>
                                     <td>Free</td>
-                                    <td>Core board; max <strong>10</strong> published jobs</td>
+                                    <td>Core board (search, dashboards, alerts, maps, private CVs); max <strong>10</strong> published jobs</td>
                                 </tr>
                                 <tr>
                                     <td>Pro</td>
@@ -281,6 +414,7 @@
                         <li><strong>v2</strong>: authenticated employer and candidate operations</li>
                     </ul>
                     <p>Base path: <code>/wp-json/mjb/</code></p>
+                    <p>A separate ATS ingest route (<code>/wp-json/mjb/v1/ingest/job</code>) is documented below. It authenticates with an ingestion secret (Settings → Job ingestion &amp; backfill), not a Business REST plan check.</p>
                 </section>
 
                 <section class="docs-section" id="authentication">
@@ -572,6 +706,103 @@
                     </article>
                 </section>
 
+                <section class="docs-section" id="ingest">
+                    <h2>Job ingest (ATS webhook)</h2>
+                    <p>Push jobs from an agency ATS (Broadbean-style JSON). Configure a secret under <strong>Settings → Job ingestion &amp; backfill</strong>. If the secret is empty, the route returns <code>403</code> <code>mjb_ingest_disabled</code>.</p>
+                    <p>Auth: header <code>X-MJB-Ingest-Secret</code> or JSON body field <code>secret</code>. Invalid secret → <code>401</code> <code>mjb_ingest_auth</code>.</p>
+
+                    <article class="docs-endpoint">
+                        <div class="docs-endpoint-title">
+                            <span class="docs-method docs-method--post">POST</span>
+                            <h3>/wp-json/mjb/v1/ingest/job</h3>
+                        </div>
+                        <p>Create or update one job. Matching uses <code>external_id</code> / <code>id</code> / <code>reference</code> when present.</p>
+                        <p class="docs-code-label">curl</p>
+                        <pre class="docs-code">curl -X POST "https://example.com/wp-json/mjb/v1/ingest/job" \
+  -H "Content-Type: application/json" \
+  -H "X-MJB-Ingest-Secret: YOUR_SECRET" \
+  -d '{
+    "title": "Senior Developer",
+    "description": "Build modern job boards…",
+    "company": "Acme Corp",
+    "location": "Remote",
+    "external_id": "ATS-1042",
+    "apply_url": "https://example.com/apply/1042",
+    "job_type": "Full-time",
+    "status": "publish"
+  }'</pre>
+                        <div class="docs-table-wrap">
+                            <table class="docs-table">
+                                <thead>
+                                    <tr>
+                                        <th>Field</th>
+                                        <th></th>
+                                        <th>Aliases / notes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>title</code></td>
+                                        <td><span class="docs-req">required</span></td>
+                                        <td><code>job_title</code>, <code>jobTitle</code>, <code>position</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>description</code></td>
+                                        <td><span class="docs-opt">optional</span></td>
+                                        <td><code>body</code>, <code>job_description</code>, <code>jobDescription</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>company</code></td>
+                                        <td><span class="docs-opt">optional</span></td>
+                                        <td><code>company_name</code>, <code>companyName</code>, <code>advertiser</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>location</code></td>
+                                        <td><span class="docs-opt">optional</span></td>
+                                        <td><code>city</code>, <code>job_location</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>external_id</code></td>
+                                        <td><span class="docs-opt">optional</span></td>
+                                        <td><code>id</code>, <code>reference</code>, <code>job_reference</code>, <code>requisition_id</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>apply_url</code></td>
+                                        <td><span class="docs-opt">optional</span></td>
+                                        <td><code>application_url</code>, <code>url</code>, <code>link</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>status</code></td>
+                                        <td><span class="docs-opt">optional</span></td>
+                                        <td><code>publish</code> (default), <code>draft</code>, or <code>pending</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>job_type</code></td>
+                                        <td><span class="docs-opt">optional</span></td>
+                                        <td>or <code>employmentType</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>featured</code></td>
+                                        <td><span class="docs-opt">optional</span></td>
+                                        <td>Truthy value marks the listing featured</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </article>
+
+                    <article class="docs-endpoint" id="ingest-batch">
+                        <div class="docs-endpoint-title">
+                            <span class="docs-method docs-method--post">POST</span>
+                            <h3>/wp-json/mjb/v1/ingest/batch</h3>
+                        </div>
+                        <p>Same secret auth. Send an array of job objects (or <code>{ "jobs": [ … ] }</code>). Each item is normalized the same way as the single-job route. Batches are capped at 50 jobs per request.</p>
+                    </article>
+                    <div class="docs-note">
+                        <strong>Empty-list backfill.</strong> Settings can show a partner CTA or sourced-jobs message when a public search returns no results.
+                    </div>
+                </section>
+
                 <!-- Feed & webhooks -->
                 <section class="docs-section" id="xml-feed">
                     <h2>XML job feed</h2>
@@ -671,6 +902,16 @@
                                     <td><code>mjb_webhook_payload</code></td>
                                     <td>filter</td>
                                     <td>Modify outbound webhook body</td>
+                                </tr>
+                                <tr>
+                                    <td><code>mjb_job_schema</code> / <code>mjb_google_jobs_schema</code></td>
+                                    <td>filter</td>
+                                    <td>Adjust JobPosting JSON-LD for Google for Jobs</td>
+                                </tr>
+                                <tr>
+                                    <td><code>mjb_after_job_search_form</code></td>
+                                    <td>action</td>
+                                    <td>After the public filter form (subscribe-to-search CTA hooks here)</td>
                                 </tr>
                             </tbody>
                         </table>

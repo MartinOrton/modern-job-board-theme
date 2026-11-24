@@ -1,0 +1,58 @@
+<!-- wp:paragraph -->
+<p>Add code that uses these hooks in a small custom plugin, or in a child theme's <code>functions.php</code>, never in Modern Job Board's own files, which are replaced on update.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"hooks"} -->
+<h2 id="hooks" class="wp-block-heading">Hooks</h2>
+<!-- /wp:heading -->
+
+<!-- wp:table {"className":"mjb-stack-table"} -->
+<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>Hook</th><th>Type</th><th>What it is for</th></tr></thead><tbody><tr><td><code>mjb_job_listing_query_args</code></td><td>Filter</td><td>Change the query behind job lists</td></tr><tr><td><code>mjb_license_plan</code></td><td>Filter</td><td>Override the active plan</td></tr><tr><td><code>mjb_license_can</code></td><td>Filter</td><td>Override a feature check</td></tr><tr><td><code>mjb_free_active_job_limit</code></td><td>Filter</td><td>Change the Free plan's published-job limit</td></tr><tr><td><code>mjb_before_employer_dashboard</code></td><td>Action</td><td>Runs before the recruiter dashboard is shown</td></tr><tr><td><code>mjb_application_submitted</code></td><td>Action</td><td>Runs after an application is saved</td></tr><tr><td><code>mjb_application_status_updated</code></td><td>Action</td><td>Runs when an application moves to a new stage</td></tr><tr><td><code>mjb_job_submitted</code></td><td>Action</td><td>Runs after a job is posted from the front end</td></tr><tr><td><code>mjb_candidate_profile_updated</code></td><td>Action</td><td>Runs after a candidate profile is updated through the API</td></tr><tr><td><code>mjb_webhook_payload</code></td><td>Filter</td><td>Change the body of outgoing webhooks</td></tr><tr><td><code>mjb_job_schema</code>, <code>mjb_google_jobs_schema</code></td><td>Filter</td><td>Change the JobPosting structured data on job pages</td></tr><tr><td><code>mjb_after_job_search_form</code></td><td>Action</td><td>Runs after the public filter form (the alerts box uses it)</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:heading {"anchor":"examples"} -->
+<h2 id="examples" class="wp-block-heading">Examples</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Show 20 jobs per page on the jobs list:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>add_filter( 'mjb_job_listing_query_args', function ( $args ) {
+	$args&#91;'posts_per_page'] = 20;
+	return $args;
+} );</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>Send a Slack message when someone applies (replace the webhook address with your own):</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>add_action( 'mjb_application_submitted', function ( $application_id ) {
+	wp_remote_post( 'https://hooks.slack.com/services/…', array(
+		'headers' =&gt; array( 'Content-Type' =&gt; 'application/json' ),
+		'body'    =&gt; wp_json_encode( array( 'text' =&gt; 'New application #' . $application_id ) ),
+	) );
+} );</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>Add a salary to every job's structured data:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>add_filter( 'mjb_job_schema', function ( $schema ) {
+	$schema&#91;'baseSalary'] = array(
+		'@type'    =&gt; 'MonetaryAmount',
+		'currency' =&gt; 'ZAR',
+		'value'    =&gt; array( '@type' =&gt; 'QuantitativeValue', 'unitText' =&gt; 'MONTH' ),
+	);
+	return $schema;
+} );</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"mjb-callout mjb-callout-note"} -->
+<p class="mjb-callout mjb-callout-note">Check the number of arguments each hook passes in the plugin's code before you rely on more than the first one.</p>
+<!-- /wp:paragraph -->
