@@ -1,0 +1,71 @@
+<!-- wp:paragraph -->
+<p>On Pro and Business, Modern Job Board connects to WooCommerce, so that posting a job, featuring it or opening a CV can each be a product in your store. Employers pay at your checkout with the gateway you already use, and Modern Job Board takes no commission.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"what-you-can-sell"} -->
+<h2 id="what-you-can-sell" class="wp-block-heading">What you can sell</h2>
+<!-- /wp:heading -->
+
+<!-- wp:table {"className":"mjb-stack-table"} -->
+<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>Product</th><th>How it works</th></tr></thead><tbody><tr><td>Pay-per-post</td><td>A job is published as soon as its order is paid</td></tr><tr><td>Job credit packages</td><td>Credits sold in bulk. One balance covers both posting and featuring.</td></tr><tr><td>Feature this job</td><td>An employer pays to feature one listing</td></tr><tr><td>CV unlock</td><td>A recruiter pays to open the CV on one application</td></tr><tr><td>CV access pass</td><td>Unlimited CV access for a set number of days</td></tr><tr><td>Candidate alert packages</td><td>Extra job alert slots for candidates</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:heading {"anchor":"set-it-up"} -->
+<h2 id="set-it-up" class="wp-block-heading">Set it up</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Install and set up <strong>WooCommerce</strong> and a payment gateway. Any gateway that works with WooCommerce works with Modern Job Board, for example PayPal, Stripe, Square, Paystack, Payfast, Yoco or bank transfer. Which ones you can use depends on your country and the provider.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Create a WooCommerce product for each thing you sell, and fill in Modern Job Board's fields on the product's <strong>General</strong> tab (see <strong>Product fields</strong> below).</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>In <strong>Settings → Plans &amp; payments → Payments</strong>, switch on <strong>Require Payment</strong>, and enter the product IDs in <strong>Submission Product ID</strong> (paid posting) and <strong>CV Unlock Product ID</strong> (single CV unlocks). Switch on <strong>Paid CV Access</strong> to lock CVs until they are bought. A product's ID is shown when you hover over it in <strong>Products</strong>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Add <code>[mjb_packages]</code> to a page so recruiters can browse your packages.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Optionally, under <strong>Memberships &amp; Trials</strong>, give new recruiters <strong>trial job credits</strong> or <strong>trial CV access days</strong>.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:heading {"anchor":"product-fields"} -->
+<h2 id="product-fields" class="wp-block-heading">Product fields</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Modern Job Board adds these fields to the <strong>General</strong> tab of every WooCommerce product:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:table {"className":"mjb-stack-table"} -->
+<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>Field</th><th>What it does</th></tr></thead><tbody><tr><td>Job Listing Credits</td><td>How many credits the product gives: 1 for a single post, more for a package</td></tr><tr><td>CV Access Pass Duration (Days)</td><td>Makes the product a CV access pass for this many days</td></tr><tr><td>Featured days</td><td>How long a job bought with this product stays featured (0 for none)</td></tr><tr><td>Listing duration (days)</td><td>Overrides the board's listing duration for jobs posted with this product</td></tr><tr><td>Subscription package</td><td>Marks a recurring plan, for use with WooCommerce Subscriptions</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:paragraph {"className":"mjb-callout mjb-callout-note"} -->
+<p class="mjb-callout mjb-callout-note">Only WooCommerce products for your employers go here. They are separate from Modern Job Board license products, if you sell those.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"what-recruiters-see"} -->
+<h2 id="what-recruiters-see" class="wp-block-heading">What recruiters see</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The <strong>Packages</strong> tab of the recruiter dashboard shows credits left, published jobs, filled jobs and whether CV access is active, with <strong>Buy Credits</strong> and <strong>Browse Packages</strong> buttons that lead to your checkout.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>A pay-per-post job waits as <strong>Pending payment</strong> until its order is paid.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Credits are spent as jobs are posted or featured.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Refunded or cancelled orders take their credits or access back.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>The admin dashboard reports revenue beside jobs, applications and views.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"mjb-callout mjb-callout-tip"} -->
+<p class="mjb-callout mjb-callout-tip">You can start free and switch on payments later. Existing listings stay as they are.</p>
+<!-- /wp:paragraph -->
