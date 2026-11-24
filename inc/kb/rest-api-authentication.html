@@ -43,6 +43,14 @@
 <p>Browser code on the same site can also use WordPress's normal cookie authentication with a REST nonce, and other REST authentication plugins work too.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:heading {"anchor":"api-keys"} -->
+<h2 id="api-keys" class="wp-block-heading">API keys</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>For systems that only use the public routes, such as a partner site reading your jobs, you can give each one its own key under <strong>Settings → Integrations → API Keys</strong>. The key is shown once when you create it. Send it in the <code>X-MJB-API-Key</code> header. A wrong or revoked key is refused, and each key can make 60 requests a minute. A key does not sign anyone in, so the recruiter and candidate routes still need an application password.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:heading {"anchor":"what-each-user-can-see"} -->
 <h2 id="what-each-user-can-see" class="wp-block-heading">What each user can see</h2>
 <!-- /wp:heading -->

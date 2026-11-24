@@ -2,6 +2,18 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.88] - 2026-11-24
+
+### Changed
+- Docs follow plugin 0.9.0-beta.187, which moved the hidden admin pages into the Modern Job Board menus:
+  - **Settings reference:** new Branding, Text overrides and Collaborators sections; Blocked submissions in Application Security; the Payments overview; API Keys and Embed widget under Integrations.
+  - **Spam protection:** the Blocked submissions list.
+  - **The admin console:** Tools now covers partner feeds, the analytics export and the Health tab; Board Health checks background tasks; Shortcodes Setup lists the optional shortcodes.
+  - **Import and export:** Tools → Schedules (with partner feeds) and Export Analytics to CSV.
+  - **REST API authentication:** a section on API keys, including what a key does and doesn't do.
+  - **Shortcodes and blocks:** `[mjb_related_jobs]` described correctly (a list of open jobs, optionally from one category), plus a "Jobs on your blog" section with the advice from the retired Blog + jobs page.
+  - Feature pages: Board Health also checks background tasks.
+
 ## [0.9.0-beta.87] - 2026-11-23
 
 ### Changed

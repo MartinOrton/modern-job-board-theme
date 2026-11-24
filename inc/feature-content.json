@@ -914,7 +914,7 @@
      [
       "heart-pulse",
       "Health checks",
-      "The dashboard flags missing pages, inactive structured data and blocked indexing."
+      "The dashboard flags missing pages, inactive structured data, background tasks that aren't scheduled and blocked indexing."
      ],
      [
       "map-pinned",
@@ -1649,7 +1649,7 @@
      ],
      [
       "What does Board Health check?",
-      "That the job search, employer dashboard and post-a-job pages are published, that JobPosting structured data is active, that a Google Maps key is set and that search engines may index the site."
+      "That the job search, employer dashboard and post-a-job pages are published, that JobPosting structured data is active, that a Google Maps key is set, that the board's background tasks are scheduled and that search engines may index the site."
      ],
      [
       "Can I export jobs to CSV?",

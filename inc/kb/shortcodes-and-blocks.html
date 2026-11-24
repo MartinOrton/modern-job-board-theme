@@ -19,8 +19,32 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:table {"className":"mjb-stack-table"} -->
-<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>Shortcode</th><th>What it shows</th><th>Plan</th></tr></thead><tbody><tr><td><code>[mjb_jobs_map]</code> (or <code>[mjb_map]</code>)</td><td>A map with a marker for each open job. Needs a Google Maps API key.</td><td>All</td></tr><tr><td><code>[mjb_job_alerts]</code></td><td>Lets candidates manage their saved search alerts. A subscribe box also appears under the job filters.</td><td>All</td></tr><tr><td><code>[mjb_talent_pool]</code></td><td>Candidate profiles recruiters can browse, following your CV access settings</td><td>All</td></tr><tr><td><code>[mjb_messages]</code></td><td>The inbox between recruiters and candidates</td><td>All</td></tr><tr><td><code>[mjb_featured_companies]</code></td><td>A showcase of the companies you choose</td><td>All</td></tr><tr><td><code>[mjb_ad_banner]</code></td><td>An ad banner slot. Set up banners in <strong>Settings → Plans &amp; payments → Ad Banners</strong>, where they can also be placed between job cards.</td><td>All</td></tr><tr><td><code>[mjb_related_jobs]</code></td><td>Jobs similar to the current one (also shown on every job page)</td><td>All</td></tr><tr><td><code>[mjb_language_switcher]</code></td><td>Lets visitors choose the board's language</td><td>All</td></tr><tr><td><code>[mjb_job_seeker]</code></td><td>Candidate menu link: log in, register, or dashboard</td><td>All</td></tr><tr><td><code>[mjb_recruiter]</code></td><td>Recruiter menu link: log in, register, or dashboard</td><td>All</td></tr><tr><td><code>[mjb_post_job]</code></td><td>A Post a Job link</td><td>All</td></tr><tr><td><code>[mjb_packages]</code></td><td>Job and credit packages for sale</td><td>Pro</td></tr></tbody></table></figure>
+<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>Shortcode</th><th>What it shows</th><th>Plan</th></tr></thead><tbody><tr><td><code>[mjb_jobs_map]</code> (or <code>[mjb_map]</code>)</td><td>A map with a marker for each open job. Needs a Google Maps API key.</td><td>All</td></tr><tr><td><code>[mjb_job_alerts]</code></td><td>Lets candidates manage their saved search alerts. A subscribe box also appears under the job filters.</td><td>All</td></tr><tr><td><code>[mjb_talent_pool]</code></td><td>Candidate profiles recruiters can browse, following your CV access settings</td><td>All</td></tr><tr><td><code>[mjb_messages]</code></td><td>The inbox between recruiters and candidates</td><td>All</td></tr><tr><td><code>[mjb_featured_companies]</code></td><td>A showcase of the companies you choose</td><td>All</td></tr><tr><td><code>[mjb_ad_banner]</code></td><td>An ad banner slot. Set up banners in <strong>Settings → Plans &amp; payments → Ad Banners</strong>, where they can also be placed between job cards.</td><td>All</td></tr><tr><td><code>[mjb_related_jobs]</code></td><td>A short list of open jobs, optionally from one job category: <code>[mjb_related_jobs category="engineering" limit="5"]</code>. Also added under blog posts (see below).</td><td>All</td></tr><tr><td><code>[mjb_language_switcher]</code></td><td>Lets visitors choose the board's language</td><td>All</td></tr><tr><td><code>[mjb_job_seeker]</code></td><td>Candidate menu link: log in, register, or dashboard</td><td>All</td></tr><tr><td><code>[mjb_recruiter]</code></td><td>Recruiter menu link: log in, register, or dashboard</td><td>All</td></tr><tr><td><code>[mjb_post_job]</code></td><td>A Post a Job link</td><td>All</td></tr><tr><td><code>[mjb_packages]</code></td><td>Job and credit packages for sale</td><td>Pro</td></tr></tbody></table></figure>
 <!-- /wp:table -->
+
+<!-- wp:paragraph -->
+<p>The same list appears in <strong>Modern Job Board → Shortcodes Setup</strong> under <strong>Optional Shortcodes</strong>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"jobs-on-your-blog"} -->
+<h2 id="jobs-on-your-blog" class="wp-block-heading">Jobs on your blog</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Career guides and articles can send readers to matching jobs:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Give your blog categories the same slugs as your job categories, for example <code>engineering</code>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>A blog post whose first category matches a job category gets a <strong>Related Jobs</strong> list of up to five open jobs at the end, automatically.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>To place the list yourself, or to pick another category, add <code>[mjb_related_jobs category="engineering"]</code> to the post.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Link from your jobs pages to the blog as well, so search engines find both.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
 
 <!-- wp:paragraph {"className":"mjb-callout mjb-callout-tip"} -->
 <p class="mjb-callout mjb-callout-tip">To show a shortcode as text on a page, for example in your own documentation, write it with double brackets: <code>[[mjb_jobs]]</code> is displayed as <code>[mjb_jobs]</code> and is not run.</p>
