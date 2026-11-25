@@ -115,3 +115,9 @@ function mjb_theme_doc_search_display( $search ) {
 	return isset( $GLOBALS['mjb_theme_doc_search_original'] ) ? esc_attr( $GLOBALS['mjb_theme_doc_search_original'] ) : $search;
 }
 add_filter( 'get_search_query', 'mjb_theme_doc_search_display' );
+
+/**
+ * Topic and archive descriptions.
+ */
+add_filter( 'term_description', 'mjb_theme_doc_text', 9 );
+add_filter( 'get_the_archive_description', 'mjb_theme_doc_text', 9 );

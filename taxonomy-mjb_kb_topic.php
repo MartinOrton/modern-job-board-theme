@@ -15,7 +15,7 @@ $mjb_articles = $mjb_topic instanceof WP_Term ? mjb_theme_kb_articles( $mjb_topi
 		<?php mjb_theme_breadcrumbs(); ?>
 		<h1 class="mjb-content-hero__title mjb-kb-hero__title"><?php echo $mjb_topic instanceof WP_Term ? mjb_theme_kb_icon( $mjb_topic ) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in the helper. ?><?php single_term_title(); ?></h1>
 		<?php if ( $mjb_topic instanceof WP_Term && '' !== $mjb_topic->description ) : ?>
-			<p class="mjb-content-hero__intro"><?php echo esc_html( $mjb_topic->description ); ?></p>
+			<p class="mjb-content-hero__intro"><?php echo esc_html( mjb_theme_doc_text( $mjb_topic->description ) ); ?></p>
 		<?php endif; ?>
 		<p class="mjb-kb-meta">
 			<span>

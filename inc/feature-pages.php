@@ -131,7 +131,7 @@ function mjb_theme_get_feature_cards() {
 	$cards = get_option( 'mjb_theme_feature_cards', null );
 
 	if ( is_array( $cards ) && ! empty( $cards ) ) {
-		return $cards;
+		return mjb_theme_feature_cards_text( $cards );
 	}
 
 	static $built = null;
@@ -166,7 +166,25 @@ function mjb_theme_get_feature_cards() {
 		}
 	}
 
-	return $built;
+	return mjb_theme_feature_cards_text( $built );
+}
+
+/**
+ * Card titles and descriptions with [mjb_doc] rendered (CV or Resume).
+ *
+ * @param array[] $cards Cards.
+ * @return array[]
+ */
+function mjb_theme_feature_cards_text( $cards ) {
+	foreach ( $cards as $index => $card ) {
+		foreach ( array( 'title', 'description' ) as $key ) {
+			if ( isset( $card[ $key ] ) ) {
+				$cards[ $index ][ $key ] = mjb_theme_doc_text( $card[ $key ] );
+			}
+		}
+	}
+
+	return $cards;
 }
 
 /**
