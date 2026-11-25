@@ -2,6 +2,11 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.99] - 2026-11-25
+
+### Changed
+- **Footer copyright line:** centred at every screen size and darker, for better contrast on the gradient. The "Powered by" link is darker still, in medium weight. Any extra footer links below it are centred too. On phones it stays clear of the back-to-top button on both sides, so it stays centred.
+
 ## [0.9.0-beta.98] - 2026-11-24
 
 ### Changed
