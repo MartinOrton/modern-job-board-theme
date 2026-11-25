@@ -561,10 +561,10 @@ function mjb_theme_faq_schema() {
 				$answer   = '';
 
 				foreach ( $block['innerBlocks'] as $inner ) {
-					$answer .= ' ' . render_block( $inner );
+					$answer .= ' ' . do_shortcode( render_block( $inner ) );
 				}
 
-				$question = trim( html_entity_decode( wp_strip_all_tags( $question ), ENT_QUOTES, 'UTF-8' ) );
+				$question = trim( html_entity_decode( wp_strip_all_tags( mjb_theme_doc_text( $question ) ), ENT_QUOTES, 'UTF-8' ) );
 				$answer   = trim( preg_replace( '/\s+/', ' ', html_entity_decode( wp_strip_all_tags( $answer ), ENT_QUOTES, 'UTF-8' ) ) );
 				$answer   = preg_replace( '/\[\[([a-z0-9_]+)\]\]/', '[$1]', $answer );
 
@@ -617,7 +617,7 @@ function mjb_theme_meta_description() {
 		return;
 	}
 
-	$text = trim( preg_replace( '/\s+/', ' ', wp_strip_all_tags( $post->post_excerpt ) ) );
+	$text = trim( preg_replace( '/\s+/', ' ', wp_strip_all_tags( mjb_theme_doc_text( $post->post_excerpt ) ) ) );
 
 	if ( function_exists( 'mb_strlen' ) && mb_strlen( $text ) > 160 ) {
 		$text = rtrim( mb_substr( $text, 0, 157 ), " ,.;:" ) . '…';

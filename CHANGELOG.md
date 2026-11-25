@@ -2,6 +2,18 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.100] - 2026-11-25
+
+### Changed
+- **CV or Resume follows the board's setting everywhere on the site.** The knowledge base, feature pages, legal pages and hero copy now write the word with the plugin's `[mjb_doc]` shortcode (plugin 0.9.0-beta.198), so the site says either CV or Resume, never both, and in the right case. Sentences that used both words now use one ("private CVs", "Companies and CVs (including the candidate pages)").
+- Shortcodes now run in the feature-page hero, FAQ answers in search data, meta descriptions and knowledge base topic descriptions.
+- Searching the site or the docs for "CV" or "resume" still finds articles that use the shortcode.
+- If the plugin is switched off, `[mjb_doc]` prints "CV" instead of the raw shortcode.
+- Shortcodes and blocks: documents `[mjb_doc]`.
+
+### Unchanged on purpose
+- The Document label setting and its feature description still name both words ("Resume or CV"), because that is the choice being described. Screenshot alt text describes what the image shows. Older content kept only for upgrades (`inc/feature-content-v1.php`) is left as it was.
+
 ## [0.9.0-beta.99] - 2026-11-25
 
 ### Changed

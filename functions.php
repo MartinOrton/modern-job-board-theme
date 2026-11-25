@@ -5,7 +5,7 @@
  * @package ModernJobBoardTheme
  */
 
-define( 'MJB_THEME_VERSION', '0.9.0-beta.99' );
+define( 'MJB_THEME_VERSION', '0.9.0-beta.100' );
 
 if ( ! function_exists( 'mjb_theme_setup' ) ) {
 	/**
@@ -655,6 +655,7 @@ require get_template_directory() . '/inc/navigation.php';
 /**
  * Block editor: Feature Grid block, patterns, page excerpts.
  */
+require get_template_directory() . '/inc/doc-label.php';
 require get_template_directory() . '/inc/blocks.php';
 
 /**

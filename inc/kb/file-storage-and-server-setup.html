@@ -7,7 +7,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:table {"className":"mjb-stack-table"} -->
-<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>Folder</th><th>Holds</th><th>Web access</th></tr></thead><tbody><tr><td><code>wp-content/mjb-private/</code></td><td>CVs, under names that cannot be guessed</td><td>Must be denied. CVs are only sent through checked download links.</td></tr><tr><td><code>wp-content/mjb-brand/</code></td><td>Company logos and candidate photos</td><td>Public by design, under names that cannot be guessed</td></tr></tbody></table></figure>
+<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>Folder</th><th>Holds</th><th>Web access</th></tr></thead><tbody><tr><td><code>wp-content/mjb-private/</code></td><td>[mjb_doc plural], under names that cannot be guessed</td><td>Must be denied. [mjb_doc plural] are only sent through checked download links.</td></tr><tr><td><code>wp-content/mjb-brand/</code></td><td>Company logos and candidate photos</td><td>Public by design, under names that cannot be guessed</td></tr></tbody></table></figure>
 <!-- /wp:table -->
 
 <!-- wp:paragraph -->
@@ -15,11 +15,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"anchor":"block-direct-access-to-cvs"} -->
-<h2 id="block-direct-access-to-cvs" class="wp-block-heading">Block direct access to CVs</h2>
+<h2 id="block-direct-access-to-cvs" class="wp-block-heading">Block direct access to [mjb_doc plural lower]</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>CVs are only ever sent through a download link that checks who is asking. A direct request for a file in <code>wp-content/mjb-private/</code> must fail.</p>
+<p>[mjb_doc plural] are only ever sent through a download link that checks who is asking. A direct request for a file in <code>wp-content/mjb-private/</code> must fail.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3,"anchor":"apache-and-litespeed"} -->
@@ -75,7 +75,7 @@ location ~* /wp-content/mjb-private/ {
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Open <code>https://your-site.com/wp-content/mjb-private/</code> in a browser. You must get <strong>403 Forbidden</strong>. Then sign in as a recruiter and download a CV from an application: that must work.</p>
+<p>Open <code>https://your-site.com/wp-content/mjb-private/</code> in a browser. You must get <strong>403 Forbidden</strong>. Then sign in as a recruiter and download a [mjb_doc lower] from an application: that must work.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"anchor":"cloudflare-and-other-cdns"} -->

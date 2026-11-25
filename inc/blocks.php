@@ -446,17 +446,17 @@ function mjb_theme_feature_hero_copy( $slug, $title = '', $description = '' ) {
 		),
 		'employer-candidate-accounts'      => array(
 			__( 'Give both sides of the hire a proper home', 'modern-job-board-theme' ),
-			__( 'Candidates get a dashboard for their CV, saved jobs, applications and email preferences. Recruiters get one to move each application from New to Hired and keep their company profile up to date.', 'modern-job-board-theme' ),
+			__( 'Candidates get a dashboard for their [mjb_doc lower], saved jobs, applications and email preferences. Recruiters get one to move each application from New to Hired and keep their company profile up to date.', 'modern-job-board-theme' ),
 			'accounts',
 		),
 		'private-resumes-cvs'              => array(
-			__( 'Keep every CV out of public reach', 'modern-job-board-theme' ),
-			__( 'Resumes are stored in a private folder, away from the Media Library, and every download needs a signed-in account. You decide how much of a candidate recruiters can see, right down to hiding surnames.', 'modern-job-board-theme' ),
+			__( 'Keep every [mjb_doc lower] out of public reach', 'modern-job-board-theme' ),
+			__( '[mjb_doc plural] are stored in a private folder, away from the Media Library, and every download needs a signed-in account. You decide how much of a candidate recruiters can see, right down to hiding surnames.', 'modern-job-board-theme' ),
 			'lock',
 		),
 		'woocommerce-monetization-pro'     => array(
 			__( 'Turn your job board into a business', 'modern-job-board-theme' ),
-			__( 'Charge per post, sell credit packages, or put CV access and featured spots behind a checkout. Payments run through any WooCommerce gateway you choose, and the revenue stays with you.', 'modern-job-board-theme' ),
+			__( 'Charge per post, sell credit packages, or put [mjb_doc lower] access and featured spots behind a checkout. Payments run through any WooCommerce gateway you choose, and the revenue stays with you.', 'modern-job-board-theme' ),
 			'pricing',
 		),
 		'gutenberg-blocks'                 => array(
@@ -632,7 +632,7 @@ function mjb_theme_the_hero_blocks() {
 
 	$GLOBALS['mjb_theme_hero_printed'][ get_the_ID() ] = true;
 
-	echo '<div class="mjb-content-hero__blocks">' . render_block( $split['hero'] ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Rendered block markup.
+	echo '<div class="mjb-content-hero__blocks">' . do_shortcode( render_block( $split['hero'] ) ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Rendered block markup.
 }
 
 /**

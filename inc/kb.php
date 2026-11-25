@@ -668,7 +668,7 @@ function mjb_theme_kb_render_categories( $attributes ) {
 			mjb_theme_kb_icon( $topic ),
 			esc_url( get_term_link( $topic ) ),
 			esc_html( $topic->name ),
-			'' !== $topic->description ? '<p class="mjb-kb-topic__desc">' . esc_html( $topic->description ) . '</p>' : '',
+			'' !== $topic->description ? '<p class="mjb-kb-topic__desc">' . esc_html( mjb_theme_doc_text( $topic->description ) ) . '</p>' : '',
 			$items,
 			esc_html( $more )
 		);

@@ -299,7 +299,7 @@
     "items": [
      [
       "A candidate applies",
-      "They apply with a CV from their library, and a copy is stored with the application."
+      "They apply with a [mjb_doc lower] from their library, and a copy is stored with the application."
      ],
      [
       "The recruiter is notified",
@@ -346,8 +346,8 @@
      ],
      [
       "Documents and credits",
-      "Resume: a library of up to eight CVs",
-      "Packages: credits left, published and filled jobs, resume access"
+      "[mjb_doc plural]: a library of up to eight",
+      "Packages: credits left, published and filled jobs, [mjb_doc lower] access"
      ]
     ]
    },
@@ -357,8 +357,8 @@
     "items": [
      [
       "file-up",
-      "CV required at sign-up",
-      "Every candidate registers with a CV, so no application arrives without one."
+      "[mjb_doc] required at sign-up",
+      "Every candidate registers with a [mjb_doc lower], so no application arrives without one."
      ],
      [
       "image",
@@ -397,8 +397,8 @@
     "h": "Account questions",
     "items": [
      [
-      "Do candidates have to upload a CV to register?",
-      "Yes. A CV is required to create a candidate account. Candidates can keep up to eight CVs on file and change them at any time."
+      "Do candidates have to upload a [mjb_doc lower] to register?",
+      "Yes. A [mjb_doc lower] is required to create a candidate account. Candidates can keep up to eight [mjb_doc plural lower] on file and change them at any time."
      ],
      [
       "What does a recruiter need to sign up?",
@@ -418,16 +418,16 @@
   "private-resumes-cvs": [
    {
     "t": "text",
-    "h": "Where are CVs stored, and who can open them?",
+    "h": "Where are [mjb_doc plural lower] stored, and who can open them?",
     "p": [
-     "Uploaded CVs are written to <code>wp-content/mjb-private/</code>, a folder outside the Media Library, and are never given a public link. A file is only sent after Modern Job Board has checked that the person asking is signed in and allowed to see it. By default, recruiters can open the CVs of candidates who applied to their own jobs; who may browse everyone else is a setting."
+     "Uploaded [mjb_doc plural lower] are written to <code>wp-content/mjb-private/</code>, a folder outside the Media Library, and are never given a public link. A file is only sent after Modern Job Board has checked that the person asking is signed in and allowed to see it. By default, recruiters can open the [mjb_doc plural lower] of candidates who applied to their own jobs; who may browse everyone else is a setting."
     ]
    },
    {
     "t": "shot",
     "img": "resume-privacy",
     "alt": "The Resume Privacy and Talent settings screen with the talent access level set to Recruiters only and the candidate anonymizer options",
-    "cap": "Resume Privacy &amp; Talent in the settings: who may browse candidates, and the anonymizer.",
+    "cap": "[mjb_doc] Privacy &amp; Talent in the settings: who may browse candidates, and the anonymizer.",
     "w": 1680,
     "hgt": 892,
     "devices": true,
@@ -436,11 +436,11 @@
    },
    {
     "t": "steps",
-    "h": "What happens when a recruiter downloads a CV?",
+    "h": "What happens when a recruiter downloads a [mjb_doc lower]?",
     "items": [
      [
       "They open an application",
-      "The CV is listed with the application in their dashboard."
+      "The [mjb_doc lower] is listed with the application in their dashboard."
      ],
      [
       "The request is checked",
@@ -452,7 +452,7 @@
      ],
      [
       "Anyone else is refused",
-      "A copied link does nothing for a visitor who is not signed in and allowed to see the CV."
+      "A copied link does nothing for a visitor who is not signed in and allowed to see the [mjb_doc lower]."
      ]
     ]
    },
@@ -481,8 +481,8 @@
       "Recruiters who have published a job"
      ],
      [
-      "Premium / paid CV access",
-      "Recruiters who have bought CV access through <a href=\"{f:woocommerce-monetization-pro}\">WooCommerce</a> (Pro)"
+      "Premium / paid [mjb_doc lower] access",
+      "Recruiters who have bought [mjb_doc lower] access through <a href=\"{f:woocommerce-monetization-pro}\">WooCommerce</a> (Pro)"
      ]
     ]
    },
@@ -503,7 +503,7 @@
      [
       "copy",
       "A copy with each application",
-      "The CV sent with an application is kept as it was, even if the candidate later replaces it."
+      "The [mjb_doc lower] sent with an application is kept as it was, even if the candidate later replaces it."
      ],
      [
       "eye-off",
@@ -513,7 +513,7 @@
      [
       "folder-lock",
       "Outside the Media Library",
-      "CVs never appear among your site's public uploads."
+      "[mjb_doc plural] never appear among your site's public uploads."
      ],
      [
       "tag",
@@ -524,16 +524,16 @@
    },
    {
     "t": "plan",
-    "h": "Is private CV storage in the free plan?",
-    "p": "Yes. Private storage, checked downloads, the access levels and the anonymizer are part of every plan. Selling CV access needs Pro or Business."
+    "h": "Is private [mjb_doc lower] storage in the free plan?",
+    "p": "Yes. Private storage, checked downloads, the access levels and the anonymizer are part of every plan. Selling [mjb_doc lower] access needs Pro or Business."
    },
    {
     "t": "faq",
-    "h": "CV privacy questions",
+    "h": "[mjb_doc] privacy questions",
     "items": [
      [
-      "Why not store CVs in the Media Library?",
-      "Files in the Media Library are public: anyone with the link can open them. CVs hold personal data, so Modern Job Board keeps them in a private folder and only serves them to signed-in users who are allowed to see them."
+      "Why not store [mjb_doc plural lower] in the Media Library?",
+      "Files in the Media Library are public: anyone with the link can open them. [mjb_doc plural] hold personal data, so Modern Job Board keeps them in a private folder and only serves them to signed-in users who are allowed to see them."
      ],
      [
       "Do I need to change my server settings?",
@@ -544,7 +544,7 @@
       "It gives you the tools: private storage, access levels, opt-in talent profiles and an anonymizer. Whether your site complies still depends on how you collect, use and retain personal data."
      ],
      [
-      "Can a recruiter see the CV of someone who did not apply to them?",
+      "Can a recruiter see the [mjb_doc lower] of someone who did not apply to them?",
       "Only if your talent access level allows it and the candidate has chosen to be listed in the talent pool."
      ]
     ]
@@ -555,7 +555,7 @@
     "t": "text",
     "h": "How does Modern Job Board make money for you?",
     "p": [
-     "On Pro, the board connects to WooCommerce, so that posting a job, featuring it or opening a CV can each be a product in your store. Employers pay at your checkout with the gateway you already use, and Modern Job Board takes no cut. Each recruiter then sees what they have left on the Packages tab of their dashboard: credits, published and filled jobs, and whether resume access is active."
+     "On Pro, the board connects to WooCommerce, so that posting a job, featuring it or opening a [mjb_doc lower] can each be a product in your store. Employers pay at your checkout with the gateway you already use, and Modern Job Board takes no cut. Each recruiter then sees what they have left on the Packages tab of their dashboard: credits, published and filled jobs, and whether [mjb_doc lower] access is active."
     ]
    },
    {
@@ -575,7 +575,7 @@
     "items": [
      [
       "Create products in WooCommerce",
-      "One for a single post, one for a credit package, one for a CV access pass, with the quantity or duration set on each."
+      "One for a single post, one for a credit package, one for a [mjb_doc lower] access pass, with the quantity or duration set on each."
      ],
      [
       "Employers buy from your board",
@@ -612,12 +612,12 @@
       "An employer pays to feature a single listing."
      ],
      [
-      "CV unlock",
-      "A recruiter pays to open the CV on one application."
+      "[mjb_doc] unlock",
+      "A recruiter pays to open the [mjb_doc lower] on one application."
      ],
      [
-      "CV access pass",
-      "Unlimited CV access for a set number of days."
+      "[mjb_doc] access pass",
+      "Unlimited [mjb_doc lower] access for a set number of days."
      ],
      [
       "Candidate alert packages",
@@ -757,7 +757,7 @@
      [
       "Candidate Dashboard",
       "<code>[[mjb_candidate_dashboard]]</code>",
-      "Profile, saved jobs, applications and CVs"
+      "Profile, saved jobs, applications and [mjb_doc plural lower]"
      ],
      [
       "Recruiter Registration",
@@ -1332,7 +1332,7 @@
      [
       "shield-check",
       "Controlled access",
-      "You decide who may browse the pool. See <a href=\"{f:private-resumes-cvs}\">private CVs</a> for the access levels."
+      "You decide who may browse the pool. See <a href=\"{f:private-resumes-cvs}\">private [mjb_doc plural lower]</a> for the access levels."
      ],
      [
       "settings-2",
@@ -1551,8 +1551,8 @@
       "Approve and edit employer profiles"
      ],
      [
-      "Resumes",
-      "Manage candidates' CVs"
+      "[mjb_doc plural]",
+      "Manage candidates' [mjb_doc plural lower]"
      ],
      [
       "Settings",
@@ -1902,8 +1902,8 @@
      ],
      [
       "file-text",
-      "CVs as plain text only",
-      "Shared CVs are readable as text. PDF and Word files are not extracted."
+      "[mjb_doc plural] as plain text only",
+      "Shared [mjb_doc plural lower] are readable as text. PDF and Word files are not extracted."
      ],
      [
       "mail-check",
@@ -1962,7 +1962,7 @@
  "index": {
   "intro": {
    "h": "What is Modern Job Board?",
-   "p": "Modern Job Board is a job board plugin for WordPress. It runs on your own site, keeps listings, applications and CVs on your own server, and covers the whole hiring flow: posting, search, applications, employer and candidate dashboards, payments and integrations. Each feature below has its own page with screenshots and the details."
+   "p": "Modern Job Board is a job board plugin for WordPress. It runs on your own site, keeps listings, applications and [mjb_doc plural lower] on your own server, and covers the whole hiring flow: posting, search, applications, employer and candidate dashboards, payments and integrations. Each feature below has its own page with screenshots and the details."
   },
   "plans_h": "Which features are in each plan?",
   "plans": [
@@ -1974,7 +1974,7 @@
    [
     "Free",
     "$0",
-    "The core board: posting, predictive search, accounts and dashboards, private CVs, alerts, maps, company pages, blocks, SEO and the admin dashboard. Up to 100 active jobs."
+    "The core board: posting, predictive search, accounts and dashboards, private [mjb_doc plural lower], alerts, maps, company pages, blocks, SEO and the admin dashboard. Up to 100 active jobs."
    ],
    [
     "Pro",
@@ -2004,7 +2004,7 @@
    ],
    [
     "Where is my job board data stored?",
-    "On your own WordPress site and server. Listings, applications and CVs are not held on a third-party platform."
+    "On your own WordPress site and server. Listings, applications and [mjb_doc plural lower] are not held on a third-party platform."
    ],
    [
     "What do I need to run it?",
