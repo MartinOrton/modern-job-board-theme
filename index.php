@@ -18,12 +18,11 @@ if ( have_posts() ) :
 
 		// Login shortcodes render the full jobs-board chrome (hero + container + panels).
 		// Do not wrap them in the editorial page hero/article shell — that breaks padding/colors.
-		// Docs reference uses its own sidebar shell (docs-shell) and must not nest in .container.
+		// The old single-page docs reference uses its own sidebar shell (docs-shell) and must not nest in .container.
 		$is_full_board_layout = $content
 			&& (
 				has_shortcode( $content, 'mjb_candidate_login' )
 				|| has_shortcode( $content, 'mjb_employer_login' )
-				|| is_page( 'docs' )
 				|| false !== strpos( $content, 'docs-shell' )
 			);
 
@@ -39,10 +38,12 @@ if ( have_posts() ) :
 		?>
 		<section class="mjb-content-hero alignfull">
 			<div class="mjb-content-hero__inner container">
+				<?php mjb_theme_breadcrumbs(); ?>
 				<h1 class="mjb-content-hero__title"><?php the_title(); ?></h1>
 				<?php if ( $hero_intro !== '' ) : ?>
 					<p class="mjb-content-hero__intro"><?php echo esc_html( $hero_intro ); ?></p>
 				<?php endif; ?>
+				<?php mjb_theme_the_hero_blocks(); ?>
 			</div>
 		</section>
 
@@ -59,7 +60,7 @@ else :
 	?>
 	<section class="mjb-content-hero alignfull">
 		<div class="mjb-content-hero__inner container">
-			<h1 class="mjb-content-hero__title"><?php esc_html_e( 'Page not found', 'modern-job-board-theme' ); ?></h1>
+			<h1 class="mjb-content-hero__title"><?php esc_html_e( 'Page Not Found', 'modern-job-board-theme' ); ?></h1>
 		</div>
 	</section>
 

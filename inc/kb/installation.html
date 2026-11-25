@@ -1,0 +1,61 @@
+<!-- wp:heading {"anchor":"requirements"} -->
+<h2 id="requirements" class="wp-block-heading">Requirements</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>WordPress 6.4 or later</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>PHP 7.4 or later</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>WooCommerce, only if you want to charge employers (Pro and higher)</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>A web server that can block direct access to one folder (Apache and LiteSpeed do this automatically; nginx needs one rule; see <a href="{{home}}/docs/file-storage-and-server-setup/">File storage and server setup</a>)</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"anchor":"install-the-plugin"} -->
+<h2 id="install-the-plugin" class="wp-block-heading">Install the plugin</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>In wp-admin, go to <strong>Plugins → Add New → Upload Plugin</strong> and upload the <code>modern-job-board</code> zip file. You can also copy the <code>modern-job-board</code> folder into <code>wp-content/plugins/</code> over FTP or SSH.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Select <strong>Activate</strong>. Activation creates the folders the plugin uses for [mjb_doc plural lower], logos and photos under <code>wp-content/</code>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Open <strong>Modern Job Board → Shortcodes Setup</strong> and select <strong>Create Missing Pages</strong>. This adds the jobs page, the job form, both dashboards, and the login and registration pages, each with the right block already on it.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Open <strong>Modern Job Board → Settings</strong> and work through the groups: <strong>Job board</strong> (listing duration, filters, board mode), <strong>People &amp; access</strong> (registration approval, spam protection, [mjb_doc lower] privacy), <strong>Plans &amp; payments</strong> and <strong>Integrations</strong>. The <a href="{{home}}/docs/settings-reference/">Settings reference</a> explains every setting.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:heading {"anchor":"check-that-it-works"} -->
+<h2 id="check-that-it-works" class="wp-block-heading">Check that it works</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Add a few job categories, locations and job types under <strong>Jobs</strong> in wp-admin, so the filters have something to show.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Register a recruiter account on the front end and post a test job with the job form.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Register a candidate account in a private browser window and apply for that job with a [mjb_doc lower].</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Back in the recruiter dashboard, open the application and download the [mjb_doc lower].</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Try to open the [mjb_doc lower]'s folder directly in the browser, for example <code>https://your-site.com/wp-content/mjb-private/</code>. You should get a <strong>403 Forbidden</strong> error. If you can see files, follow <a href="{{home}}/docs/file-storage-and-server-setup/">File storage and server setup</a> before you go live.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"mjb-callout mjb-callout-tip"} -->
+<p class="mjb-callout mjb-callout-tip">If you are on a paid plan, paste your license key under <strong>Settings → License &amp; Plan</strong> before you test the paid features. See <a href="{{home}}/docs/plans-and-license-keys/">Plans and license keys</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"updating"} -->
+<h2 id="updating" class="wp-block-heading">Updating</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Replace the plugin folder (or update from the Plugins screen). Your jobs, settings and accounts are in the database and your files are in <code>wp-content/mjb-private/</code> and <code>wp-content/mjb-brand/</code>, so an update does not touch them. See <a href="{{home}}/docs/going-live-and-updating/">Going live and updating</a> for the full checklist.</p>
+<!-- /wp:paragraph -->
