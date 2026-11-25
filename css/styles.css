@@ -4123,6 +4123,45 @@ body:not(.mjb-demo) a.btn:hover > svg:last-child,
     background: linear-gradient(180deg, var(--primary), #14b8a6);
 }
 
+/* Hover: the teal spotlight that follows the pointer, as on the feature cards
+   (js/script.js sets --mjb-mx / --mjb-my), with a teal border and a slight lift. */
+.mjb-feature-body .mjb-fb-answer {
+    isolation: isolate;
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mjb-feature-body .mjb-fb-answer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(28rem circle at var(--mjb-mx, 15%) var(--mjb-my, 0%), rgba(20, 184, 166, 0.13), transparent 62%);
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    pointer-events: none;
+}
+
+@media (hover: hover) {
+    .mjb-feature-body .mjb-fb-answer:hover {
+        border-color: rgba(15, 118, 110, 0.3);
+        box-shadow: 0 2px 4px rgba(15, 23, 42, 0.04), 0 32px 64px -32px rgba(11, 95, 88, 0.38);
+        transform: translateY(-3px);
+    }
+
+    .mjb-feature-body .mjb-fb-answer:hover::after {
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mjb-feature-body .mjb-fb-answer:hover {
+        transform: none;
+    }
+}
+
 .site-main--content .entry-content .mjb-feature-body .mjb-fb-answer h2.wp-block-heading {
     margin-bottom: 0.85rem;
     font-size: clamp(1.3rem, 2vw, 1.6rem);

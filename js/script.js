@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Feature cards: the teal spotlight follows the pointer (see .mjb-feature-tile::after
-    // and .mjb-fb-cards li in styles.css; the home page cards use js/home.js).
-    document.querySelectorAll('.mjb-feature-tile, .mjb-fb-cards > li').forEach((card) => {
+    // Feature cards and answer boxes: the teal spotlight follows the pointer (see
+    // .mjb-feature-tile::after, .mjb-fb-cards li and .mjb-fb-answer::after in
+    // styles.css; the home page cards use js/home.js).
+    document.querySelectorAll('.mjb-feature-tile, .mjb-fb-cards > li, .mjb-fb-answer').forEach((card) => {
         card.addEventListener('pointermove', (e) => {
             const r = card.getBoundingClientRect();
             card.style.setProperty('--mjb-mx', `${(e.clientX - r.left).toFixed(0)}px`);

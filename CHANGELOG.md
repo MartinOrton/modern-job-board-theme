@@ -2,6 +2,11 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.104] - 2026-11-25
+
+### Changed
+- **The white answer boxes get the feature cards' hover effect.** On the feature pages, the Features page and About Us, hovering the answer box now shows the teal spotlight that follows the mouse, a teal border and a slight lift. The teal plan boxes are unchanged.
+
 ## [0.9.0-beta.103] - 2026-11-25
 
 ### Added
