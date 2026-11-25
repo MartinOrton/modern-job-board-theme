@@ -1,0 +1,57 @@
+<!-- wp:paragraph -->
+<p>The Shortcodes Setup screen creates these pages for you. If you prefer to build them yourself, create a page and add the block, or paste the shortcode into a Shortcode block.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"recommended-pages"} -->
+<h2 id="recommended-pages" class="wp-block-heading">Recommended pages</h2>
+<!-- /wp:heading -->
+
+<!-- wp:table {"className":"mjb-stack-table"} -->
+<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>Page</th><th>Block</th><th>Shortcode</th></tr></thead><tbody><tr><td>Jobs search</td><td>Job Listings</td><td><code>[mjb_jobs]</code></td></tr><tr><td>Post a job</td><td>Job Submission Form</td><td><code>[mjb_job_form]</code></td></tr><tr><td>Recruiter dashboard</td><td>Recruiter Dashboard</td><td><code>[mjb_dashboard]</code></td></tr><tr><td>Candidate dashboard</td><td>Candidate Dashboard</td><td><code>[mjb_candidate_dashboard]</code></td></tr><tr><td>Recruiter login</td><td>Recruiter Login</td><td><code>[mjb_employer_login]</code></td></tr><tr><td>Candidate login</td><td>Candidate Login</td><td><code>[mjb_candidate_login]</code></td></tr><tr><td>Recruiter registration</td><td>Recruiter Registration</td><td><code>[mjb_employer_registration]</code></td></tr><tr><td>Candidate registration</td><td>Candidate Registration</td><td><code>[mjb_candidate_registration]</code></td></tr><tr><td>Jobs map (optional)</td><td>-</td><td><code>[mjb_jobs_map]</code></td></tr><tr><td>Job alerts (optional)</td><td>-</td><td><code>[mjb_job_alerts]</code></td></tr><tr><td>Talent pool (optional)</td><td>-</td><td><code>[mjb_talent_pool]</code></td></tr><tr><td>Messages (optional)</td><td>-</td><td><code>[mjb_messages]</code></td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:paragraph -->
+<p>The company directory does not need a page: it is built in at <code>/jobs/companies/</code>, and each company gets its own page there.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"pages-the-plugin-creates-for-you"} -->
+<h2 id="pages-the-plugin-creates-for-you" class="wp-block-heading">Pages the plugin creates for you</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Open <strong>Modern Job Board → Shortcodes Setup</strong>. The screen lists each page the board needs and whether it exists. <strong>Create Missing Pages</strong> adds only the ones that are missing; it never replaces a page you have edited.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"mjb-callout mjb-callout-note"} -->
+<p class="mjb-callout mjb-callout-note">Keep each block on one page only. The plugin finds its pages by the block or shortcode on them, so two job forms on two pages can send links to the wrong one.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"add-the-board-to-your-menus"} -->
+<h2 id="add-the-board-to-your-menus" class="wp-block-heading">Add the board to your menus</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Three shortcodes are made for menus and headers. Each one shows the right link for the visitor:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><code>[mjb_job_seeker]</code> shows <strong>Log in</strong> and <strong>Register</strong> to visitors and links to the candidate dashboard once they are signed in. Add <code>variant="mobile"</code> for a mobile menu drawer.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><code>[mjb_recruiter]</code> does the same for recruiters.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><code>[mjb_post_job]</code> links to the job form. On a careers site the job form sends visitors to the jobs list instead.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>If your theme's menu cannot run shortcodes, add normal menu links to the Jobs, Post a Job and dashboard pages under <strong>Appearance → Menus</strong>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"job-board-urls"} -->
+<h2 id="job-board-urls" class="wp-block-heading">Job board URLs</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The jobs page uses readable search URLs built from the filters, for example <code>/jobs/in/remote/category/engineering/</code>. Each job lives at a path built from its location and title. These URLs work out of the box; if a job or search page returns a 404 error after you change the jobs page, go to <strong>Settings → Permalinks</strong> and select <strong>Save Changes</strong> to refresh WordPress's URL rules.</p>
+<!-- /wp:paragraph -->
