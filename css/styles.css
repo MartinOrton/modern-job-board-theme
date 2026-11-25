@@ -3044,6 +3044,27 @@ footer {
     transform: scaleX(1);
 }
 
+/* Teal spotlight that follows the pointer, as on the home page feature cards
+   (js/script.js sets --mjb-mx / --mjb-my). */
+.mjb-feature-tile {
+    isolation: isolate;
+}
+
+.mjb-feature-tile::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(20rem circle at var(--mjb-mx, 85%) var(--mjb-my, 0%), rgba(20, 184, 166, 0.16), transparent 62%);
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    pointer-events: none;
+}
+
+.mjb-feature-tile:hover::after {
+    opacity: 1;
+}
+
 .mjb-feature-tile__icon {
     flex: 0 0 auto;
     display: inline-flex;
@@ -4252,10 +4273,18 @@ body:not(.mjb-demo) a.btn:hover > svg:last-child,
     font-size: 0.95rem;
     line-height: 1.6;
     color: var(--text-secondary);
-    background: #fff;
+    background: radial-gradient(18rem circle at var(--mjb-mx, 85%) var(--mjb-my, 0%), rgba(20, 184, 166, calc(0.16 * var(--mjb-glow))), transparent 62%) #fff;
     border: 1px solid var(--border);
     border-radius: 1rem;
-    transition: border-color 0.25s ease, box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: border-color 0.25s ease, box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), --mjb-glow 0.45s ease;
+}
+
+/* Glow strength for the icon cards' pointer spotlight (0 at rest, 1 on hover).
+   Registered so it can fade; browsers without @property simply switch it. */
+@property --mjb-glow {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
 }
 
 .mjb-feature-body .mjb-fb-cards li strong {
@@ -4296,6 +4325,7 @@ body:not(.mjb-demo) a.btn:hover > svg:last-child,
 
 @media (hover: hover) {
     .mjb-feature-body .mjb-fb-cards li:hover {
+        --mjb-glow: 1;
         border-color: rgba(15, 118, 110, 0.3);
         box-shadow: 0 18px 34px -26px rgba(11, 95, 88, 0.5);
         transform: translateY(-2px);

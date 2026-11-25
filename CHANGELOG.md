@@ -2,6 +2,11 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.102] - 2026-11-25
+
+### Changed
+- **Feature cards on every page get the home page's teal hover glow.** The feature tiles (Features page and "More features" on each feature page) and the icon cards on feature pages and About Us now show the soft teal spotlight that follows the mouse, as the home page feature cards do. The lift, teal border and gradient top line the tiles already had are unchanged.
+
 ## [0.9.0-beta.101] - 2026-11-25
 
 ### Changed

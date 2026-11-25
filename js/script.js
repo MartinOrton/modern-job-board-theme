@@ -1,4 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Feature cards: the teal spotlight follows the pointer (see .mjb-feature-tile::after
+    // and .mjb-fb-cards li in styles.css; the home page cards use js/home.js).
+    document.querySelectorAll('.mjb-feature-tile, .mjb-fb-cards > li').forEach((card) => {
+        card.addEventListener('pointermove', (e) => {
+            const r = card.getBoundingClientRect();
+            card.style.setProperty('--mjb-mx', `${(e.clientX - r.left).toFixed(0)}px`);
+            card.style.setProperty('--mjb-my', `${(e.clientY - r.top).toFixed(0)}px`);
+        });
+    });
+
     // Device screenshots: a short fade-in, browser window first, then the
     // phone, when they come into view (html.mjb-intro is set in the head by
     // mjb_theme_intro_flag(); see .mjb-intro in styles.css).
