@@ -1,0 +1,73 @@
+<!-- wp:heading {"anchor":"launch-checklist"} -->
+<h2 id="launch-checklist" class="wp-block-heading">Launch checklist</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Upload and activate the plugin on the live site. Activation creates the storage folders and their protection files.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>On nginx, add the deny rule for <code>wp-content/mjb-private/</code>. See <a href="{{home}}/docs/file-storage-and-server-setup/">File storage and server setup</a>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Open <strong>Shortcodes Setup</strong> and create any missing pages.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Enter your license key under <strong>Settings → License &amp; Plan</strong>, if you have a paid plan.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Set up SMTP so emails arrive. See <a href="{{home}}/docs/email-notifications/">Email notifications and templates</a>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Add your Google Maps and reCAPTCHA keys if you use them.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Make sure search engines are allowed: <strong>Settings → Reading → Search engine visibility</strong> must be unticked on the live site. The admin dashboard warns you if it is not.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Set up your page cache exclusions. See <a href="{{home}}/docs/caching-and-cdns/">Caching and CDNs</a>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Run a test: browse jobs, apply with a [mjb_doc lower], download the [mjb_doc lower] as the recruiter, and check that the private folder returns <strong>403</strong>.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"mjb-callout mjb-callout-warning"} -->
+<p class="mjb-callout mjb-callout-warning">Do not leave <code>define( 'MJB_LICENSE_PLAN', … )</code> in the live site's <code>wp-config.php</code> unless you mean to. It overrides the license key.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"updating-the-plugin"} -->
+<h2 id="updating-the-plugin" class="wp-block-heading">Updating the plugin</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Take a backup first (see below).</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Replace the plugin folder, or update from the <strong>Plugins</strong> screen.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Do not delete <code>wp-content/mjb-private/</code> or <code>wp-content/mjb-brand/</code>. An update never touches them.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Test one [mjb_doc lower] download and check that the private folder still returns <strong>403</strong>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Clear your page cache after a major release.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Everything you have set up, including jobs, applications, accounts and settings, is in the WordPress database and survives an update.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"backups"} -->
+<h2 id="backups" class="wp-block-heading">Backups</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Make sure your backups include:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>the WordPress database;</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><code>wp-content/mjb-private/</code> ([mjb_doc plural lower]);</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><code>wp-content/mjb-brand/</code> (logos and photos).</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Many backup plugins skip folders they do not recognise, so check that these two are included. Keep backups somewhere other than the web server, and remember that [mjb_doc plural lower] are personal information: protect your backups as carefully as the site.</p>
+<!-- /wp:paragraph -->

@@ -1,0 +1,31 @@
+<!-- wp:paragraph -->
+<p>These commands are for working on the plugin's source code, from the root of the plugin repository. They need PHP and Composer.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:table {"className":"mjb-stack-table"} -->
+<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>Command</th><th>What it does</th></tr></thead><tbody><tr><td><code>composer install</code></td><td>Installs the development dependencies</td></tr><tr><td><code>composer test</code></td><td>Runs the PHPUnit test suite</td></tr><tr><td><code>composer phpcs</code></td><td>Checks the code against the WordPress coding standards</td></tr><tr><td><code>composer make-pot</code></td><td>Rebuilds the translation template</td></tr><tr><td><code>composer sync-local</code></td><td>Copies the plugin into a local WordPress site (Windows)</td></tr><tr><td><code>composer seed-demo</code></td><td>Fills a local site with demo jobs, companies and accounts</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:heading {"anchor":"test-on-a-copy-of-your-site"} -->
+<h2 id="test-on-a-copy-of-your-site" class="wp-block-heading">Test on a copy of your site</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Always try new versions and custom code on a staging or local copy first. On a copy you can force a plan without a license key:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>define( 'MJB_LICENSE_PLAN', 'business' );</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>and block search engines under <strong>Settings → Reading</strong>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"translations"} -->
+<h2 id="translations" class="wp-block-heading">Translations</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Modern Job Board is translation-ready. Translations use the <code>modern-job-board</code> text domain, and <code>composer make-pot</code> builds the template translators start from.</p>
+<!-- /wp:paragraph -->

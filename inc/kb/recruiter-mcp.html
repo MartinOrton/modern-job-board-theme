@@ -1,0 +1,131 @@
+<!-- wp:paragraph -->
+<p>The AI assistant for recruiters lets a recruiter run their hiring by chatting with ChatGPT, Claude, Gemini or another AI assistant. They can ask it things like &#8220;Which of my jobs have new applications?&#8221; or &#8220;Move everyone still New after 14 days to Reviewed&#8221;, and the assistant lists and updates their jobs, reviews applications and edits their company on the board, within the same limits as the recruiter dashboard.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>MCP stands for Model Context Protocol, the open standard AI assistants use to work with other systems. The first section below is all a recruiter needs; the rest is the technical reference.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>POST /wp-json/mjb/v1/mcp</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>The route speaks JSON-RPC 2.0 with the methods <code>initialize</code>, <code>tools/list</code> and <code>tools/call</code>. It is only registered on plans that include the REST API.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"who-can-use-it"} -->
+<h2 id="who-can-use-it" class="wp-block-heading">Who can use it</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Every call must come from a signed-in user with the recruiter (<code>employer</code>) role. Candidates, visitors and administrators who are not recruiters are refused. Results are limited to that recruiter's own jobs, the applications to those jobs, and their company. There is no tool for candidate logins or for checkout.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"which-ai-assistants-can-connect"} -->
+<h2 id="which-ai-assistants-can-connect" class="wp-block-heading">Which AI assistants can connect</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Any AI assistant that can add a custom MCP connector. There are two ways to connect, and both give the assistant the same tools.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>One-click sign-in</strong>, for <strong>ChatGPT</strong>, <strong>Claude</strong> and other assistants that support OAuth. The recruiter connects it themselves in about a minute. Custom connectors are only available on some ChatGPT and Claude plans.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>An application password</strong>, for developer tools such as <strong>Claude Code</strong> and <strong>Gemini CLI</strong> that can send a fixed <code>Authorization</code> header. Usually set up by whoever looks after the website.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"level":3,"anchor":"connect-with-one-click-sign-in"} -->
+<h3 id="connect-with-one-click-sign-in" class="wp-block-heading">Connect with one-click sign-in</h3>
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>In the recruiter dashboard, open <strong>AI assistant</strong> and copy the server address.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>In ChatGPT or Claude, add a custom connector and paste the address as the server URL. Leave any client ID and secret fields empty.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>The board's sign-in page opens. Sign in as the recruiter, check what the assistant will and will not be able to do, and choose <strong>Allow</strong>.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>The assistant never sees the recruiter's password. It gets a token that only works for that recruiter's MCP tools. Every connected assistant is listed under <strong>AI assistant</strong> in the dashboard, where the recruiter can disconnect it at any time. Changing the account's password, or removing its recruiter role, disconnects all of them.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>For developers: the sign-in is OAuth 2.1 with PKCE (<code>S256</code>) and dynamic client registration. Clients discover it from the <code>WWW-Authenticate</code> header on a <code>401</code> response, or from <code>/.well-known/oauth-protected-resource</code> and <code>/.well-known/oauth-authorization-server</code>. The scope is <code>mjb:recruiter</code>. Access tokens last an hour; refresh tokens last 30 days and are replaced each time they are used. The board must be served over HTTPS.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3,"anchor":"connect-with-an-application-password"} -->
+<h3 id="connect-with-an-application-password" class="wp-block-heading">Connect with an application password</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Create an <a href="{{home}}/docs/rest-api-authentication/">application password</a> for the recruiter's account. The header value is <code>Basic</code> followed by the recruiter's user name and application password, joined by a colon and Base64-encoded:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>printf '%s' "RECRUITER:APPLICATION_PASSWORD" | base64</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>Claude Code:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>claude mcp add --transport http job-board \
+  https://example.com/wp-json/mjb/v1/mcp \
+  --header "Authorization: Basic BASE64_CREDENTIALS"</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>Gemini CLI, in <code>settings.json</code>:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>{
+  "mcpServers": {
+    "job-board": {
+      "httpUrl": "https://example.com/wp-json/mjb/v1/mcp",
+      "headers": { "Authorization": "Basic BASE64_CREDENTIALS" }
+    }
+  }
+}</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"mjb-callout mjb-callout-note"} -->
+<p class="mjb-callout mjb-callout-note">One-click sign-in needs Modern Job Board 0.9.0-beta.178 or later. The application-password route needs 0.9.0-beta.177 or later: earlier versions sent two tool schemas in a form that standard MCP clients reject, so the assistant found no tools.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"example"} -->
+<h2 id="example" class="wp-block-heading">Example</h2>
+<!-- /wp:heading -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>curl -u "RECRUITER:APPLICATION_PASSWORD" \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"list_my_jobs","arguments":{}}}' \
+  "https://example.com/wp-json/mjb/v1/mcp"</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:heading {"anchor":"tools"} -->
+<h2 id="tools" class="wp-block-heading">Tools</h2>
+<!-- /wp:heading -->
+
+<!-- wp:table {"className":"mjb-stack-table"} -->
+<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>Tool</th><th>What it does</th></tr></thead><tbody><tr><td><code>list_my_jobs</code></td><td>The recruiter's jobs as open, closed or draft, with application counts. Open means published and not filled.</td></tr><tr><td><code>read_job</code>, <code>create_or_update_job</code></td><td>Read or save one of the recruiter's jobs. Publishing follows the same limits and credit rules as the job form; on a paid board with no credits it stops. It never opens the cart.</td></tr><tr><td><code>close_or_reopen_job</code></td><td>Close marks the job filled. Reopen clears that flag and republishes a draft or expired job.</td></tr><tr><td><code>list_applications</code>, <code>read_application</code>, <code>set_application_status</code></td><td>Filter by All, New, Reviewed, Shortlisted, Rejected or Hired. The [mjb_doc lower] is included only when the candidate shared it, as plain text; PDF and Word files are not extracted, and the file's location is never returned.</td></tr><tr><td><code>bulk_set_application_status</code></td><td>Change many applications at once, by ID, or by stage and age in days (<code>unreviewed</code> means New). Other recruiters' applications are skipped.</td></tr><tr><td><code>add_application_note</code>, <code>read_application_notes</code></td><td>Notes on an application that can only be added to. They do not change the application, its stage or your staff notes.</td></tr><tr><td><code>read_company_profile</code>, <code>update_company_profile</code></td><td>Name, tagline, description, website, LinkedIn, X, Facebook and a logo URL. Logo files are uploaded in the dashboard.</td></tr><tr><td><code>read_package_status</code></td><td>The plan and remaining listing credits. Posting and featuring share one credit balance.</td></tr><tr><td><code>get_job_performance_analytics</code></td><td>All-time views, applications and apply rate per job. There is no history over time, referrers or clicks.</td></tr><tr><td><code>get_recruitment_funnel_summary</code></td><td>How many applications are at each stage</td></tr><tr><td><code>score_or_match_candidates</code></td><td>Ranks candidates by keyword overlap between a job (or requirements text) and their [mjb_doc plural lower]. If a [mjb_doc lower] was not shared, or is a PDF or Word file, the ranking uses the application message and says so.</td></tr><tr><td><code>analyze_job_description</code></td><td>Checks a job advert for expected skills, a requirements section, clear salary, sentence length and a fixed list of non-inclusive words. It runs on your server; no outside AI service is used.</td></tr><tr><td><code>generate_candidate_outreach_draft</code></td><td>Fills in the Outreach Draft template. It does not send anything.</td></tr><tr><td><code>send_application_email</code> (also <code>notify_candidate</code>)</td><td>Sends the Interview Invitation, Application Declined or Application Status email. Respects the candidate's email choices. Does not change the stage.</td></tr><tr><td><code>feature_job</code> (also <code>promote_job</code>)</td><td>Spends one credit and features the job. Refused with no credits. This is not the dashboard's checkout button.</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:paragraph {"className":"mjb-callout mjb-callout-tip"} -->
+<p class="mjb-callout mjb-callout-tip">Start a new assistant connection with <code>list_my_jobs</code> and <code>get_recruitment_funnel_summary</code>: they give it the context for most follow-up questions.</p>
+<!-- /wp:paragraph -->

@@ -1,0 +1,87 @@
+<!-- wp:heading {"anchor":"where-files-are-stored"} -->
+<h2 id="where-files-are-stored" class="wp-block-heading">Where files are stored</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>User files are kept under <code>wp-content/</code>, not in the plugin folder (an update would delete them) and not in the Media Library (files there are public).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:table {"className":"mjb-stack-table"} -->
+<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>Folder</th><th>Holds</th><th>Web access</th></tr></thead><tbody><tr><td><code>wp-content/mjb-private/</code></td><td>[mjb_doc plural], under names that cannot be guessed</td><td>Must be denied. [mjb_doc plural] are only sent through checked download links.</td></tr><tr><td><code>wp-content/mjb-brand/</code></td><td>Company logos and candidate photos</td><td>Public by design, under names that cannot be guessed</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:paragraph -->
+<p>Both folders are created when the plugin is activated, with <code>resumes/</code>, <code>logos/</code> and <code>photos/</code> inside, sorted by year and month. WordPress must be able to write to them; the usual folder permission is <code>755</code>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"block-direct-access-to-cvs"} -->
+<h2 id="block-direct-access-to-cvs" class="wp-block-heading">Block direct access to [mjb_doc plural lower]</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>[mjb_doc plural] are only ever sent through a download link that checks who is asking. A direct request for a file in <code>wp-content/mjb-private/</code> must fail.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3,"anchor":"apache-and-litespeed"} -->
+<h3 id="apache-and-litespeed" class="wp-block-heading">Apache and LiteSpeed</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The plugin writes a <code>.htaccess</code> file into <code>wp-content/mjb-private/</code> that denies all access. This works on most hosts, including shared cPanel hosting, with no extra set-up.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3,"anchor":"iis"} -->
+<h3 id="iis" class="wp-block-heading">IIS</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The plugin writes a <code>web.config</code> file that denies all users. Make sure no parent <code>web.config</code> overrides it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3,"anchor":"nginx"} -->
+<h3 id="nginx" class="wp-block-heading">nginx</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>nginx ignores <code>.htaccess</code> files, so add this rule inside your site's <code>server { }</code> block (adjust the path if WordPress is in a sub-folder):</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code># Modern Job Board: CVs are never served directly
+location ~* /wp-content/mjb-private/ {
+    deny all;
+    return 403;
+}</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>Then test the configuration and reload nginx:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>sudo nginx -t &amp;&amp; sudo systemctl reload nginx</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>On managed hosts where you cannot edit nginx yourself, ask your host's support to add the rule.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"mjb-callout mjb-callout-note"} -->
+<p class="mjb-callout mjb-callout-note">Older versions stored files in <code>wp-content/plugins/modern-job-board/mjb-private/</code> or <code>wp-content/uploads/mjb-private/</code>. They are still read from there if present, so keep a deny rule for those paths too until you are sure they are empty.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"check-that-it-works"} -->
+<h2 id="check-that-it-works" class="wp-block-heading">Check that it works</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Open <code>https://your-site.com/wp-content/mjb-private/</code> in a browser. You must get <strong>403 Forbidden</strong>. Then sign in as a recruiter and download a [mjb_doc lower] from an application: that must work.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"cloudflare-and-other-cdns"} -->
+<h2 id="cloudflare-and-other-cdns" class="wp-block-heading">Cloudflare and other CDNs</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Never let a CDN cache anything under <code>wp-content/mjb-private/</code>. If you use a "cache everything" rule, exclude that path. Logos and photos in <code>mjb-brand</code> can be cached safely.</p>
+<!-- /wp:paragraph -->
