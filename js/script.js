@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }, { threshold: 0.15 });
-        document.querySelectorAll('.mjb-devices').forEach((set) => seen.observe(set));
+        document.querySelectorAll('.mjb-devices, .mjb-spot').forEach((set) => seen.observe(set));
     })();
 
     document.querySelectorAll('[data-demo-path]').forEach((link) => {

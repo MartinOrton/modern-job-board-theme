@@ -4133,6 +4133,219 @@ body:not(.mjb-demo) a.btn:hover > svg:last-child,
     color: var(--text-primary);
 }
 
+/*
+ * Spot illustrations in the answer and plan boxes (inc/feature-spots.php):
+ * a tinted back panel, a card drawn for the topic and an icon chip. The panel
+ * and the chip float on their own slow rhythms, like the hero's chart chip;
+ * the plan box runs on different timings so two boxes never move together.
+ */
+.mjb-feature-body .has-mjb-spot {
+    display: grid;
+    grid-template-columns: 8.5rem minmax(0, 1fr);
+    column-gap: clamp(1.25rem, 3vw, 2.25rem);
+    align-items: center;
+}
+
+.mjb-feature-body .mjb-spot-text {
+    min-width: 0;
+}
+
+.mjb-spot {
+    width: 8.5rem;
+    transition:
+        opacity 0.8s ease,
+        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mjb-spot svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.mjb-intro .mjb-spot:not(.is-in) {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+}
+
+.mjb-spot__back,
+.mjb-spot__card,
+.mjb-spot__chip,
+.mjb-spot__bob,
+.mjb-spot__fill {
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+}
+
+.mjb-spot__back {
+    animation: mjb-spot-back 9s ease-in-out infinite alternate;
+}
+
+.mjb-spot__card {
+    animation: mjb-spot-card 12s ease-in-out infinite alternate;
+}
+
+.mjb-spot__chip {
+    animation: mjb-spot-chip 6.5s ease-in-out infinite;
+}
+
+.mjb-fb-plan .mjb-spot__back {
+    animation-duration: 10.5s;
+    animation-delay: -4s;
+}
+
+.mjb-fb-plan .mjb-spot__chip {
+    animation-duration: 7.5s;
+    animation-delay: -3s;
+}
+
+@keyframes mjb-spot-back {
+    from {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-4px, 5px) rotate(-2.5deg);
+    }
+}
+
+@keyframes mjb-spot-card {
+    from {
+        transform: translate(0, 0);
+    }
+
+    to {
+        transform: translate(0, -2px);
+    }
+}
+
+@keyframes mjb-spot-chip {
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(0, -6px);
+    }
+}
+
+/* Small touches inside a card: a typing caret, a pin, a bell, typing dots */
+.mjb-spot__blink {
+    animation: mjb-spot-blink 1.1s steps(1, end) infinite;
+}
+
+@keyframes mjb-spot-blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.mjb-spot__bob {
+    animation: mjb-spot-bob 3.4s ease-in-out infinite;
+}
+
+@keyframes mjb-spot-bob {
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(0, -3px);
+    }
+}
+
+.mjb-spot__swing {
+    transform-box: fill-box;
+    transform-origin: 50% 0;
+    animation: mjb-spot-swing 5s ease-in-out infinite;
+}
+
+@keyframes mjb-spot-swing {
+    0%,
+    60%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    70% {
+        transform: rotate(12deg);
+    }
+
+    80% {
+        transform: rotate(-9deg);
+    }
+
+    90% {
+        transform: rotate(4deg);
+    }
+}
+
+.mjb-spot__dot {
+    animation: mjb-spot-dot 1.4s ease-in-out infinite;
+}
+
+@keyframes mjb-spot-dot {
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    40% {
+        opacity: 1;
+    }
+}
+
+.mjb-spot__pulse {
+    animation: mjb-spot-pulse 3s ease-in-out infinite;
+}
+
+@keyframes mjb-spot-pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.45;
+    }
+}
+
+.mjb-spot__fill {
+    transform-origin: 0 50%;
+    animation: mjb-spot-fill 6s ease-in-out infinite alternate;
+}
+
+@keyframes mjb-spot-fill {
+    from {
+        transform: scaleX(0.8);
+    }
+
+    to {
+        transform: scaleX(1);
+    }
+}
+
+@media (max-width: 600px) {
+    .mjb-feature-body .has-mjb-spot {
+        display: block;
+    }
+
+    .mjb-spot {
+        width: 5.5rem;
+        margin: 0 0 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mjb-spot,
+    .mjb-spot * {
+        animation: none !important;
+    }
+}
+
 /* Text that runs on: a second paragraph, or a short intro before a list or
    table, gets the same 20px gap as a section heading has above its list. */
 .site-main--content .entry-content .mjb-feature-body p + p {

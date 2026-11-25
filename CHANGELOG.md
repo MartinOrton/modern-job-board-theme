@@ -2,6 +2,12 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.103] - 2026-11-25
+
+### Added
+- **Animated illustrations in the question boxes.** The answer box at the top of each feature page, the Features page and About Us, and the "Is it free?" plan box on each feature page, now show a small layered illustration to the left of the text: a tinted back panel, a card drawn for the page's topic (the job form, search suggestions, a map with pins, a chat with the AI assistant and so on) and an icon chip. The panel and chip float slowly on their own timings, like the chart chip in the home hero, with one small touch per card such as a blinking caret or a bobbing pin. Plan boxes show a mini pricing card in the plan's colours: teal for Free, orange for Pro, deep teal for Business.
+- The illustrations are added when the page is shown, so page content in the editor is unchanged. They fade in as they scroll into view, stack above the text on phones, and stay still for visitors who prefer reduced motion. Screen readers skip them.
+
 ## [0.9.0-beta.102] - 2026-11-25
 
 ### Changed

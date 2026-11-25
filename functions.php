@@ -5,7 +5,7 @@
  * @package ModernJobBoardTheme
  */
 
-define( 'MJB_THEME_VERSION', '0.9.0-beta.102' );
+define( 'MJB_THEME_VERSION', '0.9.0-beta.103' );
 
 if ( ! function_exists( 'mjb_theme_setup' ) ) {
 	/**
@@ -618,6 +618,11 @@ function mjb_theme_render_nav_icon( $name, $size = 18 ) {
  * Feature pages: "Learn More" links on the home feature cards and the /features/ pages they point to.
  */
 require get_template_directory() . '/inc/feature-pages.php';
+
+/**
+ * Animated spot illustrations in the answer and plan boxes.
+ */
+require get_template_directory() . '/inc/feature-spots.php';
 
 /**
  * Keep the version in the home page badge ("WordPress Plugin • v0.9.0-beta.N")
