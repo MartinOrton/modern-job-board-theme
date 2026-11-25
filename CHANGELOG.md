@@ -2,6 +2,11 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.101] - 2026-11-25
+
+### Changed
+- **Home hero: the two panels behind the product card now animate.** They fade in one after the other on page load, then each floats on its own slow rhythm (8s and 10.5s), independently of the analytics chip. Visitors who ask their system for reduced motion see them still.
+
 ## [0.9.0-beta.100] - 2026-11-25
 
 ### Changed
