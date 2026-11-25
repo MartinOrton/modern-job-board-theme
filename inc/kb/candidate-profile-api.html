@@ -1,0 +1,47 @@
+<!-- wp:paragraph -->
+<p>These routes act as a signed-in candidate and only ever return that candidate's own profile.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"read-the-profile"} -->
+<h2 id="read-the-profile" class="wp-block-heading">Read the profile</h2>
+<!-- /wp:heading -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>GET /wp-json/mjb/v2/candidate/profile</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>{
+  "id": 15,
+  "email": "seeker@example.com",
+  "first_name": "Sam",
+  "last_name": "Lee",
+  "headline": "Product Designer",
+  "resume_id": 90,
+  "resume_url": "https://example.com/?mjb_download=resume&amp;…"
+}</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:heading {"anchor":"update-the-profile"} -->
+<h2 id="update-the-profile" class="wp-block-heading">Update the profile</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Update one or more of <code>first_name</code>, <code>last_name</code> and <code>headline</code>. At least one is required.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>PATCH /wp-json/mjb/v2/candidate/profile</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>curl -X POST -u "candidate:xxxx xxxx xxxx xxxx" \
+  -H "Content-Type: application/json" \
+  -H "X-HTTP-Method-Override: PATCH" \
+  -d '{"headline":"Senior Product Designer"}' \
+  "https://example.com/wp-json/mjb/v2/candidate/profile"</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>[mjb_doc plural] and photos are uploaded in the candidate dashboard, not through the API.</p>
+<!-- /wp:paragraph -->

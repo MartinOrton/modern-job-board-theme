@@ -1,0 +1,2129 @@
+{
+ "pages": {
+  "frontend-job-submission": [
+   {
+    "t": "text",
+    "h": "What does the job submission form look like?",
+    "p": [
+     "The form sits on your Post a Job page and asks for five things: a job title, a description, the company, how candidates should apply, and where notifications should go. Recruiters pick a company they already manage or create a new one in the same step, so a first-time employer can register, add their company and submit a listing in one sitting."
+    ]
+   },
+   {
+    "t": "shot",
+    "img": "job-form",
+    "alt": "The Modern Job Board job submission form with job title, description, company, application method and notification email fields",
+    "cap": "The Post a Job form as a signed-in recruiter sees it.",
+    "w": 1001,
+    "hgt": 1032,
+    "devices": true,
+    "dalt": "The Post a Job page on desktop: the job form with title, description, company and application method filled in",
+    "malt": "The job form on a phone, with the same fields stacked in one column"
+   },
+   {
+    "t": "steps",
+    "h": "How does a job get from the form to your board?",
+    "items": [
+     [
+      "Put the form on a page",
+      "The Shortcodes Setup screen creates a Post a Job page for you, or you can place <code>[[mjb_job_form]]</code> on any page."
+     ],
+     [
+      "A recruiter fills it in",
+      "They choose on-site applications or an external apply URL, and the address that should hear about new applicants."
+     ],
+     [
+      "The listing is published",
+      "It goes live under your posting rules: at once with auto-approve for employer submissions, or after your review."
+     ],
+     [
+      "It runs its course",
+      "The job closes by itself when its listing duration ends, unless the recruiter marks it filled or republishes it first."
+     ]
+    ]
+   },
+   {
+    "t": "cards",
+    "h": "What can employers do after posting a job?",
+    "items": [
+     [
+      "pencil",
+      "Edit from the dashboard",
+      "Recruiters update their own listings from the Jobs tab of the recruiter dashboard."
+     ],
+     [
+      "circle-check-big",
+      "Mark a job filled",
+      "Filled jobs can be left out of public lists and search automatically."
+     ],
+     [
+      "calendar-clock",
+      "Schedule a go-live date",
+      "Write the listing today and let it publish itself later."
+     ],
+     [
+      "refresh-cw",
+      "Republish an expired job",
+      "Bring a closed role back without typing it again."
+     ],
+     [
+      "star",
+      "Feature a listing",
+      "Featured jobs carry a Featured badge and stand out in the results."
+     ],
+     [
+      "chart-column",
+      "Watch performance",
+      "Views, applications and conversion rate are shown for every job."
+     ]
+    ]
+   },
+   {
+    "t": "table",
+    "h": "Which fields are on the job form?",
+    "rows": [
+     [
+      "Field",
+      "What it is for"
+     ],
+     [
+      "Job Title",
+      "The role name shown on job cards and on the job page."
+     ],
+     [
+      "Description",
+      "The full advert: the role, the requirements and the benefits."
+     ],
+     [
+      "Company",
+      "One of the recruiter's existing companies, or Create New Company with a name."
+     ],
+     [
+      "Application Method",
+      "Email (Internal Form) collects applications on your site. External URL sends candidates to another address."
+     ],
+     [
+      "Notification Email",
+      "Where the recruiter is told about each new application."
+     ],
+     [
+      "Custom fields (Pro)",
+      "Extra fields you define, such as a salary band. See <a href=\"{f:custom-fields-imports-pro}\">custom fields and imports</a>."
+     ]
+    ]
+   },
+   {
+    "t": "plan",
+    "h": "Is frontend job submission free?",
+    "p": "Yes. The form, recruiter accounts and the recruiter dashboard are in the Free plan, which allows up to 100 active listings. Pro lifts that limit and lets you <a href=\"{f:woocommerce-monetization-pro}\">take payment before a job is published</a>."
+   },
+   {
+    "t": "faq",
+    "h": "Job submission questions",
+    "items": [
+     [
+      "Do employers need access to wp-admin to post a job?",
+      "No. Employers post from the form on your website and manage their listings in the recruiter dashboard. They never see the WordPress admin."
+     ],
+     [
+      "Can I review jobs before they go live?",
+      "Yes. New listings can wait for your approval. If you would rather not moderate, auto-approve publishes employer submissions immediately."
+     ],
+     [
+      "Can employers send applicants to their own careers site?",
+      "Yes. Choosing External URL as the application method sends candidates to the address the employer enters instead of the on-site application form."
+     ],
+     [
+      "How does Modern Job Board deal with spam?",
+      "Applications and registrations are protected by a honeypot that is always on, optional reCAPTCHA v2 and limits on how many submissions one IP address can make."
+     ]
+    ]
+   }
+  ],
+  "predictive-search-pretty-urls": [
+   {
+    "t": "text",
+    "h": "What does predictive job search look like?",
+    "p": [
+     "As a candidate types in the Keywords box, a list of matching job titles opens underneath, and picking one fills the search. The location, category, job type and company boxes each offer suggestions in the same way. Results refresh beside the filters without the page reloading."
+    ]
+   },
+   {
+    "t": "shot",
+    "img": "search",
+    "alt": "Job search filters with a list of suggested job titles open under the keywords box, beside job result cards",
+    "cap": "Typing “des” in the Keywords box suggests matching job titles on the demo board.",
+    "w": 1680,
+    "hgt": 548,
+    "devices": true,
+    "dalt": "The jobs page on desktop with “des” typed in the Keywords box and a list of matching job titles under it, beside the job results",
+    "malt": "Job search on a phone with the keyword suggestions open under the Keywords box"
+   },
+   {
+    "t": "steps",
+    "h": "How does a search become a shareable URL?",
+    "items": [
+     [
+      "The candidate picks filters",
+      "Any mix of keyword, location, category, job type and company."
+     ],
+     [
+      "The address is rewritten",
+      "Each filter becomes a pair of path segments under /jobs/, always in the same order."
+     ],
+     [
+      "Chips show what is active",
+      "A chip such as “Location: Remote” appears under the form, with Clear all beside it."
+     ],
+     [
+      "The URL works on its own",
+      "Open it in a new tab or send it to someone, and the same filtered results load."
+     ]
+    ]
+   },
+   {
+    "t": "table",
+    "h": "What do pretty search URLs look like?",
+    "rows": [
+     [
+      "Search",
+      "Address"
+     ],
+     [
+      "Jobs in one location",
+      "<code>/jobs/in/remote/</code>"
+     ],
+     [
+      "A category in a location",
+      "<code>/jobs/in/cape-town/category/engineering/</code>"
+     ],
+     [
+      "One job type",
+      "<code>/jobs/type/full-time/</code>"
+     ],
+     [
+      "A keyword",
+      "<code>/jobs/keyword/designer/</code>"
+     ],
+     [
+      "The second page of results",
+      "<code>/jobs/in/remote/page/2/</code>"
+     ]
+    ]
+   },
+   {
+    "t": "cards",
+    "h": "What else is part of job search?",
+    "items": [
+     [
+      "zap",
+      "Results without reloads",
+      "Filtering and paging happen in place."
+     ],
+     [
+      "badge-check",
+      "Featured and New badges",
+      "Featured jobs are highlighted, and fresh ones are flagged New for a number of days you choose."
+     ],
+     [
+      "bell-ring",
+      "Search alerts",
+      "A Get Email Alerts box under the filters turns the current search into a <a href=\"{f:job-alerts-saved-jobs-talent}\">job alert</a>."
+     ],
+     [
+      "building-2",
+      "Company preview",
+      "An info icon beside the company name on a job card opens a short <a href=\"{f:company-pages-careers-mode}\">company profile</a>."
+     ],
+     [
+      "eye-off",
+      "Filled jobs hidden",
+      "Roles marked as filled can be left out of lists and search."
+     ],
+     [
+      "code-xml",
+      "The same routes in the API",
+      "On Business, the <a href=\"{f:rest-api-feeds-webhooks-business}\">REST search endpoint</a> follows the same path pattern."
+     ]
+    ]
+   },
+   {
+    "t": "plan",
+    "h": "Is predictive search in the free plan?",
+    "p": "Yes. Suggestions, in-place filtering, filter chips and pretty URLs come with the Free plan and every plan above it."
+   },
+   {
+    "t": "faq",
+    "h": "Job search questions",
+    "items": [
+     [
+      "Why do pretty search URLs matter for SEO?",
+      "A readable path such as /jobs/in/london/category/design/ describes the page in words that people and search engines understand. It is the same every time, so it can be linked to, shared and indexed instead of being a one-off query string."
+     ],
+     [
+      "Which fields can candidates search by?",
+      "Keyword, location, category, job type and company. Each field suggests matches as the candidate types."
+     ],
+     [
+      "Does the page reload when a filter changes?",
+      "No. The result list and its paging update in place, which keeps searching quick on slow connections and on phones."
+     ],
+     [
+      "Does job search work with any WordPress theme?",
+      "Yes. Search and listings are one shortcode, <code>[[mjb_jobs]]</code>, with a matching block, so they sit on any page of any theme."
+     ]
+    ]
+   }
+  ],
+  "employer-candidate-accounts": [
+   {
+    "t": "text",
+    "h": "What do employer and candidate accounts include?",
+    "p": [
+     "Each side signs up through its own registration form and lands in its own dashboard. A candidate's overview shows profile strength, saved jobs, applications and whether recruiters can see them in the talent pool. A recruiter's overview shows how complete the company profile is, with active jobs, applications, job views and conversion."
+    ]
+   },
+   {
+    "t": "shot",
+    "img": "applications",
+    "alt": "The Applications tab of the recruiter dashboard with stage filters for New, Shortlisted, Rejected and Hired above a list of applicants",
+    "cap": "The Applications tab of the recruiter dashboard, with a filter for each stage.",
+    "w": 1680,
+    "hgt": 816,
+    "devices": true,
+    "dalt": "The Applications tab of the recruiter dashboard on desktop: stage filters above a list of applicants, and applications by job",
+    "malt": "The Applications tab on a phone, with each application shown as a card with its stage"
+   },
+   {
+    "t": "steps",
+    "h": "How does an application move from New to Hired?",
+    "items": [
+     [
+      "A candidate applies",
+      "They apply with a [mjb_doc lower] from their library, and a copy is stored with the application."
+     ],
+     [
+      "The recruiter is notified",
+      "An email goes out, and the application appears as New in the recruiter dashboard."
+     ],
+     [
+      "The recruiter sorts it",
+      "Each application is moved to Reviewed, Shortlisted, Rejected or Hired."
+     ],
+     [
+      "The candidate can follow it",
+      "Every application is tracked on the Applications tab of the candidate dashboard."
+     ]
+    ]
+   },
+   {
+    "t": "table",
+    "h": "What is in each dashboard?",
+    "rows": [
+     [
+      "Area",
+      "Candidate dashboard",
+      "Recruiter dashboard"
+     ],
+     [
+      "Overview",
+      "Profile strength, saved jobs, applications and recruiter visibility",
+      "Company profile, active jobs, applications, job views, conversion and credits"
+     ],
+     [
+      "Profile and company",
+      "Personal details and an optional photo",
+      "Company name, tagline, description, website, social links and logo"
+     ],
+     [
+      "Jobs",
+      "Saved Jobs: the roles they have bookmarked",
+      "Jobs: each listing with its status, views, applications and conversion"
+     ],
+     [
+      "Applications",
+      "Every application they have made",
+      "Applications by stage and by job"
+     ],
+     [
+      "Documents and credits",
+      "[mjb_doc plural]: a library of up to eight",
+      "Packages: credits left, published and filled jobs, [mjb_doc lower] access"
+     ]
+    ]
+   },
+   {
+    "t": "cards",
+    "h": "What else comes with accounts?",
+    "items": [
+     [
+      "file-up",
+      "[mjb_doc] required at sign-up",
+      "Every candidate registers with a [mjb_doc lower], so no application arrives without one."
+     ],
+     [
+      "image",
+      "Optional profile photo",
+      "Candidates position their photo in a crop tool, and it is saved as a square."
+     ],
+     [
+      "gauge",
+      "Profile strength",
+      "A completeness score nudges candidates and companies to finish their profiles."
+     ],
+     [
+      "messages-square",
+      "On-site messaging",
+      "Employers and candidates message each other without leaving your site."
+     ],
+     [
+      "eye",
+      "Recruiter visibility",
+      "Candidates decide whether they are listed in the <a href=\"{f:job-alerts-saved-jobs-talent}\">talent pool</a>."
+     ],
+     [
+      "chart-no-axes-column",
+      "Analytics per job",
+      "Recruiters see views, applications and conversion for each listing."
+     ]
+    ]
+   },
+   {
+    "t": "plan",
+    "h": "Are accounts and dashboards free?",
+    "p": "Yes. Registration, both dashboards, the application stages and messaging cost nothing: they are in the Free plan."
+   },
+   {
+    "t": "faq",
+    "h": "Account questions",
+    "items": [
+     [
+      "Do candidates have to upload a [mjb_doc lower] to register?",
+      "Yes. A [mjb_doc lower] is required to create a candidate account. Candidates can keep up to eight [mjb_doc plural lower] on file and change them at any time."
+     ],
+     [
+      "What does a recruiter need to sign up?",
+      "Their name, a company name and login details. A company logo is optional and can be added later from the Company tab."
+     ],
+     [
+      "Can I approve accounts before they become active?",
+      "Yes. Turn on approval for candidates, recruiters or both, and new accounts stay pending until you approve them."
+     ],
+     [
+      "Can candidates choose which emails they receive?",
+      "Yes. Their account settings include email preferences for applications, recruiter messages and news."
+     ]
+    ]
+   }
+  ],
+  "private-resumes-cvs": [
+   {
+    "t": "text",
+    "h": "Where are [mjb_doc plural lower] stored, and who can open them?",
+    "p": [
+     "Uploaded [mjb_doc plural lower] are written to <code>wp-content/mjb-private/</code>, a folder outside the Media Library, and are never given a public link. A file is only sent after Modern Job Board has checked that the person asking is signed in and allowed to see it. By default, recruiters can open the [mjb_doc plural lower] of candidates who applied to their own jobs; who may browse everyone else is a setting."
+    ]
+   },
+   {
+    "t": "shot",
+    "img": "resume-privacy",
+    "alt": "The Resume Privacy and Talent settings screen with the talent access level set to Recruiters only and the candidate anonymizer options",
+    "cap": "[mjb_doc] Privacy &amp; Talent in the settings: who may browse candidates, and the anonymizer.",
+    "w": 1680,
+    "hgt": 892,
+    "devices": true,
+    "dalt": "The Resume Privacy and Talent settings in the admin on desktop: talent access level, on-application access and the candidate anonymizer",
+    "malt": "The Resume Privacy and Talent settings on a phone, reached from the settings menu"
+   },
+   {
+    "t": "steps",
+    "h": "What happens when a recruiter downloads a [mjb_doc lower]?",
+    "items": [
+     [
+      "They open an application",
+      "The [mjb_doc lower] is listed with the application in their dashboard."
+     ],
+     [
+      "The request is checked",
+      "Modern Job Board confirms the account, a security token and the recruiter's right to that application."
+     ],
+     [
+      "The file is sent",
+      "It is read from the private folder for that one request. No public address is created."
+     ],
+     [
+      "Anyone else is refused",
+      "A copied link does nothing for a visitor who is not signed in and allowed to see the [mjb_doc lower]."
+     ]
+    ]
+   },
+   {
+    "t": "table",
+    "h": "Who can browse the talent pool?",
+    "rows": [
+     [
+      "Access level",
+      "Who can browse candidates"
+     ],
+     [
+      "Everyone (public)",
+      "Any visitor to the site"
+     ],
+     [
+      "Registered members",
+      "Anyone with an account who is signed in"
+     ],
+     [
+      "Recruiters only",
+      "Recruiter accounts"
+     ],
+     [
+      "Verified recruiters",
+      "Recruiters who have published a job"
+     ],
+     [
+      "Premium / paid [mjb_doc lower] access",
+      "Recruiters who have bought [mjb_doc lower] access through <a href=\"{f:woocommerce-monetization-pro}\">WooCommerce</a> (Pro)"
+     ]
+    ]
+   },
+   {
+    "t": "cards",
+    "h": "Which privacy controls are included?",
+    "items": [
+     [
+      "user-round-x",
+      "Candidate anonymizer",
+      "Hide surnames, so a candidate appears as “Jane D.”."
+     ],
+     [
+      "search-x",
+      "Noindex for talent profiles",
+      "Ask search engines not to index public talent profiles."
+     ],
+     [
+      "copy",
+      "A copy with each application",
+      "The [mjb_doc lower] sent with an application is kept as it was, even if the candidate later replaces it."
+     ],
+     [
+      "eye-off",
+      "Opt-in visibility",
+      "Candidates are not listed in the talent pool until they choose to be."
+     ],
+     [
+      "folder-lock",
+      "Outside the Media Library",
+      "[mjb_doc plural] never appear among your site's public uploads."
+     ],
+     [
+      "tag",
+      "Resume or CV",
+      "Choose which word your board uses on buttons, tabs and forms."
+     ]
+    ]
+   },
+   {
+    "t": "plan",
+    "h": "Is private [mjb_doc lower] storage in the free plan?",
+    "p": "Yes. Private storage, checked downloads, the access levels and the anonymizer are part of every plan. Selling [mjb_doc lower] access needs Pro or Business."
+   },
+   {
+    "t": "faq",
+    "h": "[mjb_doc] privacy questions",
+    "items": [
+     [
+      "Why not store [mjb_doc plural lower] in the Media Library?",
+      "Files in the Media Library are public: anyone with the link can open them. [mjb_doc plural] hold personal data, so Modern Job Board keeps them in a private folder and only serves them to signed-in users who are allowed to see them."
+     ],
+     [
+      "Do I need to change my server settings?",
+      "Make sure your web server refuses direct requests to wp-content/mjb-private/. On nginx that takes one rule, which the plugin's deployment guide covers."
+     ],
+     [
+      "Does this help with GDPR or POPIA?",
+      "It gives you the tools: private storage, access levels, opt-in talent profiles and an anonymizer. Whether your site complies still depends on how you collect, use and retain personal data."
+     ],
+     [
+      "Can a recruiter see the [mjb_doc lower] of someone who did not apply to them?",
+      "Only if your talent access level allows it and the candidate has chosen to be listed in the talent pool."
+     ]
+    ]
+   }
+  ],
+  "woocommerce-monetization-pro": [
+   {
+    "t": "text",
+    "h": "How does Modern Job Board make money for you?",
+    "p": [
+     "On Pro, the board connects to WooCommerce, so that posting a job, featuring it or opening a [mjb_doc lower] can each be a product in your store. Employers pay at your checkout with the gateway you already use, and Modern Job Board takes no cut. Each recruiter then sees what they have left on the Packages tab of their dashboard: credits, published and filled jobs, and whether [mjb_doc lower] access is active."
+    ]
+   },
+   {
+    "t": "shot",
+    "img": "packages",
+    "alt": "The Packages and Usage tab of the recruiter dashboard showing credits left, published jobs, filled jobs and resume access, with Buy Credits and Browse Packages buttons",
+    "cap": "Packages &amp; Usage in the recruiter dashboard.",
+    "w": 1680,
+    "hgt": 669,
+    "devices": true,
+    "dalt": "The Packages and Usage tab of the recruiter dashboard on desktop: credits left, published and filled jobs and resume access",
+    "malt": "Packages and Usage on a phone, with each figure in its own card"
+   },
+   {
+    "t": "steps",
+    "h": "How does paid job posting work?",
+    "items": [
+     [
+      "Create products in WooCommerce",
+      "One for a single post, one for a credit package, one for a [mjb_doc lower] access pass, with the quantity or duration set on each."
+     ],
+     [
+      "Employers buy from your board",
+      "Buy Credits and Browse Packages in the dashboard lead to your WooCommerce checkout."
+     ],
+     [
+      "Payment activates the purchase",
+      "A pay-per-post job is published when its order is paid, and credits are spent as jobs are posted or featured."
+     ],
+     [
+      "Orders stay in step",
+      "Refunds, cancellations and expiry are reflected in the recruiter's credits and access."
+     ]
+    ]
+   },
+   {
+    "t": "table",
+    "h": "What can you sell on your job board?",
+    "rows": [
+     [
+      "Product",
+      "How it works"
+     ],
+     [
+      "Pay-per-post",
+      "A job is published as soon as its order is paid."
+     ],
+     [
+      "Job credit packages",
+      "Credits are sold in bulk. One balance covers both posting and featuring."
+     ],
+     [
+      "Feature this job",
+      "An employer pays to feature a single listing."
+     ],
+     [
+      "[mjb_doc] unlock",
+      "A recruiter pays to open the [mjb_doc lower] on one application."
+     ],
+     [
+      "[mjb_doc] access pass",
+      "Unlimited [mjb_doc lower] access for a set number of days."
+     ],
+     [
+      "Candidate alert packages",
+      "Extra job alert slots for candidates."
+     ]
+    ]
+   },
+   {
+    "t": "cards",
+    "h": "What else comes with monetization?",
+    "items": [
+     [
+      "percent",
+      "No commission",
+      "Payments go to your own store. Only your gateway's fees apply."
+     ],
+     [
+      "credit-card",
+      "Any WooCommerce gateway",
+      "PayPal, Stripe, Square, Paystack, Payfast, Yoco, bank transfer and others."
+     ],
+     [
+      "gift",
+      "Recruiter trial",
+      "Give new recruiters a trial when they register."
+     ],
+     [
+      "wallet",
+      "Balance in the dashboard",
+      "Recruiters always see their remaining credits."
+     ],
+     [
+      "banknote",
+      "Revenue on your dashboard",
+      "The admin overview reports revenue beside jobs, applications and views."
+     ],
+     [
+      "rotate-ccw",
+      "Refunds handled",
+      "A refunded or cancelled order takes its credits or access back."
+     ]
+    ]
+   },
+   {
+    "t": "plan",
+    "h": "Which plan lets me charge employers?",
+    "p": "Pro or Business. WooCommerce monetization is not part of the Free plan. Pro costs $149 a year and also removes the 100-job limit. <a href=\"{pricing}\">See pricing</a>."
+   },
+   {
+    "t": "faq",
+    "h": "Monetization questions",
+    "items": [
+     [
+      "Does Modern Job Board take a commission on employer payments?",
+      "No. Employer payments go through your own WooCommerce store and gateway, so the revenue is yours."
+     ],
+     [
+      "Which payment gateways work?",
+      "Any gateway that works with WooCommerce. Which ones you can use depends on your country and on the provider."
+     ],
+     [
+      "Do I need WooCommerce to run a free job board?",
+      "No. WooCommerce is only needed for payments. A board where posting is free runs without it."
+     ],
+     [
+      "Can I start free and add payments later?",
+      "Yes. Start on the Free plan, then move to Pro and switch on paid posting when you are ready. Your existing listings stay as they are."
+     ]
+    ]
+   }
+  ],
+  "gutenberg-blocks": [
+   {
+    "t": "text",
+    "h": "How do you add Modern Job Board to a page?",
+    "p": [
+     "Every front-end screen is a shortcode with a matching block: job listings, the submission form, both dashboards, and the registration and login forms. The Shortcodes Setup screen lists each one, shows whether its page exists and creates any that are missing, so a new install has a working board without anyone building pages by hand."
+    ]
+   },
+   {
+    "t": "shot",
+    "img": "setup",
+    "alt": "The Shortcodes Setup screen listing each job board page with its shortcode, a Ready status and View and Edit buttons",
+    "cap": "Shortcodes Setup lists each page, its shortcode and its status.",
+    "w": 1680,
+    "hgt": 1137,
+    "devices": true,
+    "dalt": "The Shortcodes Setup screen in the admin on desktop, listing each job board page with its shortcode, status and View and Edit buttons",
+    "malt": "Shortcodes Setup on a phone"
+   },
+   {
+    "t": "steps",
+    "h": "How do you set up the job board pages?",
+    "items": [
+     [
+      "Open Shortcodes Setup",
+      "It is a tab in the Modern Job Board admin."
+     ],
+     [
+      "Create the missing pages",
+      "One click adds every page that does not exist yet."
+     ],
+     [
+      "View or edit each page",
+      "Each row has View and Edit buttons that open the page or the editor."
+     ],
+     [
+      "Design around the board",
+      "Add headings, images and other blocks above or below, as on any page."
+     ]
+    ]
+   },
+   {
+    "t": "table",
+    "h": "Which blocks and shortcodes are included?",
+    "rows": [
+     [
+      "Block",
+      "Shortcode",
+      "What it shows"
+     ],
+     [
+      "Job Listings",
+      "<code>[[mjb_jobs]]</code>",
+      "Searchable job listings with filters"
+     ],
+     [
+      "Job Submission Form",
+      "<code>[[mjb_job_form]]</code>",
+      "The form recruiters use to post a job"
+     ],
+     [
+      "Recruiter Dashboard",
+      "<code>[[mjb_dashboard]]</code>",
+      "Jobs, applications, company and packages"
+     ],
+     [
+      "Candidate Dashboard",
+      "<code>[[mjb_candidate_dashboard]]</code>",
+      "Profile, saved jobs, applications and [mjb_doc plural lower]"
+     ],
+     [
+      "Recruiter Registration",
+      "<code>[[mjb_employer_registration]]</code>",
+      "Sign-up for employers"
+     ],
+     [
+      "Candidate Registration",
+      "<code>[[mjb_candidate_registration]]</code>",
+      "Sign-up for job seekers"
+     ],
+     [
+      "Recruiter Login",
+      "<code>[[mjb_employer_login]]</code>",
+      "Sign-in for employers"
+     ],
+     [
+      "Candidate Login",
+      "<code>[[mjb_candidate_login]]</code>",
+      "Sign-in for job seekers"
+     ]
+    ]
+   },
+   {
+    "t": "cards",
+    "h": "What else can you place on a page?",
+    "items": [
+     [
+      "map",
+      "Jobs map",
+      "<code>[[mjb_jobs_map]]</code> plots open jobs on a map."
+     ],
+     [
+      "megaphone",
+      "Ad banners",
+      "<code>[[mjb_ad_banner]]</code> shows a banner you set up in Settings → Plans &amp; payments → Ad Banners."
+     ],
+     [
+      "circle-user-round",
+      "Header account menus",
+      "<code>[[mjb_job_seeker]]</code> and <code>[[mjb_recruiter]]</code> add sign-in menus to your header."
+     ],
+     [
+      "circle-plus",
+      "Post a Job button",
+      "<code>[[mjb_post_job]]</code> adds the button that leads to the form."
+     ],
+     [
+      "layout-template",
+      "Job and company templates",
+      "Templates for job and company archives and single pages are included."
+     ],
+     [
+      "palette",
+      "Styles included",
+      "The plugin brings its own front-end styles, so the board looks finished on any theme."
+     ]
+    ]
+   },
+   {
+    "t": "plan",
+    "h": "Are the blocks and shortcodes free?",
+    "p": "Yes. All eight, and the extra shortcodes, work on a Free board exactly as they do on Pro and Business."
+   },
+   {
+    "t": "faq",
+    "h": "Block and shortcode questions",
+    "items": [
+     [
+      "Do I need a page builder?",
+      "No. The board runs in the standard WordPress editor."
+     ],
+     [
+      "Do the shortcodes work in page builders?",
+      "Yes. A shortcode can go anywhere your builder accepts one, such as a shortcode or text widget."
+     ],
+     [
+      "What if I delete one of the pages?",
+      "Shortcodes Setup shows it as missing and can create it again."
+     ],
+     [
+      "Can I use Modern Job Board with my own theme?",
+      "Yes. It works with any WordPress theme and includes templates for job archives, single jobs and company pages."
+     ]
+    ]
+   }
+  ],
+  "seo-ready": [
+   {
+    "t": "text",
+    "h": "What does Modern Job Board do for SEO?",
+    "p": [
+     "Every job page carries JobPosting structured data, written for you from the listing: title, description, date posted, employer, location, employment type and a direct-apply flag. A type map in the settings translates your own job types, such as Contract or Part Time, into the employment types Google for Jobs expects, and lets you set a base salary currency, value and unit."
+    ]
+   },
+   {
+    "t": "shot",
+    "img": "google-jobs",
+    "alt": "The Google Jobs type map in the settings, with each job type mapped to a Google employment type",
+    "cap": "The Google Jobs type map, under Settings → Google Jobs &amp; Webhooks.",
+    "w": 1680,
+    "hgt": 982,
+    "devices": true,
+    "dalt": "The Google Jobs and Webhooks settings on desktop, with the job type map and the base salary fields",
+    "malt": "The Google Jobs type map on a phone"
+   },
+   {
+    "t": "code",
+    "h": "What structured data is added to a job page?",
+    "code": "{\n  \"@context\": \"https://schema.org/\",\n  \"@type\": \"JobPosting\",\n  \"title\": \"Product Designer\",\n  \"description\": \"About the role …\",\n  \"datePosted\": \"2026-11-16T09:10:48+00:00\",\n  \"hiringOrganization\": {\n    \"@type\": \"Organization\",\n    \"name\": \"Summit Education\"\n  },\n  \"jobLocation\": {\n    \"@type\": \"Place\",\n    \"address\": {\n      \"@type\": \"PostalAddress\",\n      \"addressLocality\": \"Austin\",\n      \"addressRegion\": \"Texas\",\n      \"addressCountry\": \"United States\"\n    }\n  },\n  \"directApply\": true,\n  \"employmentType\": \"FULL_TIME\"\n}",
+    "cap": "JobPosting JSON-LD from a listing on the demo board, shortened."
+   },
+   {
+    "t": "steps",
+    "h": "How do jobs become eligible for Google for Jobs?",
+    "items": [
+     [
+      "Publish a job",
+      "The structured data is added to its page with no extra step."
+     ],
+     [
+      "Map your job types",
+      "Match each type to a Google employment type. Unmapped types fall back to name matching."
+     ],
+     [
+      "Preview the markup",
+      "Check a job's structured data in the admin before Google reads it."
+     ],
+     [
+      "Keep the site indexable",
+      "Board Health warns you if search engines are being discouraged from indexing the site."
+     ]
+    ]
+   },
+   {
+    "t": "cards",
+    "h": "What else helps jobs get found?",
+    "items": [
+     [
+      "link-2",
+      "Readable job URLs",
+      "Each job lives at a path built from its location and title."
+     ],
+     [
+      "network",
+      "Related jobs",
+      "Every job page links to similar roles by category, location or job type."
+     ],
+     [
+      "heading",
+      "Archive titles and descriptions",
+      "Category, city and company archives get clearer titles and meta descriptions."
+     ],
+     [
+      "heart-pulse",
+      "Health checks",
+      "The dashboard flags missing pages, inactive structured data, background tasks that aren't scheduled and blocked indexing."
+     ],
+     [
+      "map-pinned",
+      "Maps on job pages",
+      "An optional Google Map on each job, with your own API key."
+     ],
+     [
+      "share-2",
+      "Share buttons",
+      "Candidates can pass a job on through LinkedIn, X, Facebook, email or a copied link."
+     ]
+    ]
+   },
+   {
+    "t": "plan",
+    "h": "Is JobPosting schema in the free plan?",
+    "p": "Yes. Structured data, the type map and the health checks are part of every plan. The XML job feed for aggregators belongs to Business; see <a href=\"{f:rest-api-feeds-webhooks-business}\">REST API, feeds and webhooks</a>."
+   },
+   {
+    "t": "faq",
+    "h": "SEO questions",
+    "items": [
+     [
+      "What is JobPosting schema?",
+      "JobPosting is the Schema.org vocabulary for job adverts. Search engines read it to show jobs in dedicated results such as Google for Jobs, with the title, employer, location and dates."
+     ],
+     [
+      "Will my jobs definitely appear in Google for Jobs?",
+      "Structured data makes a job eligible, but Google decides what it shows. Keep jobs current, fill in salary and location, and close filled roles so your listings stay trustworthy."
+     ],
+     [
+      "Do I still need an SEO plugin?",
+      "Not for jobs: Modern Job Board adds the job markup and archive titles itself. An SEO plugin is still useful for the rest of your site."
+     ],
+     [
+      "How can I check the markup?",
+      "Use the preview in the admin, or test any job address with Google's Rich Results Test."
+     ]
+    ]
+   }
+  ],
+  "custom-fields-imports-pro": [
+   {
+    "t": "text",
+    "h": "What can you add with custom fields?",
+    "p": [
+     "The Custom Fields Builder adds your own questions to the job form or to the application form. You give each field a label, choose its type and decide where it appears; nothing needs coding. The values are stored with the job or the application, shown beside it, and returned with each job by the <a href=\"{f:rest-api-feeds-webhooks-business}\">REST API</a>."
+    ]
+   },
+   {
+    "t": "shot",
+    "img": "custom-fields",
+    "alt": "The Custom Fields Builder with four fields: salary band, visa sponsorship, years of experience and portfolio link, each with a type and a location",
+    "cap": "The Custom Fields Builder with two job fields and two application fields.",
+    "w": 1680,
+    "hgt": 1012,
+    "devices": true,
+    "dalt": "The Custom Fields Builder on desktop: the Add New Field form beside four fields with their type and location",
+    "malt": "The Custom Fields Builder on a phone"
+   },
+   {
+    "t": "table",
+    "h": "Which field types are available?",
+    "rows": [
+     [
+      "Type",
+      "Good for",
+      "Example"
+     ],
+     [
+      "Text",
+      "Short answers",
+      "Salary band"
+     ],
+     [
+      "Textarea",
+      "Longer answers",
+      "Why do you want this role?"
+     ],
+     [
+      "Number",
+      "Figures",
+      "Years of experience"
+     ],
+     [
+      "Select",
+      "One choice from a list you define",
+      "Seniority level"
+     ],
+     [
+      "Checkbox",
+      "Yes or no",
+      "Visa sponsorship available"
+     ]
+    ]
+   },
+   {
+    "t": "steps",
+    "h": "How do you import jobs?",
+    "items": [
+     [
+      "Open Tools",
+      "Imports and exports live on the Tools tab of the Modern Job Board admin. Import Jobs on the dashboard takes you there."
+     ],
+     [
+      "Choose a source",
+      "A CSV file, an XML file, or the address of a remote XML feed."
+     ],
+     [
+      "Run the import",
+      "Jobs are created with their companies, locations, categories and job types."
+     ],
+     [
+      "Schedule it if it repeats",
+      "Add a remote feed to the scheduled imports and it is fetched daily or weekly."
+     ]
+    ]
+   },
+   {
+    "t": "cards",
+    "h": "Which import and export tools are included?",
+    "items": [
+     [
+      "file-spreadsheet",
+      "CSV import",
+      "Move jobs over from a spreadsheet or from another board's export."
+     ],
+     [
+      "file-code",
+      "XML import",
+      "Upload a file, or import straight from a feed address."
+     ],
+     [
+      "calendar-sync",
+      "Scheduled imports",
+      "Remote feeds are re-read daily or weekly."
+     ],
+     [
+      "download",
+      "CSV export",
+      "Take jobs and applications out for reporting."
+     ],
+     [
+      "database-backup",
+      "Full-board XML backup",
+      "Download the whole board as one file."
+     ],
+     [
+      "mouse-pointer-click",
+      "One click from the dashboard",
+      "Import Jobs and Export Jobs buttons sit at the top of the admin dashboard."
+     ]
+    ]
+   },
+   {
+    "t": "plan",
+    "h": "Which plan includes custom fields and imports?",
+    "p": "Pro ($149 a year) and Business ($299 a year). They are not part of the Free plan. <a href=\"{pricing}\">See pricing</a>."
+   },
+   {
+    "t": "faq",
+    "h": "Custom field and import questions",
+    "items": [
+     [
+      "Where do custom fields appear?",
+      "Job fields appear on the job submission form and on the job. Application fields appear on the form candidates fill in when they apply."
+     ],
+     [
+      "Can I import jobs from another job board?",
+      "Yes, if it can export CSV or XML, or publishes an XML feed. Upload the file or add the feed address under Tools."
+     ],
+     [
+      "How often do scheduled imports run?",
+      "Daily or weekly, chosen for each feed."
+     ],
+     [
+      "How do I back up my job board?",
+      "Download the Full Board XML Backup under Tools, and keep your normal WordPress backups as well."
+     ]
+    ]
+   }
+  ],
+  "rest-api-feeds-webhooks-business": [
+   {
+    "t": "text",
+    "h": "What can you build with the Modern Job Board API?",
+    "p": [
+     "There are four ways to get data in and out. A public search API returns published jobs as JSON. An authenticated API gives employers their applications and analytics, and candidates their profile. An XML feed hands your listings to aggregators. Webhooks push events to your own systems the moment they happen. Together they connect a board to an ATS, a CRM, a mobile app or a data warehouse."
+    ]
+   },
+   {
+    "t": "code",
+    "h": "What does the job search API return?",
+    "code": "GET /wp-json/mjb/v1/jobs?per_page=1\n\n[\n  {\n    \"id\": 290,\n    \"title\": \"Product Designer\",\n    \"link\": \"https://example.com/job/us/texas/austin/product-designer/\",\n    \"date\": \"2026-11-16 09:10:48\",\n    \"featured\": true,\n    \"company\": \"Summit Education\",\n    \"location\": \"Austin, Texas, United States\",\n    \"type\": \"Full Time\",\n    \"category\": \"Design\",\n    \"excerpt\": \"Summit Education is hiring a Product Designer …\",\n    \"custom_fields\": {\n      \"salary-band\": \"$90k–$110k\",\n      \"visa-sponsorship-available\": false\n    }\n  }\n]",
+    "cap": "One job from the public search API. The <code>X-WP-Total</code> and <code>X-WP-TotalPages</code> response headers carry the totals for paging."
+   },
+   {
+    "t": "table",
+    "h": "Which endpoints are available?",
+    "rows": [
+     [
+      "Endpoint",
+      "Access",
+      "What it returns"
+     ],
+     [
+      "<code>GET /wp-json/mjb/v1/jobs</code>",
+      "Public",
+      "Published jobs, with paging headers"
+     ],
+     [
+      "<code>GET /wp-json/mjb/v1/jobs/search/…</code>",
+      "Public",
+      "Search by path, for example <code>/search/in/remote/</code>"
+     ],
+     [
+      "<code>GET /wp-json/mjb/v2/applications</code>",
+      "Employer",
+      "Applications to the employer's jobs"
+     ],
+     [
+      "<code>POST /wp-json/mjb/v2/applications/{id}</code>",
+      "Employer",
+      "Updates the stage of one application"
+     ],
+     [
+      "<code>GET /wp-json/mjb/v2/analytics</code>",
+      "Employer",
+      "Views and applications for the employer's jobs"
+     ],
+     [
+      "<code>GET /wp-json/mjb/v2/candidate/profile</code>",
+      "Candidate",
+      "The signed-in candidate's profile"
+     ],
+     [
+      "<code>GET /feed/job-listings</code>",
+      "Public",
+      "An XML feed of open jobs for aggregators"
+     ]
+    ]
+   },
+   {
+    "t": "steps",
+    "h": "How do webhooks work?",
+    "items": [
+     [
+      "Add an endpoint",
+      "Enter an https:// address and an optional signing secret under Settings → Google Jobs &amp; Webhooks."
+     ],
+     [
+      "An event happens",
+      "<code>application.submitted</code>, <code>application.status_updated</code> or <code>job.submitted</code>."
+     ],
+     [
+      "The payload is sent",
+      "It is JSON, signed with HMAC-SHA256 in the <code>X-MJB-Signature</code> header."
+     ],
+     [
+      "Failures are retried",
+      "A delivery that fails is queued and tried again up to five times, with a longer wait each time."
+     ]
+    ]
+   },
+   {
+    "t": "cards",
+    "h": "What else is there for developers?",
+    "items": [
+     [
+      "key-round",
+      "API keys",
+      "Issue keys for the public API. They are sent in the <code>X-MJB-API-Key</code> header and are rate limited."
+     ],
+     [
+      "route",
+      "Search by path",
+      "The API mirrors the <a href=\"{f:predictive-search-pretty-urls}\">pretty search URLs</a> of the board itself."
+     ],
+     [
+      "braces",
+      "Custom fields in responses",
+      "Each job includes the values of its <a href=\"{f:custom-fields-imports-pro}\">custom fields</a>."
+     ],
+     [
+      "list-restart",
+      "A retry queue you can see",
+      "The settings screen shows how many deliveries are waiting to be retried."
+     ],
+     [
+      "bot",
+      "AI assistant for recruiters",
+      "The same plan lets employers manage their jobs and applications by chatting with ChatGPT, Claude or Gemini, through the <a href=\"{f:recruiter-mcp-business}\">AI assistant for recruiters</a>."
+     ],
+     [
+      "plug",
+      "WordPress hooks",
+      "<code>mjb_*</code> actions and filters are available on every plan."
+     ]
+    ]
+   },
+   {
+    "t": "plan",
+    "h": "Which plan includes the API and webhooks?",
+    "p": "Business, at $299 a year. WordPress actions and filters are available on every plan, so developers can extend a Free or Pro board with their own code. <a href=\"{pricing}\">See pricing</a>."
+   },
+   {
+    "t": "faq",
+    "h": "API and webhook questions",
+    "items": [
+     [
+      "How do I authenticate with the v2 API?",
+      "Sign requests as the employer or candidate, for example with a WordPress application password. Employer routes accept the employer role or an administrator."
+     ],
+     [
+      "Can I send my jobs to aggregators such as Indeed or Jooble?",
+      "Point the aggregator at your XML feed at /feed/job-listings. Whether it accepts the feed is up to the aggregator."
+     ],
+     [
+      "How do I verify that a webhook came from my board?",
+      "Compute an HMAC-SHA256 of the raw request body with your signing secret and compare the result with the X-MJB-Signature header."
+     ],
+     [
+      "What happens if my endpoint is down?",
+      "The delivery is queued and retried up to five times, with a longer wait between attempts."
+     ]
+    ]
+   }
+  ],
+  "job-alerts-saved-jobs-talent": [
+   {
+    "t": "text",
+    "h": "How do job alerts work?",
+    "p": [
+     "Every search on the board can become an alert. Under the filters there is a Get Email Alerts box that already shows what the candidate searched for; they choose daily or weekly and select Create Alert. From then on, new jobs that match arrive as a single digest email, not one message per job."
+    ]
+   },
+   {
+    "t": "shot",
+    "img": "alerts",
+    "alt": "A job search filtered to Remote with a Location: Remote chip and a Get Email Alerts box showing the matching filter, a frequency menu and a Create Alert button",
+    "cap": "A search for remote jobs with the Get Email Alerts box under the filters.",
+    "w": 1680,
+    "hgt": 1007,
+    "devices": true,
+    "dalt": "Remote jobs on desktop with the Location: Remote chip and the Get Email Alerts box under the filters",
+    "malt": "The Get Email Alerts box on a phone, set to daily, above the matching jobs"
+   },
+   {
+    "t": "steps",
+    "h": "How does a candidate set up an alert?",
+    "items": [
+     [
+      "Search for jobs",
+      "Filter the board the usual way, down to the roles worth hearing about."
+     ],
+     [
+      "Check the match",
+      "The alert box repeats the filters it will watch."
+     ],
+     [
+      "Choose how often",
+      "Daily or weekly, from the Email me menu."
+     ],
+     [
+      "Create the alert",
+      "Each digest lists the new matching jobs, ready to open and apply to."
+     ]
+    ]
+   },
+   {
+    "t": "table",
+    "h": "What is the difference between alerts, saved jobs and the talent pool?",
+    "rows": [
+     [
+      "Feature",
+      "Who uses it",
+      "What it does"
+     ],
+     [
+      "Job alerts",
+      "Candidates",
+      "Emails new jobs that match a search, daily or weekly"
+     ],
+     [
+      "Saved jobs",
+      "Candidates",
+      "Bookmarks a job with the Save button, to find again in the candidate dashboard"
+     ],
+     [
+      "Talent pool",
+      "Recruiters",
+      "Lists candidates who chose to be visible, for recruiters to browse"
+     ]
+    ]
+   },
+   {
+    "t": "cards",
+    "h": "What else keeps candidates coming back?",
+    "items": [
+     [
+      "bookmark",
+      "Save from the job page",
+      "A Save button sits beside Apply on every job."
+     ],
+     [
+      "mails",
+      "One digest, not a flood",
+      "All new matches arrive together in one email."
+     ],
+     [
+      "user-search",
+      "Opt-in talent profiles",
+      "Candidates switch recruiter visibility on themselves; it is off by default."
+     ],
+     [
+      "shield-check",
+      "Controlled access",
+      "You decide who may browse the pool. See <a href=\"{f:private-resumes-cvs}\">private [mjb_doc plural lower]</a> for the access levels."
+     ],
+     [
+      "settings-2",
+      "Email preferences",
+      "Candidates choose which kinds of email they receive."
+     ],
+     [
+      "ticket-plus",
+      "Extra alert slots (Pro)",
+      "Give each candidate a free allowance and sell more through WooCommerce."
+     ]
+    ]
+   },
+   {
+    "t": "plan",
+    "h": "Are job alerts free?",
+    "p": "Yes. Alerts, saved jobs and the talent pool are part of every plan. Selling extra alert slots or paid access to candidates needs <a href=\"{f:woocommerce-monetization-pro}\">WooCommerce monetization</a> on Pro or Business."
+   },
+   {
+    "t": "faq",
+    "h": "Job alert questions",
+    "items": [
+     [
+      "How often are job alerts sent?",
+      "Daily or weekly, as the candidate chooses when they create the alert."
+     ],
+     [
+      "Do candidates need an account to save a job?",
+      "Yes. Saved jobs are kept in the candidate dashboard, so candidates sign in to save a job and find it again on any device."
+     ],
+     [
+      "Which candidates appear in the talent pool?",
+      "Only those who have switched on recruiter visibility in their dashboard."
+     ],
+     [
+      "Where is the alert box shown?",
+      "Under the search filters on the jobs page. You can also place it elsewhere with the <code>[[mjb_job_alerts]]</code> shortcode."
+     ]
+    ]
+   }
+  ],
+  "jobs-map-promotions": [
+   {
+    "t": "text",
+    "h": "What does the jobs map show?",
+    "p": [
+     "The jobs map plots your open jobs as markers on a Google Map, so a candidate can see at a glance where the work is. It goes on any page with one shortcode and uses your own Google Maps API key. Each job page can carry its own smaller map as well."
+    ]
+   },
+   {
+    "t": "steps",
+    "h": "How do you add the jobs map?",
+    "items": [
+     [
+      "Add your Google Maps API key",
+      "Enter it in the Modern Job Board settings."
+     ],
+     [
+      "Place the map",
+      "Add <code>[[mjb_jobs_map]]</code> to any page."
+     ],
+     [
+      "Set a marker limit",
+      "Choose the largest number of jobs the map should plot."
+     ],
+     [
+      "Publish the page",
+      "Without a key, the map shows a reminder to add one instead of a broken map."
+     ]
+    ]
+   },
+   {
+    "t": "table",
+    "h": "Which promotion tools are included?",
+    "rows": [
+     [
+      "Tool",
+      "Where it appears",
+      "How it is set up"
+     ],
+     [
+      "Featured jobs",
+      "In job lists, with a Featured badge and a highlighted card",
+      "On the job, by an admin or by a recruiter spending a credit"
+     ],
+     [
+      "Featured companies",
+      "Wherever you place <code>[[mjb_featured_companies]]</code>",
+      "Choose the employers to showcase"
+     ],
+     [
+      "Ad banners",
+      "Above the job list, between job cards, or wherever you place <code>[[mjb_ad_banner]]</code>",
+      "Create banners in Settings → Plans &amp; payments → Ad Banners and choose their positions"
+     ],
+     [
+      "Social webhook",
+      "In your automation tool, such as Zapier, Make or n8n",
+      "Enter a webhook address and each newly published job is sent to it as JSON, ready to post to your social channels"
+     ]
+    ]
+   },
+   {
+    "t": "text",
+    "h": "How do candidates share a job?",
+    "p": [
+     "Every job page ends with three buttons: Apply, Save and Share. Share opens a small menu with LinkedIn, X, Facebook, email and a copy-link button, so a job travels in two clicks."
+    ]
+   },
+   {
+    "t": "shot",
+    "img": "share",
+    "alt": "The Apply, Save and Share buttons at the end of a job page, with the share menu open showing LinkedIn, X, Facebook, email and copy link",
+    "cap": "The share menu on a job page.",
+    "w": 1275,
+    "hgt": 375,
+    "devices": true,
+    "dalt": "A job page on desktop with the share menu open above the Apply, Save and Share buttons",
+    "malt": "The share menu on a job page on a phone"
+   },
+   {
+    "t": "cards",
+    "h": "What else helps jobs travel?",
+    "items": [
+     [
+      "message-circle",
+      "WhatsApp apply",
+      "A job can take applications over WhatsApp instead of the on-site form."
+     ],
+     [
+      "map-pin",
+      "A map on each job",
+      "Show the job's location on its own page."
+     ],
+     [
+      "sparkles",
+      "New badges",
+      "Recent jobs are marked New for as many days as you set."
+     ],
+     [
+      "hand-coins",
+      "Spots you can sell",
+      "Banner and featured positions are yours to sell to sponsors directly."
+     ]
+    ]
+   },
+   {
+    "t": "plan",
+    "h": "Is the jobs map free?",
+    "p": "Yes. The map, featured companies, ad banners, WhatsApp apply and sharing are part of every plan. You need your own Google Maps API key, and Google may charge for map usage beyond its free allowance."
+   },
+   {
+    "t": "faq",
+    "h": "Map and promotion questions",
+    "items": [
+     [
+      "Do I need a Google Maps API key?",
+      "Yes. The map is drawn by Google Maps, so you add your own key in the settings."
+     ],
+     [
+      "Where can ad banners appear?",
+      "Above the job list or between job cards, at the positions you choose, or anywhere you place the banner shortcode."
+     ],
+     [
+      "Can I charge employers to feature a job?",
+      "Yes, on Pro or Business. Featuring can cost a credit or be sold as its own product."
+     ],
+     [
+      "Which networks are in the share menu?",
+      "LinkedIn, X and Facebook, with email and a copy-link button beside them."
+     ]
+    ]
+   }
+  ],
+  "admin-dashboard-jobs-console": [
+   {
+    "t": "text",
+    "h": "What does the admin dashboard show?",
+    "p": [
+     "The dashboard opens with five figures for the period you pick, from seven days to all time: revenue, active jobs, applications, job views and companies. Under them, Needs Your Attention lists open items, such as jobs nobody has viewed, next to a Board Health checklist that confirms your key pages are published and the site can be indexed."
+    ]
+   },
+   {
+    "t": "shot",
+    "img": "admin-dashboard",
+    "alt": "The Modern Job Board admin dashboard with overview cards for revenue, active jobs, applications, job views and companies, above an open items list and a Board Health checklist",
+    "cap": "The admin dashboard on a board with 89 jobs and 31 companies.",
+    "w": 1680,
+    "hgt": 905,
+    "devices": true,
+    "dalt": "The Modern Job Board admin dashboard on desktop: revenue, active jobs, applications, job views and companies, open items and Board Health",
+    "malt": "The admin dashboard on a phone"
+   },
+   {
+    "t": "table",
+    "h": "What is on each admin tab?",
+    "rows": [
+     [
+      "Tab",
+      "What you do there"
+     ],
+     [
+      "Dashboard",
+      "See the overview figures, open items and Board Health"
+     ],
+     [
+      "Jobs",
+      "Search, filter, edit and export listings"
+     ],
+     [
+      "Applications",
+      "Review every application on the board, with saved views and bulk actions"
+     ],
+     [
+      "Companies",
+      "Approve and edit employer profiles"
+     ],
+     [
+      "[mjb_doc plural]",
+      "Manage candidates' [mjb_doc plural lower]"
+     ],
+     [
+      "Settings",
+      "Posting rules, registration, payments, privacy and integrations"
+     ],
+     [
+      "Emails",
+      "Edit the emails the board sends"
+     ],
+     [
+      "Shortcodes Setup",
+      "Create and check the board's pages"
+     ],
+     [
+      "Custom Fields",
+      "Build job and application fields (Pro)"
+     ],
+     [
+      "Tools",
+      "Import, export and back up"
+     ]
+    ]
+   },
+   {
+    "t": "steps",
+    "h": "How do you manage jobs in the console?",
+    "items": [
+     [
+      "Find a job",
+      "The search box suggests matches as you type."
+     ],
+     [
+      "Narrow the list",
+      "Saved views and filters cut the list down, and one click clears them again."
+     ],
+     [
+      "Act on several at once",
+      "Tick the jobs, then feature them, mark them filled, extend their expiry or delete them."
+     ],
+     [
+      "Export what you see",
+      "Download the current view, or only the ticked rows, as CSV."
+     ]
+    ]
+   },
+   {
+    "t": "cards",
+    "h": "What else does the admin include?",
+    "items": [
+     [
+      "calendar-range",
+      "A period switch",
+      "Compare 7, 30 or 90 days, or look at all time."
+     ],
+     [
+      "trending-up",
+      "Change since last period",
+      "Each figure shows how it moved against the period before."
+     ],
+     [
+      "list-todo",
+      "Open items",
+      "Whatever is waiting for you, such as approvals or jobs without views, in one list."
+     ],
+     [
+      "rows-3",
+      "Comfortable or compact rows",
+      "Choose the row density and how many jobs each page of the grid shows."
+     ],
+     [
+      "layers",
+      "Fast tabs",
+      "Each tab loads when you open it, and every grid is paged."
+     ],
+     [
+      "file-down",
+      "Overview export",
+      "Download the dashboard figures for a report."
+     ]
+    ]
+   },
+   {
+    "t": "plan",
+    "h": "Is the admin dashboard in the free plan?",
+    "p": "Yes. The dashboard, the jobs console and its CSV export are part of every plan. The Free plan allows up to 100 active jobs, and the Active Jobs card shows how many you are using."
+   },
+   {
+    "t": "faq",
+    "h": "Admin dashboard questions",
+    "items": [
+     [
+      "Why are job views shown as all-time totals?",
+      "Each job keeps a running view count and not a day-by-day history, so views are reported as all-time totals whichever period is selected."
+     ],
+     [
+      "What does Board Health check?",
+      "That the job search, employer dashboard and post-a-job pages are published, that JobPosting structured data is active, that a Google Maps key is set, that the board's background tasks are scheduled and that search engines may index the site."
+     ],
+     [
+      "Can I export jobs to CSV?",
+      "Yes. Export Jobs on the dashboard, or the export in the jobs console, downloads the current view or the rows you have selected."
+     ],
+     [
+      "Does the admin replace the normal WordPress screens?",
+      "It gathers everything for the board in one tabbed screen. The standard WordPress editor is still there for each job."
+     ]
+    ]
+   }
+  ],
+  "company-pages-careers-mode": [
+   {
+    "t": "text",
+    "h": "What is a company page?",
+    "p": [
+     "Each employer on a job board gets a public profile with its logo, tagline, description, website, social links and every job it has open. The directory at /jobs/companies/ lists all companies that have at least one published job, and each card shows how many roles that employer has open."
+    ]
+   },
+   {
+    "t": "shot",
+    "img": "companies",
+    "alt": "The company directory showing a grid of company cards, each with a name, a short description and the number of open jobs",
+    "cap": "The company directory at /jobs/companies/ on the demo board.",
+    "w": 1680,
+    "hgt": 843,
+    "devices": true,
+    "dalt": "The company directory on desktop, with a card for each employer showing its open jobs",
+    "malt": "The company directory on a phone"
+   },
+   {
+    "t": "steps",
+    "h": "How does a company get its page?",
+    "items": [
+     [
+      "A recruiter completes the Company tab",
+      "The profile is written once in the recruiter dashboard and reused on every job."
+     ],
+     [
+      "They publish a job",
+      "The company joins the directory when its first job goes live."
+     ],
+     [
+      "Candidates meet the employer",
+      "A short preview opens from any of its job cards, with a link through to the full page."
+     ],
+     [
+      "The page lists the open jobs",
+      "One address collects every current vacancy at that employer."
+     ]
+    ]
+   },
+   {
+    "t": "table",
+    "h": "What changes in careers mode?",
+    "rows": [
+     [
+      "",
+      "Job board mode",
+      "Careers mode"
+     ],
+     [
+      "Who it is for",
+      "Many employers",
+      "One company"
+     ],
+     [
+      "Recruiter sign-up",
+      "Public registration",
+      "Accounts are created by an admin"
+     ],
+     [
+      "Company names on job cards",
+      "Shown",
+      "Hidden, since every job is yours"
+     ],
+     [
+      "Company directory",
+      "Lists all employers",
+      "Sends visitors to the jobs list"
+     ],
+     [
+      "Talent pool and paid listings",
+      "Available",
+      "Switched off"
+     ],
+     [
+      "Browsing, applying, saving and alerts",
+      "Available",
+      "Available"
+     ]
+    ]
+   },
+   {
+    "t": "cards",
+    "h": "What else is included?",
+    "items": [
+     [
+      "toggle-right",
+      "One setting",
+      "Switch between job board and careers site in the settings."
+     ],
+     [
+      "undo-2",
+      "Reversible",
+      "Your paid-feature settings are kept, so switching back restores them as they were."
+     ],
+     [
+      "user-plus",
+      "Recruiters by invitation",
+      "In careers mode, admins add recruiter accounts in WordPress."
+     ],
+     [
+      "gauge",
+      "Profile completeness",
+      "The recruiter dashboard shows how complete the company profile is."
+     ],
+     [
+      "image",
+      "Logos",
+      "A square logo appears on the company page and in the directory; initials stand in until one is uploaded."
+     ],
+     [
+      "briefcase",
+      "Open roles on every card",
+      "Each directory card links straight to that employer's current vacancies."
+     ]
+    ]
+   },
+   {
+    "t": "plan",
+    "h": "Are company pages and careers mode free?",
+    "p": "Yes. Company pages, the directory and careers mode need no paid plan."
+   },
+   {
+    "t": "faq",
+    "h": "Company page questions",
+    "items": [
+     [
+      "Can I use Modern Job Board as my own company's careers page?",
+      "Yes. Switch the board type to careers site, and the plugin runs for a single employer."
+     ],
+     [
+      "What do candidates keep in careers mode?",
+      "Browsing, applying, saving jobs and job alerts all work as before."
+     ],
+     [
+      "Can recruiters still post jobs in careers mode?",
+      "Yes. Signed-in recruiters keep their dashboard and the job form; an admin creates their accounts."
+     ],
+     [
+      "When does a company appear in the directory?",
+      "As soon as it has at least one published job."
+     ]
+    ]
+   }
+  ],
+  "recruiter-mcp-business": [
+   {
+    "t": "text",
+    "h": "What is the AI assistant for recruiters?",
+    "p": [
+     "It lets an employer run their hiring by chatting with an AI assistant such as ChatGPT, Claude or Gemini, instead of clicking through a dashboard. Ask &#8220;Which of my jobs have new applications?&#8221;, &#8220;Move everyone still New after 14 days to Reviewed&#8221; or &#8220;Draft an interview invitation for Sam Lee&#8221;, and the assistant does it on the board. MCP stands for Model Context Protocol, the open standard AI assistants use to work with other systems. Signed in as that employer, the assistant can list and edit their jobs, read and move their applications, update the company profile and check remaining credits. It cannot reach any other employer's records."
+    ]
+   },
+   {
+    "t": "text",
+    "h": "Which AI assistants can I use?",
+    "p": [
+     "ChatGPT, Claude and any other AI assistant that can add a custom connector. The recruiter connects it themselves in about a minute: they copy the board's address from the AI assistant tab of their dashboard, paste it into the assistant, sign in and choose Allow. From then on they simply chat. Custom connectors are only available on some ChatGPT and Claude plans.",
+     "Developer tools such as Claude Code and Gemini CLI can also connect with an application password. The <a href=\"{docs}recruiter-mcp/\">AI assistant guide</a> covers both."
+    ]
+   },
+   {
+    "t": "code",
+    "h": "What does an MCP call look like?",
+    "code": "POST /wp-json/mjb/v1/mcp\n\n{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": { \"name\": \"list_my_jobs\", \"arguments\": {} }\n}\n\n→ structuredContent\n\n{\n  \"ok\": true,\n  \"jobs\": [\n    {\n      \"id\": 203,\n      \"title\": \"People Partner\",\n      \"post_status\": \"publish\",\n      \"state\": \"open\",\n      \"filled\": false,\n      \"applications\": 0,\n      \"company_name\": \"Orbit Robotics\",\n      \"featured\": true\n    }\n  ]\n}",
+    "cap": "A <code>list_my_jobs</code> call and the structured content it returns, shortened to one job."
+   },
+   {
+    "t": "steps",
+    "h": "How does an assistant connect?",
+    "items": [
+     [
+      "The recruiter adds the board",
+      "They paste the address from their dashboard into ChatGPT, Claude or another assistant as a custom connector."
+     ],
+     [
+      "They sign in and choose Allow",
+      "The board's own sign-in page opens. The assistant gets a token for that recruiter, never their password."
+     ],
+     [
+      "The assistant finds the tools",
+      "It sends <code>initialize</code> and <code>tools/list</code>, then <code>tools/call</code> with a tool name and its arguments, as JSON-RPC."
+     ],
+     [
+      "Limits are enforced",
+      "Other employers' records, candidate logins and checkout are never available."
+     ]
+    ]
+   },
+   {
+    "t": "table",
+    "h": "Which tools can the assistant use?",
+    "rows": [
+     [
+      "Area",
+      "Tools"
+     ],
+     [
+      "Jobs",
+      "<code>list_my_jobs</code>, <code>read_job</code>, <code>create_or_update_job</code>, <code>close_or_reopen_job</code>, <code>feature_job</code>"
+     ],
+     [
+      "Applications",
+      "<code>list_applications</code>, <code>read_application</code>, <code>set_application_status</code>, <code>bulk_set_application_status</code>, <code>add_application_note</code>, <code>read_application_notes</code>"
+     ],
+     [
+      "Company and credits",
+      "<code>read_company_profile</code>, <code>update_company_profile</code>, <code>read_package_status</code>"
+     ],
+     [
+      "Analytics",
+      "<code>get_job_performance_analytics</code>, <code>get_recruitment_funnel_summary</code>"
+     ],
+     [
+      "Screening",
+      "<code>score_or_match_candidates</code>, <code>analyze_job_description</code>"
+     ],
+     [
+      "Outreach",
+      "<code>generate_candidate_outreach_draft</code>, <code>send_application_email</code>"
+     ]
+    ]
+   },
+   {
+    "t": "cards",
+    "h": "How is the assistant kept in check?",
+    "items": [
+     [
+      "lock-keyhole",
+      "Scoped to one employer",
+      "Each tool only touches the signed-in employer's jobs, applications and company."
+     ],
+     [
+      "list-checks",
+      "Bulk changes are filtered",
+      "Records that belong to someone else are skipped."
+     ],
+     [
+      "file-text",
+      "[mjb_doc plural] as plain text only",
+      "Shared [mjb_doc plural lower] are readable as text. PDF and Word files are not extracted."
+     ],
+     [
+      "mail-check",
+      "Email opt-outs respected",
+      "Status emails honor each candidate's email preferences."
+     ],
+     [
+      "pen-line",
+      "Drafts stay drafts",
+      "The outreach tool writes a draft and sends nothing."
+     ],
+     [
+      "coins",
+      "Featuring spends a credit",
+      "Featuring a job uses one of the employer's own credits."
+     ]
+    ]
+   },
+   {
+    "t": "plan",
+    "h": "Which plan includes the AI assistant for recruiters?",
+    "p": "Business, at $299 a year, together with the <a href=\"{f:rest-api-feeds-webhooks-business}\">REST API, XML feed and webhooks</a>. <a href=\"{pricing}\">See pricing</a>."
+   },
+   {
+    "t": "faq",
+    "h": "AI assistant questions",
+    "items": [
+     [
+      "What is MCP?",
+      "MCP stands for Model Context Protocol. It is an open standard, now supported by the major AI assistants, that lets an assistant use tools in other systems. Modern Job Board offers its recruiter tools over MCP, so an assistant can act for an employer when they ask it to in plain English."
+     ],
+     [
+      "Do recruiters need to be technical to use it?",
+      "No. They add the board to ChatGPT or Claude as a custom connector, sign in and choose Allow, all in about a minute. After that they just chat."
+     ],
+     [
+      "Can the assistant see other employers' data?",
+      "No. Every tool is limited to the signed-in employer's own jobs, the applications to those jobs and their company."
+     ],
+     [
+      "How do I disconnect an assistant?",
+      "Open AI assistant in the recruiter dashboard and choose Disconnect. Changing the account's password, or removing its recruiter role, disconnects every assistant at once."
+     ],
+     [
+      "Does the assistant send emails by itself?",
+      "Only when the email tool is called, for interview, rejection or status emails. The outreach tool produces drafts."
+     ],
+     [
+      "How many tools are there?",
+      "Twenty, covering jobs, applications, the company profile, credits, analytics, screening and outreach."
+     ]
+    ]
+   }
+  ]
+ },
+ "index": {
+  "intro": {
+   "h": "What is Modern Job Board?",
+   "p": "Modern Job Board is a job board plugin for WordPress. It runs on your own site, keeps listings, applications and [mjb_doc plural lower] on your own server, and covers the whole hiring flow: posting, search, applications, employer and candidate dashboards, payments and integrations. Each feature below has its own page with screenshots and the details."
+  },
+  "plans_h": "Which features are in each plan?",
+  "plans": [
+   [
+    "Plan",
+    "Price",
+    "What it includes"
+   ],
+   [
+    "Free",
+    "$0",
+    "The core board: posting, predictive search, accounts and dashboards, private [mjb_doc plural lower], alerts, maps, company pages, blocks, SEO and the admin dashboard. Up to 100 active jobs."
+   ],
+   [
+    "Pro",
+    "$149 a year",
+    "Everything in Free with unlimited jobs, plus WooCommerce monetization, custom fields, and CSV and XML import and export."
+   ],
+   [
+    "Business",
+    "$299 a year",
+    "Everything in Pro, plus the REST API, XML job feed, webhooks and the AI assistant for recruiters, so recruiters can manage hiring from ChatGPT, Claude or Gemini."
+   ],
+   [
+    "Complete Site",
+    "$1,199–1,999 setup",
+    "A full WordPress job board site built and configured for you, with one year of Business included, then $299 a year."
+   ]
+  ],
+  "faq_h": "Questions about Modern Job Board",
+  "faq": [
+   [
+    "Is Modern Job Board free?",
+    "Yes. The Free plan includes the core job board with up to 100 active jobs. Pro and Business are yearly plans that add monetization, data tools and integrations."
+   ],
+   [
+    "Do I need WooCommerce?",
+    "Only to take payments from employers or candidates, which is part of Pro and Business. Everything else works without it."
+   ],
+   [
+    "Where is my job board data stored?",
+    "On your own WordPress site and server. Listings, applications and [mjb_doc plural lower] are not held on a third-party platform."
+   ],
+   [
+    "What do I need to run it?",
+    "WordPress 6.4 or later and PHP 7.4 or later. WooCommerce is optional."
+   ]
+  ]
+ },
+ "icons": [
+  "award",
+  "badge-check",
+  "banknote",
+  "bell",
+  "bell-ring",
+  "bookmark",
+  "bot",
+  "braces",
+  "briefcase",
+  "building",
+  "building-2",
+  "calendar",
+  "calendar-clock",
+  "calendar-range",
+  "calendar-sync",
+  "chart-column",
+  "chart-no-axes-column",
+  "chart-pie",
+  "check",
+  "circle-check-big",
+  "circle-plus",
+  "circle-user-round",
+  "clock",
+  "cloud-upload",
+  "code-xml",
+  "coins",
+  "copy",
+  "cpu",
+  "credit-card",
+  "database-backup",
+  "download",
+  "eye",
+  "eye-off",
+  "file-check",
+  "file-code",
+  "file-down",
+  "file-spreadsheet",
+  "file-text",
+  "file-up",
+  "filter",
+  "flag",
+  "folder-lock",
+  "gauge",
+  "gift",
+  "globe",
+  "hand-coins",
+  "handshake",
+  "heading",
+  "heart",
+  "heart-pulse",
+  "image",
+  "key-round",
+  "layers",
+  "layout-dashboard",
+  "layout-template",
+  "lightbulb",
+  "link",
+  "link-2",
+  "list-checks",
+  "list-restart",
+  "list-todo",
+  "lock-keyhole",
+  "mail",
+  "mail-check",
+  "mails",
+  "map",
+  "map-pin",
+  "map-pinned",
+  "megaphone",
+  "message-circle",
+  "messages-square",
+  "mouse-pointer-click",
+  "network",
+  "palette",
+  "pen-line",
+  "pencil",
+  "percent",
+  "plug",
+  "refresh-cw",
+  "rocket",
+  "rotate-ccw",
+  "route",
+  "rows-3",
+  "search",
+  "search-x",
+  "send",
+  "settings",
+  "settings-2",
+  "share-2",
+  "shield",
+  "shield-check",
+  "smartphone",
+  "sparkles",
+  "star",
+  "star-half",
+  "tag",
+  "target",
+  "thumbs-up",
+  "ticket-plus",
+  "timer",
+  "toggle-right",
+  "trending-up",
+  "trophy",
+  "undo-2",
+  "user-plus",
+  "user-round-x",
+  "user-search",
+  "users",
+  "wallet",
+  "wand-sparkles",
+  "wrench",
+  "zap"
+ ]
+}

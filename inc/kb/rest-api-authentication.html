@@ -1,0 +1,68 @@
+<!-- wp:paragraph -->
+<p>The v1 job search is public. The v2 routes need a signed-in WordPress user with the right role:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:table {"className":"mjb-stack-table"} -->
+<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>Routes</th><th>Who can call them</th></tr></thead><tbody><tr><td>Recruiter routes (applications, analytics)</td><td>Users with the recruiter (<code>employer</code>) role, or administrators</td></tr><tr><td>Candidate routes (profile)</td><td>Users with the <code>candidate</code> role, or administrators</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:heading {"anchor":"application-passwords"} -->
+<h2 id="application-passwords" class="wp-block-heading">Application passwords</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>For scripts and other systems, use a WordPress <strong>application password</strong> over HTTPS. It works like a separate password for one connection, and can be revoked at any time without changing the user's own password.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Sign in to wp-admin as the user the connection will act as, or edit that user as an administrator.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Open <strong>Users → Profile</strong> and scroll to <strong>Application Passwords</strong>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Enter a name, such as "ATS connection", and select <strong>Add New Application Password</strong>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Copy the password shown. It is only shown once.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Send it with HTTP Basic authentication:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>curl -u "USERNAME:APPLICATION_PASSWORD" \
+  "https://example.com/wp-json/mjb/v2/applications?per_page=20"</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"mjb-callout mjb-callout-warning"} -->
+<p class="mjb-callout mjb-callout-warning">Only use application passwords over HTTPS. Keep them out of code you share, and give each system its own password so you can revoke one without affecting the others.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Browser code on the same site can also use WordPress's normal cookie authentication with a REST nonce, and other REST authentication plugins work too.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"api-keys"} -->
+<h2 id="api-keys" class="wp-block-heading">API keys</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>For systems that only use the public routes, such as a partner site reading your jobs, you can give each one its own key under <strong>Settings → Integrations → API Keys</strong>. The key is shown once when you create it. Send it in the <code>X-MJB-API-Key</code> header. A wrong or revoked key is refused, and each key can make 60 requests a minute. A key does not sign anyone in, so the recruiter and candidate routes still need an application password.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"what-each-user-can-see"} -->
+<h2 id="what-each-user-can-see" class="wp-block-heading">What each user can see</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Recruiters only see their own data.</strong> A recruiter only sees applications to jobs they posted. A recruiter with no jobs gets an empty list, never everyone's applications.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Administrators</strong> can list all applications on v2.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Candidates</strong> only ever see their own profile.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>The <a href="{{home}}/docs/recruiter-mcp/">AI assistant for recruiters</a> (MCP) does not give administrators that wider access: every MCP call is limited to the signed-in recruiter's own records.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
