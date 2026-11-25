@@ -1,0 +1,65 @@
+<!-- wp:heading {"anchor":"the-jobs-map"} -->
+<h2 id="the-jobs-map" class="wp-block-heading">The jobs map</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The jobs map plots every open job as a marker on a Google Map.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Create a Google Maps API key in the Google Cloud console, with the Maps JavaScript API enabled. Restrict the key to your site's domain.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Paste it into <strong>Settings → Job board → Listings → Google Maps API Key</strong>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Add <code>[mjb_jobs_map]</code> to a page.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Set <strong>Jobs map height</strong> and <strong>Jobs map max markers</strong> to suit the page.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Each job page can also show a small map of its own location. Without a key, maps show a reminder to add one instead of a broken map.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"mjb-callout mjb-callout-note"} -->
+<p class="mjb-callout mjb-callout-note">Google may charge for map loads beyond its monthly free allowance. Set a budget alert in the Google Cloud console.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"featured-jobs"} -->
+<h2 id="featured-jobs" class="wp-block-heading">Featured jobs</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>A featured job gets a Featured badge and a highlighted card in the job list. You can feature a job in wp-admin, and recruiters can feature their own jobs with <strong>Feature this job</strong> in their dashboard. On a paid board <strong>(Pro)</strong> featuring costs a credit or goes through checkout.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"featured-companies"} -->
+<h2 id="featured-companies" class="wp-block-heading">Featured companies</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Show a set of employers you choose with <code>[mjb_featured_companies]</code>, for example on your home page. To choose them, open a company under <strong>Modern Job Board → Companies</strong> and turn on <strong>Feature this company</strong> in its Publishing card. Add a <strong>Featured until</strong> date to stop featuring it automatically after that day.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"ad-banners"} -->
+<h2 id="ad-banners" class="wp-block-heading">Ad banners</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Create banners in <strong>Settings → Plans &amp; payments → Ad Banners</strong> and choose where they appear: position 0 puts a banner above the job list, 5 puts it after the fifth job card. To show a banner anywhere else, place <code>[mjb_ad_banner position="0"]</code> or <code>[mjb_ad_banner label="Name"]</code> on the page. Banner and featured spots are yours to sell to sponsors directly.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"sharing-and-social-posting"} -->
+<h2 id="sharing-and-social-posting" class="wp-block-heading">Sharing and social posting</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Every job page ends with <strong>Apply</strong>, <strong>Save</strong> and <strong>Share</strong>. Share opens LinkedIn, X, Facebook, email and a copy-link button.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>A job can take applications over WhatsApp instead of the on-site form.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Settings → Integrations → Social Auto-Post</strong> sends each newly published job as JSON to a webhook address. Connect it to Zapier, Make or n8n to post new jobs to your social channels automatically.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->

@@ -60,20 +60,32 @@ $logo_url      = home_url( '/' );
                 <?php endif; ?>
 
                 <div class="nav-actions desktop-only">
-                    <?php
-                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in helper.
-                    mjb_theme_render_nav_auth_dropdown( 'candidate', $demo_actions['candidate'] );
-                    mjb_theme_render_nav_auth_dropdown( 'employer', $demo_actions['employer'] );
-                    ?>
-                    <a href="<?php echo esc_url( $demo_actions['post_job']['url'] ); ?>" class="btn btn-primary btn-sm">
-                        <?php echo esc_html( $demo_actions['post_job']['label'] ); ?>
-                    </a>
+                    <?php if ( shortcode_exists( 'mjb_job_seeker' ) ) : ?>
+                        <?php
+                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in the shortcodes.
+                        echo do_shortcode( '[mjb_job_seeker]' );
+                        echo do_shortcode( '[mjb_recruiter]' );
+                        echo do_shortcode( '[mjb_post_job]' );
+                        ?>
+                    <?php else : ?>
+                        <?php
+                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in helper.
+                        mjb_theme_render_nav_auth_dropdown( 'candidate', $demo_actions['candidate'] );
+                        mjb_theme_render_nav_auth_dropdown( 'employer', $demo_actions['employer'] );
+                        ?>
+                        <a href="<?php echo esc_url( $demo_actions['post_job']['url'] ); ?>" class="btn btn-primary btn-sm">
+                            <?php echo esc_html( $demo_actions['post_job']['label'] ); ?>
+                        </a>
+                    <?php endif; ?>
                 </div>
             <?php elseif ( has_nav_menu( 'primary' ) ) : ?>
                 <?php
                 wp_nav_menu(
                     array(
                         'theme_location' => 'primary',
+                        'items_wrap'     => '%3$s',
+                        'walker'         => new MJB_Theme_Nav_Walker(),
+                        'mjb_variant'    => 'desktop',
                         'container'      => 'div',
                         'container_class' => 'nav-links desktop-only',
                         'menu_class'     => '',
@@ -91,7 +103,7 @@ $logo_url      = home_url( '/' );
                 $home_pricing     = is_front_page() ? '#pricing' : home_url( '/#pricing' );
                 ?>
                 <div class="nav-links desktop-only">
-                    <a href="<?php echo esc_url( $home_features ); ?>">Features</a>
+                    <?php mjb_theme_features_nav_item( $home_features ); ?>
                     <a href="<?php echo esc_url( home_url( '/docs/' ) ); ?>"<?php echo is_page( 'docs' ) ? ' class="active" aria-current="page"' : ''; ?>>Docs</a>
                     <a href="<?php echo esc_url( $home_comparison ); ?>">Compare</a>
                     <a href="<?php echo esc_url( $home_developers ); ?>">Developers</a>
@@ -101,7 +113,7 @@ $logo_url      = home_url( '/' );
                 </div>
             <?php endif; ?>
 
-            <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Menu">
                 <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="4" x2="20" y1="12" y2="12" />
@@ -123,44 +135,56 @@ $logo_url      = home_url( '/' );
                         <?php echo esc_html( $link['label'] ); ?>
                     </a>
                 <?php endforeach; ?>
-                <?php if ( ! empty( $demo_actions['candidate']['items'] ) ) : ?>
-                    <?php foreach ( $demo_actions['candidate']['items'] as $item ) : ?>
-                        <a href="<?php echo esc_url( $item['url'] ); ?>" class="mobile-link">
-                            <?php
-                            echo esc_html(
-                                sprintf(
-                                    /* translators: %s: action (Login, Register, Dashboard) */
-                                    __( 'Job seeker: %s', 'modern-job-board-theme' ),
-                                    $item['label']
-                                )
-                            );
-                            ?>
-                        </a>
-                    <?php endforeach; ?>
+                <?php if ( shortcode_exists( 'mjb_job_seeker' ) ) : ?>
+                    <?php
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in the shortcodes.
+                    echo do_shortcode( '[mjb_job_seeker variant="mobile"]' );
+                    echo do_shortcode( '[mjb_recruiter variant="mobile"]' );
+                    echo do_shortcode( '[mjb_post_job variant="mobile"]' );
+                    ?>
+                <?php else : ?>
+                    <?php if ( ! empty( $demo_actions['candidate']['items'] ) ) : ?>
+                        <?php foreach ( $demo_actions['candidate']['items'] as $item ) : ?>
+                            <a href="<?php echo esc_url( $item['url'] ); ?>" class="mobile-link">
+                                <?php
+                                echo esc_html(
+                                    sprintf(
+                                        /* translators: %s: action (Login, Register, Dashboard) */
+                                        __( 'Job seeker: %s', 'modern-job-board-theme' ),
+                                        $item['label']
+                                    )
+                                );
+                                ?>
+                            </a>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                    <?php if ( ! empty( $demo_actions['employer']['items'] ) ) : ?>
+                        <?php foreach ( $demo_actions['employer']['items'] as $item ) : ?>
+                            <a href="<?php echo esc_url( $item['url'] ); ?>" class="mobile-link">
+                                <?php
+                                echo esc_html(
+                                    sprintf(
+                                        /* translators: %s: action (Login, Register, Dashboard) */
+                                        __( 'Recruiter: %s', 'modern-job-board-theme' ),
+                                        $item['label']
+                                    )
+                                );
+                                ?>
+                            </a>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                    <a href="<?php echo esc_url( $demo_actions['post_job']['url'] ); ?>" class="btn btn-primary mobile-btn">
+                        <?php echo esc_html( $demo_actions['post_job']['label'] ); ?>
+                    </a>
                 <?php endif; ?>
-                <?php if ( ! empty( $demo_actions['employer']['items'] ) ) : ?>
-                    <?php foreach ( $demo_actions['employer']['items'] as $item ) : ?>
-                        <a href="<?php echo esc_url( $item['url'] ); ?>" class="mobile-link">
-                            <?php
-                            echo esc_html(
-                                sprintf(
-                                    /* translators: %s: action (Login, Register, Dashboard) */
-                                    __( 'Recruiter: %s', 'modern-job-board-theme' ),
-                                    $item['label']
-                                )
-                            );
-                            ?>
-                        </a>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-                <a href="<?php echo esc_url( $demo_actions['post_job']['url'] ); ?>" class="btn btn-primary mobile-btn">
-                    <?php echo esc_html( $demo_actions['post_job']['label'] ); ?>
-                </a>
             <?php elseif ( has_nav_menu( 'primary' ) ) : ?>
                 <?php
                 wp_nav_menu(
                     array(
                         'theme_location' => 'primary',
+                        'items_wrap'     => '%3$s',
+                        'walker'         => new MJB_Theme_Nav_Walker(),
+                        'mjb_variant'    => 'mobile',
                         'container'      => false,
                         'menu_class'     => '',
                         'fallback_cb'    => false,
@@ -176,7 +200,7 @@ $logo_url      = home_url( '/' );
                 $home_developers = is_front_page() ? '#developers' : home_url( '/#developers' );
                 $home_pricing    = is_front_page() ? '#pricing' : home_url( '/#pricing' );
                 ?>
-                <a href="<?php echo esc_url( $home_features ); ?>" class="mobile-link">Features</a>
+                <?php mjb_theme_features_mobile_item( $home_features ); ?>
                 <a href="<?php echo esc_url( home_url( '/docs/' ) ); ?>" class="mobile-link<?php echo is_page( 'docs' ) ? ' active' : ''; ?>"<?php echo is_page( 'docs' ) ? ' aria-current="page"' : ''; ?>>Docs</a>
                 <a href="<?php echo esc_url( $home_comparison ); ?>" class="mobile-link">Compare</a>
                 <a href="<?php echo esc_url( $home_developers ); ?>" class="mobile-link">Developers</a>
