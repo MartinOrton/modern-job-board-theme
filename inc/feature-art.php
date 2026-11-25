@@ -239,7 +239,7 @@ function mjb_theme_feature_art( $key ) {
 	$key  = isset( $arts[ $key ] ) ? $key : 'board';
 
 	return sprintf(
-		'<figure class="mjb-art mjb-art--%1$s" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="20 20 360 260" role="presentation" focusable="false"><circle cx="286" cy="96" r="118" fill="#d9efec" opacity=".75"/><circle cx="96" cy="226" r="70" fill="#fff1e6" opacity=".9"/>%2$s</svg></figure>',
+		'<figure class="mjb-art mjb-art--%1$s" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="20 20 360 260" role="presentation" focusable="false"><circle cx="286" cy="136" r="114" fill="#d9efec" opacity=".75"/><circle cx="96" cy="208" r="70" fill="#fff1e6" opacity=".9"/>%2$s</svg></figure>',
 		esc_attr( $key ),
 		$arts[ $key ]['svg']
 	);

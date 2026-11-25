@@ -2,6 +2,11 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.105] - 2026-11-25
+
+### Fixed
+- **Feature page hero illustrations no longer cover the intro text.** The large pale circle behind each illustration reached above the illustration's frame and, on pages with a long intro, painted over its last line. Both background circles now sit inside the frame, and the intro text is layered above the illustration so nothing can cover it.
+
 ## [0.9.0-beta.104] - 2026-11-25
 
 ### Changed
