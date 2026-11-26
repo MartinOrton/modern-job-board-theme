@@ -2,6 +2,14 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.107] - 2026-11-26
+
+### Changed
+- New Post a Job screenshots on the Frontend Job Submission page, showing the full description editor (plugin 0.9.0-beta.200).
+
+### Fixed
+- **The back-to-top button no longer covers the recruiter dashboard's save bar.** On the Company tab and Post a Job it now sits above the sticky bar, and higher on phones where the Post a Job bar wraps to two rows (it was covering the Next button).
+
 ## [0.9.0-beta.106] - 2026-11-26
 
 ### Changed

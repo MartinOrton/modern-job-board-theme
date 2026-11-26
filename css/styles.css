@@ -2028,6 +2028,19 @@ footer {
     }
 }
 
+/* Keep it above the recruiter dashboard's sticky save bar (Company tab,
+   Post a Job), which sits along the bottom of the screen. */
+body:has(.mjb-cd-savebar) .back-to-top {
+    bottom: 6rem;
+}
+
+@media (max-width: 639px) {
+    /* The Post a Job bar wraps to two rows on phones. */
+    body:has(.mjb-jobform__bar) .back-to-top {
+        bottom: 9.5rem;
+    }
+}
+
 /* -- Documentation reference (Bullhorn-style shell, MJB look) -- */
 .docs-page {
     padding-top: 0;
