@@ -1,0 +1,68 @@
+<!-- wp:paragraph -->
+<p>The jobs routes return published jobs only. No authentication is needed, so they are safe to call from browsers and other sites.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"list-jobs"} -->
+<h2 id="list-jobs" class="wp-block-heading">List jobs</h2>
+<!-- /wp:heading -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>GET /wp-json/mjb/v1/jobs?search_keywords=engineer&amp;search_location=remote&amp;per_page=10&amp;page=1</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:table {"className":"mjb-stack-table"} -->
+<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>Parameter</th><th>Required</th><th>Description</th></tr></thead><tbody><tr><td><code>per_page</code></td><td>No</td><td>Results per page. Default 10, maximum 100.</td></tr><tr><td><code>page</code></td><td>No</td><td>Page number, starting at 1</td></tr><tr><td><code>search_keywords</code></td><td>No</td><td>Keyword search</td></tr><tr><td><code>search_location</code></td><td>No</td><td>Location filter</td></tr><tr><td><code>search_category</code></td><td>No</td><td>Job category, by slug or name</td></tr><tr><td><code>search_type</code></td><td>No</td><td>Job type, for example <code>full-time</code></td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:paragraph -->
+<p>The response is an array of jobs. The <code>X-WP-Total</code> and <code>X-WP-TotalPages</code> headers give the totals.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>&#91;
+  {
+    "id": 42,
+    "title": "Senior Web Developer",
+    "link": "https://example.com/jobs/senior-web-developer/",
+    "date": "2026-07-20 10:00:00",
+    "featured": false,
+    "company": "Acme Corp",
+    "location": "Remote",
+    "type": "Full-time",
+    "category": "Engineering",
+    "excerpt": "Build modern job board experiences…"
+  }
+]</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>Custom field values are included with each job when you use <a href="{{home}}/docs/custom-fields/">custom fields</a> <strong>(Pro)</strong>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"search-with-a-readable-path"} -->
+<h2 id="search-with-a-readable-path" class="wp-block-heading">Search with a readable path</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>This route mirrors the board's readable search URLs, so you can turn a board URL into an API call by adding the same path:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>GET /wp-json/mjb/v1/jobs/search/in/remote/category/engineering/type/full-time/</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>The path is made of segments for location (<code>in/…</code>), category (<code>category/…</code>), type (<code>type/…</code>) and keyword. Without a path, <code>GET /wp-json/mjb/v1/jobs/search</code> works like the list route with query parameters.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"example-show-the-latest-jobs-on-another-site"} -->
+<h2 id="example-show-the-latest-jobs-on-another-site" class="wp-block-heading">Example: show the latest jobs on another site</h2>
+<!-- /wp:heading -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>fetch( 'https://example.com/wp-json/mjb/v1/jobs?per_page=5' )
+  .then( ( response ) =&gt; response.json() )
+  .then( ( jobs ) =&gt; {
+    jobs.forEach( ( job ) =&gt; console.log( job.title, job.link ) );
+  } );</code></pre>
+<!-- /wp:code -->
