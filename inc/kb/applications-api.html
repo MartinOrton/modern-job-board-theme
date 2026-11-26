@@ -1,0 +1,84 @@
+<!-- wp:paragraph -->
+<p>These routes act as a signed-in recruiter (or administrator). See <a href="{{home}}/docs/rest-api-authentication/">Authentication</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"list-applications"} -->
+<h2 id="list-applications" class="wp-block-heading">List applications</h2>
+<!-- /wp:heading -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>GET /wp-json/mjb/v2/applications</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>curl -u "recruiter:xxxx xxxx xxxx xxxx" \
+  "https://example.com/wp-json/mjb/v2/applications?job_id=42&amp;status=new&amp;per_page=20"</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:table {"className":"mjb-stack-table"} -->
+<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>Parameter</th><th>Required</th><th>Description</th></tr></thead><tbody><tr><td><code>job_id</code></td><td>No</td><td>Only applications to this job. The recruiter must own it.</td></tr><tr><td><code>status</code></td><td>No</td><td>Only applications at this stage, for example <code>new</code></td></tr><tr><td><code>page</code></td><td>No</td><td>Default 1</td></tr><tr><td><code>per_page</code></td><td>No</td><td>Default 20, maximum 100</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:paragraph -->
+<p>Each item looks like this:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>{
+  "id": 88,
+  "job_id": 42,
+  "job_title": "Senior Web Developer",
+  "status": "new",
+  "status_label": "New",
+  "date": "2026-07-21 14:30:00",
+  "cv_access": true,
+  "candidate_name": "Alex Example",
+  "candidate_email": "alex@example.com",
+  "message": "Excited to apply…",
+  "resume_url": "https://example.com/?mjb_download=application&amp;mjb_id=88&amp;mjb_nonce=…"
+}</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"mjb-callout mjb-callout-note"} -->
+<p class="mjb-callout mjb-callout-note">When paid [mjb_doc lower] access is switched on and the recruiter has not unlocked an application, <code>cv_access</code> is <code>false</code> and the candidate's personal details and [mjb_doc lower] link are left out.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The <code>resume_url</code> is a checked download link: it only works for a signed-in user who is allowed to see that [mjb_doc lower].</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"update-an-application"} -->
+<h2 id="update-an-application" class="wp-block-heading">Update an application</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Change an application's stage. The caller must own the job, or be an administrator.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>PATCH /wp-json/mjb/v2/applications/{id}</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>curl -X POST -u "recruiter:xxxx xxxx xxxx xxxx" \
+  -H "Content-Type: application/json" \
+  -H "X-HTTP-Method-Override: PATCH" \
+  -d '{"status":"reviewed"}' \
+  "https://example.com/wp-json/mjb/v2/applications/88"</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:table {"className":"mjb-stack-table"} -->
+<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>Parameter</th><th>Required</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code></td><td>Yes</td><td>The application's ID (in the path)</td></tr><tr><td><code>status</code></td><td>Yes</td><td>The new stage</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:heading {"anchor":"stages"} -->
+<h2 id="stages" class="wp-block-heading">Stages</h2>
+<!-- /wp:heading -->
+
+<!-- wp:table {"className":"mjb-stack-table"} -->
+<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th><code>status</code></th><th>Shown as</th></tr></thead><tbody><tr><td><code>new</code></td><td>New</td></tr><tr><td><code>reviewed</code></td><td>Reviewed</td></tr><tr><td><code>shortlisted</code></td><td>Shortlisted</td></tr><tr><td><code>rejected</code></td><td>Rejected</td></tr><tr><td><code>hired</code></td><td>Hired</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:paragraph -->
+<p>A stage change fires the <code>application.status_updated</code> <a href="{{home}}/docs/webhooks/">webhook</a> and can email the candidate, just like a change in the dashboard.</p>
+<!-- /wp:paragraph -->

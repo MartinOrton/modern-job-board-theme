@@ -1,0 +1,59 @@
+<!-- wp:heading {"anchor":"blocks"} -->
+<h2 id="blocks" class="wp-block-heading">Blocks</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Eight blocks cover the core pages. You find them under <strong>Modern Job Board</strong> in the block inserter. Each block does exactly what the matching shortcode does, so you can use either.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:table {"className":"mjb-stack-table"} -->
+<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>Block</th><th>Shortcode</th><th>What it shows</th></tr></thead><tbody><tr><td>Job Listings</td><td><code>[mjb_jobs]</code></td><td>The job search: predictive suggestions for title, company and location, filter chips and readable URLs</td></tr><tr><td>Job Submission Form</td><td><code>[mjb_job_form]</code></td><td>The form recruiters use to post and edit jobs</td></tr><tr><td>Recruiter Dashboard</td><td><code>[mjb_dashboard]</code></td><td>Jobs, applications, company profile, credits and Feature this job</td></tr><tr><td>Candidate Dashboard</td><td><code>[mjb_candidate_dashboard]</code></td><td>Profile, [mjb_doc plural lower], applications, saved jobs and email preferences</td></tr><tr><td>Recruiter Login</td><td><code>[mjb_employer_login]</code></td><td>Sign-in form with a link to register</td></tr><tr><td>Candidate Login</td><td><code>[mjb_candidate_login]</code></td><td>Sign-in form with a link to register</td></tr><tr><td>Recruiter Registration</td><td><code>[mjb_employer_registration]</code></td><td>Signup in three steps: you, your company, your account</td></tr><tr><td>Candidate Registration</td><td><code>[mjb_candidate_registration]</code></td><td>Signup in three steps: about you, your [mjb_doc lower], your account</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:heading {"anchor":"other-shortcodes"} -->
+<h2 id="other-shortcodes" class="wp-block-heading">Other shortcodes</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>These have no block yet. Add them with a Shortcode block.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:table {"className":"mjb-stack-table"} -->
+<figure class="wp-block-table mjb-stack-table"><table class="has-fixed-layout"><thead><tr><th>Shortcode</th><th>What it shows</th><th>Plan</th></tr></thead><tbody><tr><td><code>[mjb_jobs_map]</code> (or <code>[mjb_map]</code>)</td><td>A map with a marker for each open job. Needs a Google Maps API key.</td><td>All</td></tr><tr><td><code>[mjb_job_alerts]</code></td><td>Lets candidates manage their saved search alerts. A subscribe box also appears under the job filters.</td><td>All</td></tr><tr><td><code>[mjb_talent_pool]</code></td><td>Candidate profiles recruiters can browse, following your [mjb_doc lower] access settings</td><td>All</td></tr><tr><td><code>[mjb_messages]</code></td><td>The inbox between recruiters and candidates</td><td>All</td></tr><tr><td><code>[mjb_featured_companies]</code></td><td>A showcase of the companies you choose</td><td>All</td></tr><tr><td><code>[mjb_ad_banner]</code></td><td>An ad banner slot. Set up banners in <strong>Settings → Plans &amp; payments → Ad Banners</strong>, where they can also be placed between job cards.</td><td>All</td></tr><tr><td><code>[mjb_doc]</code></td><td>Your board's word for candidate documents, as set in <strong>Document label</strong> in the settings. Add <code>plural</code> for the plural and <code>lower</code> inside a sentence, for example <code>[mjb_doc plural lower]</code>. It also works in page titles and menus, so your own pages always match the board.</td><td>All</td></tr><tr><td><code>[mjb_related_jobs]</code></td><td>A short list of open jobs, optionally from one job category: <code>[mjb_related_jobs category="engineering" limit="5"]</code>. Also added under blog posts (see below).</td><td>All</td></tr><tr><td><code>[mjb_language_switcher]</code></td><td>Lets visitors choose the board's language</td><td>All</td></tr><tr><td><code>[mjb_job_seeker]</code></td><td>Candidate menu link: log in, register, or dashboard</td><td>All</td></tr><tr><td><code>[mjb_recruiter]</code></td><td>Recruiter menu link: log in, register, or dashboard</td><td>All</td></tr><tr><td><code>[mjb_post_job]</code></td><td>A Post a Job link</td><td>All</td></tr><tr><td><code>[mjb_packages]</code></td><td>Job and credit packages for sale</td><td>Pro</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:paragraph -->
+<p>The same list appears in <strong>Modern Job Board → Shortcodes Setup</strong> under <strong>Optional Shortcodes</strong>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"jobs-on-your-blog"} -->
+<h2 id="jobs-on-your-blog" class="wp-block-heading">Jobs on your blog</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Career guides and articles can send readers to matching jobs:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Give your blog categories the same slugs as your job categories, for example <code>engineering</code>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>A blog post whose first category matches a job category gets a <strong>Related Jobs</strong> list of up to five open jobs at the end, automatically.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>To place the list yourself, or to pick another category, add <code>[mjb_related_jobs category="engineering"]</code> to the post.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Link from your jobs pages to the blog as well, so search engines find both.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"mjb-callout mjb-callout-tip"} -->
+<p class="mjb-callout mjb-callout-tip">To show a shortcode as text on a page, for example in your own documentation, write it with double brackets: <code>[[mjb_jobs]]</code> is displayed as <code>[mjb_jobs]</code> and is not run.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"careers-sites"} -->
+<h2 id="careers-sites" class="wp-block-heading">Careers sites</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>When the board runs as a single-company careers site, the job form, recruiter dashboard, talent pool, packages and featured companies are switched off for visitors, even if their shortcodes are on a page. See <a href="{{home}}/docs/companies-and-careers-mode/">Companies and careers mode</a>.</p>
+<!-- /wp:paragraph -->
