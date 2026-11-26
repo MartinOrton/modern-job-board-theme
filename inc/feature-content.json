@@ -5,19 +5,19 @@
     "t": "text",
     "h": "What does the job submission form look like?",
     "p": [
-     "The form sits on your Post a Job page and asks for five things: a job title, a description, the company, how candidates should apply, and where notifications should go. Recruiters pick a company they already manage or create a new one in the same step, so a first-time employer can register, add their company and submit a listing in one sitting."
+     "Post a Job opens inside the recruiter dashboard and takes the recruiter through four steps: the job details, location and pay, how candidates apply, and when the job goes live. The last step shows the whole listing to check before it is submitted, and a draft can be saved at any point. Recruiters pick a company they already manage or add a new one, with its logo, in the first step, so a first-time employer can register, add their company and submit a listing in one sitting."
     ]
    },
    {
     "t": "shot",
     "img": "job-form",
-    "alt": "The Modern Job Board job submission form with job title, description, company, application method and notification email fields",
-    "cap": "The Post a Job form as a signed-in recruiter sees it.",
+    "alt": "The Modern Job Board Post a Job form in the recruiter dashboard, with four steps: job details, location and pay, applications and publish",
+    "cap": "Post a Job in the recruiter dashboard, as a signed-in recruiter sees it.",
     "w": 1001,
     "hgt": 1032,
     "devices": true,
-    "dalt": "The Post a Job page on desktop: the job form with title, description, company and application method filled in",
-    "malt": "The job form on a phone, with the same fields stacked in one column"
+    "dalt": "The Post a Job form on desktop, inside the recruiter dashboard, on its first step with the job title, type, category and description filled in",
+    "malt": "The Post a Job form on a phone, with the four steps in two rows and the fields stacked in one column"
    },
    {
     "t": "steps",
@@ -29,7 +29,7 @@
      ],
      [
       "A recruiter fills it in",
-      "They choose on-site applications or an external apply URL, and the address that should hear about new applicants."
+      "They work through four steps: the job details, location and pay, how candidates apply (on your board, an external website or WhatsApp), and when it goes live. They can save a draft and come back to it."
      ],
      [
       "The listing is published",
@@ -86,24 +86,44 @@
       "What it is for"
      ],
      [
-      "Job Title",
+      "Job title",
       "The role name shown on job cards and on the job page."
+     ],
+     [
+      "Company",
+      "One of the recruiter's companies, or a new company with its name and logo."
+     ],
+     [
+      "Job type and category",
+      "Chosen from the types and categories you set up, so the job shows up in the right filters."
      ],
      [
       "Description",
       "The full advert: the role, the requirements and the benefits."
      ],
      [
-      "Company",
-      "One of the recruiter's existing companies, or Create New Company with a name."
+      "Location and workplace",
+      "Where the job is, which also places it on the jobs map, and whether it is on-site, hybrid or remote."
      ],
      [
-      "Application Method",
-      "Email (Internal Form) collects applications on your site. External URL sends candidates to another address."
+      "Pay",
+      "Currency, range and period. Optional, and recommended for Google for Jobs."
      ],
      [
-      "Notification Email",
-      "Where the recruiter is told about each new application."
+      "How candidates apply",
+      "On this board (an apply form, tracked in the dashboard), an external website, or a WhatsApp chat."
+     ],
+     [
+      "Notify these people",
+      "The email addresses told about each new application."
+     ],
+     [
+      "Go live",
+      "When the job is submitted, or on a date the recruiter picks."
+     ],
+     [
+      "Feature this listing",
+      "Offered when you sell a Feature package: the recruiter pays at checkout after submitting."
      ],
      [
       "Custom fields (Pro)",
@@ -130,7 +150,7 @@
      ],
      [
       "Can employers send applicants to their own careers site?",
-      "Yes. Choosing External URL as the application method sends candidates to the address the employer enters instead of the on-site application form."
+      "Yes. Choosing External website as the way candidates apply sends them to the address the employer enters instead of the on-site application form. WhatsApp is a third option, which opens a chat with the employer's number."
      ],
      [
       "How does Modern Job Board deal with spam?",

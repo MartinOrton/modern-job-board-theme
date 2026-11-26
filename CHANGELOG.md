@@ -2,6 +2,12 @@
 
 Canonical version: `Version` in `style.css` and `MJB_THEME_VERSION` in `functions.php`.
 
+## [0.9.0-beta.106] - 2026-11-26
+
+### Changed
+- **Frontend Job Submission page and docs match the new Post a Job form** (plugin 0.9.0-beta.199). The answer, the steps, the field table and the FAQ now describe the four-step form in the recruiter dashboard and its new fields (type, category, location, workplace, pay, WhatsApp, notify addresses, go-live date, Feature this listing, new-company logo, drafts). New desktop and phone screenshots of the form.
+- KB **Posting and managing jobs**: the job form's four steps.
+
 ## [0.9.0-beta.105] - 2026-11-25
 
 ### Fixed
